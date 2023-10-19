@@ -11,4 +11,14 @@ export const sample_films: Film[] =[
         origins: ['Japán'],
     },
 
+    {
+        id: '2',
+        name: 'Csillagok Között',
+        tags: ['sci-fi', 'akció', 'űr'],
+        favorite: true,
+        stars: 4.5,
+        imageUrl :'assets/683.jpg',
+        origins: ['USA'],
+    },
+
 ]
