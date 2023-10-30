@@ -13,5 +13,11 @@ export class FilmekService {
 getAll():Film[]{
   return sample_films;
 }
+
+getAllFilmBySearchTerm(searchTerm:string){
+
+  //One piece, one piece
+  return this.getAll().filter(film => film.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()))
+}
 }
 
