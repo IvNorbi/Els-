@@ -7,6 +7,9 @@ import { HeaderComponent } from './components/partials/header/header.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { StarRatingComponent } from './components/partials/star-rating/star-rating.component';
 import { SearchComponent } from './components/partials/search/search.component';
+import { MainComponent } from './components/pages/main/main.component';
+import { LoginComponent } from './components/pages/login/login.component';
+import { RegComponent } from './components/pages/reg/reg.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { SearchComponent } from './components/partials/search/search.component';
     HeaderComponent,
     HomeComponent,
     StarRatingComponent,
-    SearchComponent
+    SearchComponent,
+    MainComponent,
+    LoginComponent,
+    RegComponent
   ],
   imports: [
     BrowserModule,

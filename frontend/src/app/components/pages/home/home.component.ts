@@ -20,8 +20,5 @@ export class HomeComponent {
           /* a filmek megvannak töltve most a filmService adataival, ami a sample_films adatait használja.  */
     this.filmek = filmService.getAll(); 
     })
-
-
   }
-
 }
