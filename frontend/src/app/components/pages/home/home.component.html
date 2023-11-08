@@ -1,23 +1,21 @@
-<app-search></app-search>
-
-<ul>
-    <li *ngFor="let film of filmek">
+<div class="home">
+    <ul>
+      <li *ngFor="let film of filmek">
         <a routerLink="/film/{{film.id}}">
-            <img [src]="film.imageUrl" [alt]="film.name">
-            <div class="content">
-                <div class="name">
-                    {{film.name}}
-                </div>
-                <!--
-                    Kiveszem, amíg ránézek majd miért nem jó
-                    <span class="favorite {{film.favorite? '': 'not'}}">
-                    ❤️
-                </span> -->
-                <div class="stars">
-                    <star-rating [stars]="film.stars"/>
-                </div>
+          <img [src]="film.imageUrl" [alt]="film.name">
+          <div class="content">
+            <div class="name">
+              {{film.name}}
             </div>
+            <!-- Kiveszem, amíg ránézek majd miért nem jó
+            <span class="favorite {{film.favorite? '': 'not'}}">
+              ❤️
+            </span> -->
+            <div class="stars">
+              <star-rating [stars]="film.stars"/>
+            </div>
+          </div>
         </a>
-
-    </li>
-</ul>
+      </li>
+    </ul>
+  </div>

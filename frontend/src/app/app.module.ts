@@ -10,6 +10,7 @@ import { SearchComponent } from './components/partials/search/search.component';
 import { MainComponent } from './components/pages/main/main.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { RegComponent } from './components/pages/reg/reg.component';
+import { MoviePageComponent } from './components/pages/movie-page/movie-page.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RegComponent } from './components/pages/reg/reg.component';
     SearchComponent,
     MainComponent,
     LoginComponent,
-    RegComponent
+    RegComponent,
+    MoviePageComponent
   ],
   imports: [
     BrowserModule,

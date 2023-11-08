@@ -19,5 +19,10 @@ getAllFilmBySearchTerm(searchTerm:string){
   //One piece, one piece
   return this.getAll().filter(film => film.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()))
 }
+
+
+getMovieById(movieId:string):Film{
+  return this.getAll().find(film => film.id == movieId) ?? new Film();
 }
 
+}

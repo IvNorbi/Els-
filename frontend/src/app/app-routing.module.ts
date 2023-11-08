@@ -5,9 +5,12 @@ import { HeaderComponent } from './components/partials/header/header.component';
 import { MainComponent } from './components/pages/main/main.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { RegComponent } from './components/pages/reg/reg.component';
+import { MoviePageComponent } from './components/pages/movie-page/movie-page.component';
+import { SearchComponent } from './components/partials/search/search.component';
 
 const routes: Routes = [
 
+  
   {
     title     : 'Főoldal',
     path      : 'Main',
@@ -34,8 +37,10 @@ const routes: Routes = [
 
 
 
-  {path:'', component:HomeComponent},
-  {path: 'search/:searchTerm', component:HomeComponent}
+  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Alapértelmezett útvonal átirányítása a home-ra
+  { path: 'home', component: HomeComponent },
+  { path: 'search/:searchTerm', component: HomeComponent }, 
+  { path: 'film/:id', component: MoviePageComponent }
 ];
 
 @NgModule({

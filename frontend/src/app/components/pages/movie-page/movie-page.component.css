@@ -1,0 +1,55 @@
+/*Kérdéses részek innentől */
+
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  max-width: 100%; 
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.col-lg-2 {
+  flex: 1; 
+  min-width: 0; 
+}
+
+.col-md-6, .col-sm-12 {
+  flex: 0 0 calc(50% - 2rem); 
+}
+
+/*Kérdéses részek idáig */
+
+
+
+.tags-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tags .tag {
+  background-color: #f0f0f0;
+  padding: 0.3rem 1rem;
+  margin: 0.2rem 0.15rem;
+  border-radius: 10rem;
+  font-weight: 600;
+  color: blue;
+}
+
+img{
+  width: 600px;
+  height: 800px;
+}
+
+.description {
+  margin-top: 2rem;
+}
+
+.cimke{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}

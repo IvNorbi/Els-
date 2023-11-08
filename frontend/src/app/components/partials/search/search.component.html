@@ -1,6 +1,8 @@
 <div>
-    <input #s type="text" placeholder="Keresés"
-     (keyup.enter)="search(s.value)"
-     [value]="searchTerm" />
-    <button (click)="search(s.value)">Search</button>
-  </div>
+  <input #s type="text" placeholder="Keresés" (keyup.enter)="search(s.value)" [value]="searchTerm" />
+  <button (click)="search(s.value)">Keresés</button>
+</div>
+
+<div *ngIf="!searchTerm">
+  <!-- <router-outlet></router-outlet> Alapértelmezett komponens /// KIVETTEM MERT ÖSSZEBASZTA A HEADERT -->
+</div>
