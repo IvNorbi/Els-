@@ -39,7 +39,7 @@ export const sample_films: Film[] =[
     {
         id: '5',
         name: 'Gyűrűk ura: A király visszatér',
-        tags: ['fantasy', 'lotr', 'frodo', 'hobbit', 'gyűrű', 'entek', 'már nem mentek'],
+        tags: ['fantasy', 'lotr', 'frodo', 'hobbit', 'gyűrű', 'entek', 'nem', 'mentek'],
         favorite: false,
         stars: 5.0,
         imageUrl :'assets/lotr.jpg',

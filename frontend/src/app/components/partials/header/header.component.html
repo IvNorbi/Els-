@@ -1,17 +1,28 @@
 <header>
-    <div class="container">
-      <a routerLink="/" class="logo">FilmSarok</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">FilmSarok</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="Movies">Filmek</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="#">Toplista</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"routerLink="Login">Belépés</a>
+        </li>
+        <li class="nav-item dropdown">
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="Register">Regisztráció</a>
+        </li>
+      </ul>
       <app-search class="search-container"></app-search>
-      <nav>
-        <ul>
-          <li>
-            <a routerLink="Movies">Filmek</a>
-            <a routerLink="Main">Főoldal</a>
-            <a routerLink="/Toplist">Toplista.</a>
-            <a routerLink="Login">Belépés.</a>
-            <a routerLink="Register">Regelés</a>
-          </li>
-        </ul>
-      </nav>
     </div>
-  </header>
+  </nav>
+</header>

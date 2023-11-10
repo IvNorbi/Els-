@@ -61,3 +61,9 @@ h1{
 {
     display: none;
 }
+
+.lorem{
+    text-align: justify;
+    margin: 4rem;
+
+}
