@@ -7,6 +7,9 @@ header{
 a{
     color: white;
     font-weight: bold;
+    font-size: 20px;
+    justify-content: center;
+    text-align: center;
 }
 
 a:hover{
@@ -18,13 +21,14 @@ a:hover{
 
 .search-container {
     display: flex;
-
-    /* Valamiért felesleges  helyet generál jobb oldalon, nem tudom miért */
     margin-left: auto;  
+    margin-right: 20px;
   }
   
 .navbar-brand{
-    margin-left: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 30px;
 }
 
 @media (max-width: 1000px) {

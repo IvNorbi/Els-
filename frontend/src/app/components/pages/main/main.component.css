@@ -1,16 +1,35 @@
-h1{
-    text-align: center;
+/* Kódok:
+szürke: #e2e2e2
+kék: #1000ff */
+
+.container{
+    background: #e2e2e2;
 }
+
 
 .ajanlasok{
     justify-content: center;
+    margin-top: 20px;
 }
+
+.main{
+    color:  #1000ff;
+}
+
+
+
+.lorem{
+    text-align: justify;
+    margin: 2px;
+}
+
+
+
+/* BANNER INNENTŐL */
 
 .carousel-inner
 {
     height: 700px;
- 
-
 }
 
 .carousel-inner .carousel-item img
@@ -62,8 +81,4 @@ h1{
     display: none;
 }
 
-.lorem{
-    text-align: justify;
-    margin: 4rem;
-
-}
+/* BANNER IDÁIG */
