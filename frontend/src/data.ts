@@ -23,18 +23,18 @@ export const sample_films: Film[] =[
         stars: 5,
         imageUrl :'assets/dk.jpg',
         origins: ['USA'],
-        description: 'Lorem Ipsum Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum Lorem Ipsum'
+        description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem cumque inventore laboriosam nisi maiores aliquid doloremque quam sint saepe ipsum sunt, aperiam animi eos id in, dignissimos quis quasi pariatur sit alias! Quia inventore atque eligendi impedit blanditiis, soluta cum unde provident temporibus consequatur voluptatem, neque saepe facilis doloremque suscipit.'
     },
     
     {
         id: '4',
         name: 'Jujutsu Kaisen: 0',
-        tags: ['anime', 'shounen', 'japán', 'sorcery', 'lorem ipsum'],
+        tags: ['anime', 'shounen', 'japán', 'sorcery', 'lorem', 'ipsum'],
         favorite: false,
         stars: 4.5,
         imageUrl :'assets/jk.jpg',
         origins: ['Japán'],
-        description: 'Lorem Ipsum Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum Lorem Ipsum'
+        description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem cumque inventore laboriosam nisi maiores aliquid doloremque quam sint saepe ipsum sunt, aperiam animi eos id in, dignissimos quis quasi pariatur sit alias! Quia inventore atque eligendi impedit blanditiis, soluta cum unde provident temporibus consequatur voluptatem, neque saepe facilis doloremque suscipit.'
     },
     {
         id: '5',
@@ -44,7 +44,7 @@ export const sample_films: Film[] =[
         stars: 5.0,
         imageUrl :'assets/lotr.jpg',
         origins: ['USA'],
-        description: 'Lorem Ipsum Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum Lorem Ipsum'
+        description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem cumque inventore laboriosam nisi maiores aliquid doloremque quam sint saepe ipsum sunt, aperiam animi eos id in, dignissimos quis quasi pariatur sit alias! Quia inventore atque eligendi impedit blanditiis, soluta cum unde provident temporibus consequatur voluptatem, neque saepe facilis doloremque suscipit.'
 
     },
     {
@@ -55,7 +55,7 @@ export const sample_films: Film[] =[
         stars: 5.0,
         imageUrl :'assets/sl.jpg',
         origins: ['USA'],
-        description: 'Lorem Ipsum Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum Lorem Ipsum'
+        description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem cumque inventore laboriosam nisi maiores aliquid doloremque quam sint saepe ipsum sunt, aperiam animi eos id in, dignissimos quis quasi pariatur sit alias! Quia inventore atque eligendi impedit blanditiis, soluta cum unde provident temporibus consequatur voluptatem, neque saepe facilis doloremque suscipit.'
 
     },
     {
@@ -66,7 +66,7 @@ export const sample_films: Film[] =[
         stars: 4.5,
         imageUrl :'assets/is.jpg',
         origins: ['USA'],
-        description: 'Lorem Ipsum Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum Lorem Ipsum'
+        description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem cumque inventore laboriosam nisi maiores aliquid doloremque quam sint saepe ipsum sunt, aperiam animi eos id in, dignissimos quis quasi pariatur sit alias! Quia inventore atque eligendi impedit blanditiis, soluta cum unde provident temporibus consequatur voluptatem, neque saepe facilis doloremque suscipit.'
     },
     
 

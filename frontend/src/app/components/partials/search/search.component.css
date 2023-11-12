@@ -16,14 +16,15 @@ input{
 }
 
 div button{
-  color: grey;
+  font-weight: bold;
+  color: black;
   height: 3rem;
   width: 5rem;
   font-size: 1rem;
   border-radius: 0 10rem 10rem 0;
   border: none;
-  background-color: #1900f7d5;
-  color: white;
+  background-color: #e2e2e2;
+  color: black;
   opacity: 0.8;
   outline: none;
 }
@@ -31,4 +32,5 @@ div button{
 div button:hover{
   opacity: 1;
   cursor: pointer;
+  background-color: blue;
 }

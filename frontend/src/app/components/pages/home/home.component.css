@@ -1,3 +1,49 @@
+/* Kódok:
+szürke: #e2e2e2
+kék: #1000ff */
+
+
+/* Látványterv után írt dolgok innentől */
+.container {
+  padding: 20px; 
+}
+
+.container-background {
+  background-color: #e2e2e2;
+}
+
+::ng-deep .name {
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none !important;
+  display: inline;
+}
+
+
+.mainh {
+  color: #1000ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 150px;
+  margin-right: 150px;
+}
+
+.navbar-toggler-icon {
+  background-color: #ffffff;
+  height: 2px;
+  width: 20px;
+}
+
+.tag-box {
+  margin-bottom: 10px;
+  margin-left: 150px;
+}
+
+/* Látványterv után írt dolgok idáig */
+
+
 ul{
     display: flex;
     justify-content: center;
@@ -8,7 +54,7 @@ ul{
 }
 
 li a{
-    height: 40rem;
+    height: 35rem;
     width: 20rem;
     border: 1px solid whitesmoke;
     border-radius: 1rem;

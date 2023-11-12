@@ -1,21 +1,30 @@
-<div class="home">
-    <ul>
-      <li *ngFor="let film of filmek">
-        <a routerLink="/film/{{film.id}}">
-          <img [src]="film.imageUrl" [alt]="film.name">
-          <div class="content">
-            <div class="name">
-              {{film.name}}
+<div class="container container-background">
+  <div class="home">
+    <h2 class="mainh">
+      FILMEK
+      <button class="navbar-toggler float-right" type="button" (click)="toggleTagBox()">
+        <i class="fas fa-bars"></i>
+      </button>
+    </h2>
+    <div *ngIf="showTagBox" class="tag-box">
+    asd asd asd asd asd asd asd asd asd asd asd asd asd asd 
+    </div>
+    <ng-container *ngFor="let chunk of filmek | chunkPipe: 3">
+      <ul>
+        <li *ngFor="let film of chunk">
+          <a routerLink="/film/{{film.id}}">
+            <img [src]="film.imageUrl" [alt]="film.name">
+            <div class="content">
+              <div class="name">
+                {{film.name}}
+              </div>
+              <div class="stars">
+                <star-rating [stars]="film.stars"/>
+              </div>
             </div>
-            <!-- Kiveszem, amíg ránézek majd miért nem jó
-            <span class="favorite {{film.favorite? '': 'not'}}">
-              ❤️
-            </span> -->
-            <div class="stars">
-              <star-rating [stars]="film.stars"/>
-            </div>
-          </div>
-        </a>
-      </li>
-    </ul>
+          </a>
+        </li>
+      </ul>
+    </ng-container>
   </div>
+</div>

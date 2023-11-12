@@ -1,62 +1,43 @@
 header{
-    position: relative;
     padding: 0;
     border-bottom: 1px solid #372aee;
 }
 
-a{
-    color: rgb(45, 91, 243);
 
+a{
+    color: white;
+    font-weight: bold;
 }
 
 a:hover{
-    background: #372aee;
+    background: black;
     color: white;
     cursor: pointer;
-    
-}
-
-.container{ 
-    margin: 0 auto;
-    display: flex;
-  justify-content: space-between;
-}
-
-a.logo {
-    font-weight: bold;
-    padding: 10px;
-}
-
-ul{
-    display: flex;
-    list-style-type: none;
-    margin: 0;
-}
-
-.menu-container{
-    position: relative;
-}
-
-.menu{
-    position: absolute;
-    z-index: 1;
-    background: whitesmoke;
-    display: none;
 
 }
 
 .search-container {
     display: flex;
-    margin-left: auto; 
+
+    /* Valamiért felesleges  helyet generál jobb oldalon, nem tudom miért */
+    margin-left: auto;  
   }
   
-  .menu-container {
-    position: relative;
+.navbar-brand{
     margin-left: 10px;
-  }
+}
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .search-container{
         justify-content: center;
     }
+    .navbar-brand{
+        justify-content: center;
+        text-align: center;
+    }
+    a{
+        justify-content: center;
+        text-align: center;
+    }
+    
 }
