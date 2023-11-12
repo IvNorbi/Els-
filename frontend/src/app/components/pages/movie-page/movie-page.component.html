@@ -1,22 +1,19 @@
 <!-- TARTALOM -->
 <div class="container">
-  <div class="col-md-6">
-    <img [src]="film.imageUrl" [alt]="film.name" class="img-fluid"/>
-  </div>
   <div class="row">
+    <div class="col-md-6">
+      <img [src]="film.imageUrl" [alt]="film.name" class="img-fluid"/>
+    </div>
     <div class="col-md-6 details">
-      <div class="header">
+      <div class="header d-flex align-items-center">
         <h1 class="name">{{film.name}}</h1>
         <span class="favorite {{film.favorite ? 'text-danger' : 'text-secondary'}}">❤</span>
       </div>
+      <div class="description">
+        <p class="descr">{{film.description}}</p>
+      </div>
       <div class="rating">
         <star-rating [stars]="film.stars" [size]="1.8" />
-      </div>
-      <div class="origins">
-        <h4 class="eredet">Származás:</h4>
-        <ul class="originresult">
-          <li *ngFor="let origin of film.origins">{{origin}}</li>
-        </ul>
       </div>
       <div class="tags">
         <h4 class="cimke">Címkék:</h4>
@@ -24,13 +21,16 @@
           <a routerLink="/tag/{{tag}}" class="tag">{{tag}}</a>
         </span>
       </div>
-      <div class="description">
-        <h4>Leírás:</h4>
-        <p>{{film.description}}</p>
+      <div class="origins">
+        <h4 class="eredet">Származás:</h4>
+        <ul class="originresult">
+          <li *ngFor="let origin of film.origins">{{origin}}</li>
+        </ul>
       </div>
     </div>
   </div>
 </div>
+
 
 
 <!-- KOMMENT SZEKCIÓ -->

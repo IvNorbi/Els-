@@ -17,7 +17,6 @@ input{
 
 div button{
   font-weight: bold;
-  color: black;
   height: 3rem;
   width: 5rem;
   font-size: 1rem;
@@ -32,5 +31,6 @@ div button{
 div button:hover{
   opacity: 1;
   cursor: pointer;
-  background-color: blue;
+  background-color: black;
+  color: white;
 }

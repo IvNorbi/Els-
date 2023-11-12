@@ -13,10 +13,12 @@ a{
 }
 
 a:hover{
+    padding: 2px;
     background: black;
+    height: 100%;
     color: white;
     cursor: pointer;
-
+    border-radius: 10px;
 }
 
 .search-container {
@@ -24,7 +26,7 @@ a:hover{
     margin-left: auto;  
     margin-right: 20px;
   }
-  
+
 .navbar-brand{
     margin-left: 20px;
     margin-right: 20px;
