@@ -4,6 +4,14 @@
     background-size: cover;
   } */
   
+  .container {
+    background-color: #e2e2e2;
+    padding: 10px;
+    max-width: 65%;
+    height: auto;
+  }
+  
+
   .btn-login {
     font-size: 0.9rem;
     letter-spacing: 0.05rem;

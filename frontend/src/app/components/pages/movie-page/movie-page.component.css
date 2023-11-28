@@ -9,9 +9,8 @@ kék: #1000ff
 .container {
   background-color: #e2e2e2;
   display: flex;
-
   padding: 10px;
-  max-width: 65%;
+  max-width: 60%;
   height: auto;
 }
 
@@ -41,15 +40,16 @@ kék: #1000ff
 
 .tags .tag{
   background-color:  #f0f0f0;
-  padding: 0.3rem 1rem;
-  margin: 0.2rem 0.15rem;
+  padding: 10px;
+  margin: 10px;
   border-radius: 10rem;
-  font-weight: 600;
+  font-weight: bold;
   text-align: justify;
   color: blue;
 }
 
 .name{
+  font-size: 40px;
   font-weight: bold;
   color: #1000ff;
 }
