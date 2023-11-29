@@ -12,6 +12,7 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { RegComponent } from './components/pages/reg/reg.component';
 import { MoviePageComponent } from './components/pages/movie-page/movie-page.component';
 import { TagsComponent } from './components/partials/tags/tags.component';
+import { NotFoundComponent } from './components/partials/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TagsComponent } from './components/partials/tags/tags.component';
     RegComponent,
     MoviePageComponent,
     ChunkPipe,
-    TagsComponent
+    TagsComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
