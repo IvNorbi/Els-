@@ -11,6 +11,7 @@ import { MainComponent } from './components/pages/main/main.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { RegComponent } from './components/pages/reg/reg.component';
 import { MoviePageComponent } from './components/pages/movie-page/movie-page.component';
+import { TagsComponent } from './components/partials/tags/tags.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MoviePageComponent } from './components/pages/movie-page/movie-page.com
     LoginComponent,
     RegComponent,
     MoviePageComponent,
-    ChunkPipe
+    ChunkPipe,
+    TagsComponent
   ],
   imports: [
     BrowserModule,

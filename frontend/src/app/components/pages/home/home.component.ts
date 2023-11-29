@@ -17,6 +17,8 @@ export class HomeComponent {
     activatedRoute.params.subscribe((params) =>{
       if(params.searchTerm)
         this.filmek = this.filmService.getAllFilmBySearchTerm(params.searchTerm);
+      else if (params.tag)
+      this.filmek = this.filmService.getAllMovieByTag(params.tag);
       else
         this.filmek = filmService.getAll(); 
     });

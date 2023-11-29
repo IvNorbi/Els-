@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Film } from '../shared/models/filmek';
-import { sample_films } from 'src/data';
+import { sample_films, sample_tags } from 'src/data';
+import { Tag } from '../shared/models/Tag';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,14 @@ getAllFilmBySearchTerm(searchTerm:string){
 
 getMovieById(movieId:string):Film{
   return this.getAll().find(film => film.id == movieId) ?? new Film();
+}
+
+getAllTags():Tag[]{
+  return sample_tags;
+}
+
+getAllMovieByTag(tag:string):Film[]{
+  return this.getAll().filter(film => film.tags?.includes(tag))
 }
 
 }

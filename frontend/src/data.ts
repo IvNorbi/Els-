@@ -1,3 +1,4 @@
+import { Tag } from './app/shared/models/Tag';
 import {Film} from './app/shared/models/filmek';
 
 export const sample_films: Film[] =[
@@ -70,4 +71,11 @@ export const sample_films: Film[] =[
     },
     
 
+]
+
+export const sample_tags:Tag[] = [
+    { name: 'Minden', count: 6 },
+    { name: 'Akció', count: 4 },
+    { name: 'Vígjáték', count: 2 },
+    { name: 'Anime', count: 3 },
 ]
