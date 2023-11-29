@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FilmekService } from 'src/app/services/filmek.service';
+import { Tag } from 'src/app/shared/models/Tag';
 
 @Component({
   selector: 'app-tags',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./tags.component.css']
 })
 export class TagsComponent {
+  tags?:Tag[];
+  constructor(filmService:FilmekService) {
+    this.tags = filmService.getAllTags();
+  }
 
 }

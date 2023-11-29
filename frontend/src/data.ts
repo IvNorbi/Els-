@@ -74,8 +74,8 @@ export const sample_films: Film[] =[
 ]
 
 export const sample_tags:Tag[] = [
-    { name: 'Minden', count: 6 },
-    { name: 'Akció', count: 4 },
-    { name: 'Vígjáték', count: 2 },
-    { name: 'Anime', count: 3 },
+    // { name: 'minden', count: 6 },
+    { name: 'akció', count: 4 },
+    { name: 'kamradráma', count: 2 },
+    { name: 'anime', count: 3 },
 ]
