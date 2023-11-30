@@ -30,11 +30,13 @@ app.get("/api/movies/tags", (req, res) => {
 app.get("/api/movies/tag/:tagName", (req, res) => {
     const tagName = req.params.tagName;
     const movies  = sample_films.filter(film => film.tags?.includes(tagName))
+    res.send(movies)
 })
 
 app.get("/api/movies/:movieId", (req, res) => {
     const movieId = req.params.movieId;
     const movie  = sample_films.find(film => film.id == movieId);
+    res.send(movie)
 })
 
 const port = 5000;

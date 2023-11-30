@@ -13,24 +13,20 @@ import { Observable } from 'rxjs';
 export class HomeComponent {
   showTagBox: boolean = false;
   filmek: Film[] = [];
-
-  constructor(private filmService: FilmekService, activatedRoute:ActivatedRoute) {
-
-    let moviesObservable:Observable<Film[]>;
-    activatedRoute.params.subscribe((params) =>{
-      if(params.searchTerm)
-        moviesObservable = this.filmService.getAllFilmBySearchTerm(params.searchTerm);
+  constructor(private filmService: FilmekService, activatedRoute: ActivatedRoute) {
+    let moviesObservalbe:Observable<Film[]>;
+    activatedRoute.params.subscribe((params) => {
+      if (params.searchTerm)
+        moviesObservalbe = this.filmService.getAllFilmBySearchTerm(params.searchTerm);
       else if (params.tag)
-        moviesObservable = this.filmService.getAllMovieByTag(params.tag);
+        moviesObservalbe = this.filmService.getAllMovieByTag(params.tag);
       else
-        moviesObservable = filmService.getAll(); 
+        moviesObservalbe = filmService.getAll();
 
-
-        moviesObservable.subscribe((serverMovies) => {
+        moviesObservalbe.subscribe((serverMovies) => {
           this.filmek = serverMovies;
         })
-
-    });
+    })
   }
 
   toggleTagBox() {

@@ -1,7 +1,5 @@
-import { Tag } from '../../frontend/src/app/shared/models/Tag';
-import {Film} from '../../frontend/src/app/shared/models/filmek';
 
-export const sample_films: any[] =[
+export const sample_films: any[] = [
     {
         id: '1',
         name: 'One Piece film Red',
