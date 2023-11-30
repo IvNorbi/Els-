@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FilmekService } from 'src/app/services/filmek.service';
 import { Film } from 'src/app/shared/models/filmek';
 import { Pipe, PipeTransform } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -14,13 +15,21 @@ export class HomeComponent {
   filmek: Film[] = [];
 
   constructor(private filmService: FilmekService, activatedRoute:ActivatedRoute) {
+
+    let moviesObservable:Observable<Film[]>;
     activatedRoute.params.subscribe((params) =>{
       if(params.searchTerm)
-        this.filmek = this.filmService.getAllFilmBySearchTerm(params.searchTerm);
+        moviesObservable = this.filmService.getAllFilmBySearchTerm(params.searchTerm);
       else if (params.tag)
-      this.filmek = this.filmService.getAllMovieByTag(params.tag);
+        moviesObservable = this.filmService.getAllMovieByTag(params.tag);
       else
-        this.filmek = filmService.getAll(); 
+        moviesObservable = filmService.getAll(); 
+
+
+        moviesObservable.subscribe((serverMovies) => {
+          this.filmek = serverMovies;
+        })
+
     });
   }
 
