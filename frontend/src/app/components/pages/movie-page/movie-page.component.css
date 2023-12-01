@@ -1,10 +1,17 @@
+/* 
+Kódok:
+szürke: #e2e2e2
+kék: #1000ff 
+*/
+
 /*Kérdéses részek innentől */
 
 .container {
+  background-color: #e2e2e2;
   display: flex;
-  justify-content: center;
   padding: 10px;
-  max-width: 50%;
+  max-width: auto;
+  height: auto;
 }
 
 .row {
@@ -33,12 +40,24 @@
 
 .tags .tag{
   background-color:  #f0f0f0;
-  padding: 0.3rem 1rem;
-  margin: 0.2rem 0.15rem;
+  padding: 10px;
+  margin-left: 10px;
   border-radius: 10rem;
-  font-weight: 600;
+  font-weight: bold;
   text-align: justify;
   color: blue;
+}
+
+.name{
+  font-size: 40px;
+  font-weight: bold;
+  color: #1000ff;
+}
+
+
+
+.favorite{
+  margin-left: 10px;
 }
 
 img{
@@ -48,7 +67,11 @@ img{
 }
 
 .description {
-  margin-top: 2rem;
+  text-align: justify;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-right: 20px;
+
 }
 
 .cimke, .eredet{
@@ -65,9 +88,9 @@ img{
 /*KOMMENT SZEKCIÓ INNENTŐL */
 
 .comment-box {
-  width: 1000px;
+  background-color: #e2e2e2;
+  width: 937px;
   height: 300px;
-  margin: 20px 20px 20px 20px;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

@@ -13,7 +13,9 @@ export class MoviePageComponent {
   constructor(activatedRoute:ActivatedRoute, filmservice:FilmekService){
     activatedRoute.params.subscribe((params) =>{
       if(params.id)
-      this.film = filmservice.getMovieById(params.id);
+      filmservice.getMovieById(params.id).subscribe(serverMovie => {
+        this.film = serverMovie
+      });
     })
 
   }

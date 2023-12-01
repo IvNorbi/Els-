@@ -1,5 +1,8 @@
 .container {
-  background: white;
+  background-color: #e2e2e2;
+  padding: 10px;
+  max-width: 65%;
+  height: auto;
 }
 
 .card-img-left {
