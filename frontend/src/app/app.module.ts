@@ -13,6 +13,7 @@ import { RegComponent } from './components/pages/reg/reg.component';
 import { MoviePageComponent } from './components/pages/movie-page/movie-page.component';
 import { TagsComponent } from './components/partials/tags/tags.component';
 import { NotFoundComponent } from './components/partials/not-found/not-found.component';
+import { ToplistComponent } from './components/pages/toplist/toplist.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NotFoundComponent } from './components/partials/not-found/not-found.com
     MoviePageComponent,
     ChunkPipe,
     TagsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ToplistComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ export class Film{
     favorite!: boolean;
     stars!:number;
     imageUrl!: string;
+    toplist!: number;
     origins!: string[];
     description!: string;
 }

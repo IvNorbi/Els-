@@ -7,6 +7,7 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { RegComponent } from './components/pages/reg/reg.component';
 import { MoviePageComponent } from './components/pages/movie-page/movie-page.component';
 import { SearchComponent } from './components/partials/search/search.component';
+import { ToplistComponent } from './components/pages/toplist/toplist.component';
 
 const routes: Routes = [
 
@@ -34,6 +35,15 @@ const routes: Routes = [
     path      : 'Register',
     component : RegComponent
   },
+
+  {
+    title     : 'Toplista',
+    path      : 'Toplist',
+    component : ToplistComponent
+  },
+
+
+  
 
 
 

@@ -7,6 +7,7 @@ export const sample_films: any[] = [
         favorite: false,
         stars: 5.0,
         imageUrl :'assets/5270S2R.jpg',
+        toplist :'1',
         origins: ['Japán'],
         description: 'Uta - a világ legkedveltebb énekesnője - most először mutatja meg magát a világnak egy élő koncerten. A hang, amelyre az egész világ várt, hamarosan felcsendül.'
 
@@ -21,6 +22,7 @@ export const sample_films: any[] = [
         favorite: false,
         stars: 5,
         imageUrl :'assets/dk.jpg',
+        toplist :'2',
         origins: ['USA'],
         description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem cumque inventore laboriosam nisi maiores aliquid doloremque quam sint saepe ipsum sunt, aperiam animi eos id in, dignissimos quis quasi pariatur sit alias! Quia inventore atque eligendi impedit blanditiis, soluta cum unde provident temporibus consequatur voluptatem, neque saepe facilis doloremque suscipit.'
     },
@@ -32,6 +34,7 @@ export const sample_films: any[] = [
         favorite: false,
         stars: 4.5,
         imageUrl :'assets/jk.jpg',
+        toplist :'5',
         origins: ['Japán'],
         description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem cumque inventore laboriosam nisi maiores aliquid doloremque quam sint saepe ipsum sunt, aperiam animi eos id in, dignissimos quis quasi pariatur sit alias! Quia inventore atque eligendi impedit blanditiis, soluta cum unde provident temporibus consequatur voluptatem, neque saepe facilis doloremque suscipit.'
     },
@@ -42,6 +45,7 @@ export const sample_films: any[] = [
         favorite: false,
         stars: 5.0,
         imageUrl :'assets/lotr.jpg',
+        toplist :'4',
         origins: ['USA'],
         description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem cumque inventore laboriosam nisi maiores aliquid doloremque quam sint saepe ipsum sunt, aperiam animi eos id in, dignissimos quis quasi pariatur sit alias! Quia inventore atque eligendi impedit blanditiis, soluta cum unde provident temporibus consequatur voluptatem, neque saepe facilis doloremque suscipit.'
 
@@ -53,6 +57,7 @@ export const sample_films: any[] = [
         favorite: false,
         stars: 5.0,
         imageUrl :'assets/sl.jpg',
+        toplist :'6',
         origins: ['USA'],
         description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem cumque inventore laboriosam nisi maiores aliquid doloremque quam sint saepe ipsum sunt, aperiam animi eos id in, dignissimos quis quasi pariatur sit alias! Quia inventore atque eligendi impedit blanditiis, soluta cum unde provident temporibus consequatur voluptatem, neque saepe facilis doloremque suscipit.'
 
@@ -64,6 +69,7 @@ export const sample_films: any[] = [
         favorite: false,
         stars: 4.5,
         imageUrl :'assets/is.jpg',
+        toplist :'3',
         origins: ['USA'],
         description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem cumque inventore laboriosam nisi maiores aliquid doloremque quam sint saepe ipsum sunt, aperiam animi eos id in, dignissimos quis quasi pariatur sit alias! Quia inventore atque eligendi impedit blanditiis, soluta cum unde provident temporibus consequatur voluptatem, neque saepe facilis doloremque suscipit.'
     },
