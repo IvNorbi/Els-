@@ -1,21 +1,27 @@
-<div class="container container-background">
-  <div class="home">
-    <ng-container *ngFor="let chunk of filmek | chunkPipe: 3">
-      <ul>
-        <li *ngFor="let film of chunk">
-          <a routerLink="/film/{{film.id}}">
-            <img [src]="film.imageUrl" [alt]="film.name">
-            <div class="content">
-              <div class="name">
-                {{film.name}}
+<div class="container">
+  <div class="row">
+    <div class="home">
+      <ng-container *ngFor="let chunk of filmek | chunkPipe: 3">
+        <ul class="toplistcontent"> <!-- Új: a felsorolás most egy valódi lista -->
+          <li *ngFor="let film of chunk">
+            <a routerLink="/film/{{film.id}}">
+              <div class="film-container">
+                <img class="toplistimg" [src]="film.imageUrl" [alt]="film.name">
+                <div class="content">
+                  <div class="name">{{film.name}}</div>
+                <div class="stars">
+                  <star-rating [stars]="film.stars"/>
+                </div>
+                </div>
               </div>
-              <div class="stars">
-                <star-rating [stars]="film.stars"/>
-              </div>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </ng-container>
+            </a>
+          </li>
+        </ul>
+      </ng-container>
+    </div>
   </div>
-</div> 
+</div>
+
+
+
+
