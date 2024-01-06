@@ -10,7 +10,7 @@ kék: #1000ff
   background-color: #e2e2e2;
   display: flex;
   padding: 10px;
-  max-width: auto;
+  max-width: 50%;
   height: auto;
 }
 
@@ -38,10 +38,17 @@ kék: #1000ff
 
 /*Kérdéses részek idáig */
 
-.tags .tag{
+
+
+.tags {
+  margin-top: 10px;
+}
+
+.tags .tag {
+  display: inline-block; /* Az inline-block kijavítja a margin problémát */
   background-color:  #f0f0f0;
   padding: 10px;
-  margin-left: 10px;
+  margin: 0 10px 10px 0;
   border-radius: 10rem;
   font-weight: bold;
   text-align: justify;
