@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
                 GenreSeeder::class,
                 PeopleSeeder::class,
                 CommentSeeder::class,
-                MovieRolePeopleSeeder::class
+                MovieRolePeopleSeeder::class,
+                GenreMovieSeeder::class
             ]
         );
         // \App\Models\User::factory(10)->create();

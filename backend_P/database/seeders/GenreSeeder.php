@@ -130,7 +130,15 @@ class GenreSeeder extends Seeder
         $genre->save();
 
         $genre = new Genre();
+        $genre->name = "szuperhős";
+        $genre->save();
+
+        $genre = new Genre();
         $genre->name = "vígjáték";
+        $genre->save();
+
+        $genre = new Genre();
+        $genre->name = "thriller";
         $genre->save();
 
         $genre = new Genre();
