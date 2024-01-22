@@ -94,6 +94,10 @@ class GenreSeeder extends Seeder
         $genre->save();
 
         $genre = new Genre();
+        $genre->name = "krimi";
+        $genre->save();
+
+        $genre = new Genre();
         $genre->name = "misztikus";
         $genre->save();
 
@@ -126,6 +130,10 @@ class GenreSeeder extends Seeder
         $genre->save();
 
         $genre = new Genre();
+        $genre->name = "sport";
+        $genre->save();
+
+        $genre = new Genre();
         $genre->name = "szatíra";
         $genre->save();
 
@@ -139,6 +147,10 @@ class GenreSeeder extends Seeder
 
         $genre = new Genre();
         $genre->name = "thriller";
+        $genre->save();
+
+        $genre = new Genre();
+        $genre->name = "történelmi";
         $genre->save();
 
         $genre = new Genre();

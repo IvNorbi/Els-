@@ -152,14 +152,14 @@ class MovieSeeder extends Seeder
         $movie = new Movie();
         $movie->title = "Dühöngő bika";
         $movie->release_year = "1980";
-        $movie->description = "";
+        $movie->description = "Az ökölvívó Jake La Motta a brutális harcmodora miatt kapta a Bronxi Bika nevet. 1948-ban szerezte meg a középsúlyú világbajnoki címet. Sikerét, hírnevét azonban beárnyékolta zaklatott magánélete. Jake New York rosszhírű negyedében, Bronxban nőtt fel. Az utcán gyorsan megtanulta, hogyan kell lopni és harcolni, hogyan lehet keményebb mindenkinél. A magányos ifjú végül a bokszban találta meg célját, a szorítóban adta ki minden dühét. A sikert azonban nem tudta feldolgozni. A pénzét italra és nőkre költötte, a címét elveszítette, a családja szétesett, végül pedig börtönbe került. Szabadulása után egy mulatóban kapott munkát.";
         $movie->cover = "..\assets\raging_bull.jpg";
         $movie->rating = "8.1";
         $movie->length = "129";
         $movie->save();
 
         $movie = new Movie();
-        $movie->title = "Casablanca.jpg";
+        $movie->title = "Casablanca";
         $movie->release_year = "1942";
         $movie->description = "Egy cinikus, külföldön élő amerikai kávézótulajdonos azzal a döntéssel küzd, hogy segítsen-e egykori szeretőjének és annak szökésben lévő férjének a nácik elől menekülni Francia Marokkóban.";
         $movie->cover = "..\assets\casablanca.jpg";
@@ -275,6 +275,15 @@ class MovieSeeder extends Seeder
         $movie->cover = "..\assets\star_wars_episode_ix_the_rise_of_skywalker.jpg";
         $movie->rating = "6.0";
         $movie->length = "142";
+        $movie->save();
+
+        $movie = new Movie();
+        $movie->title = "Halálsoron";
+        $movie->release_year = "1999";
+        $movie->description = "Paul Edgecomb börtönőrként szolgál a Cold Mountain fegyház siralomházában a múlt század harmincas éveiben. Az E blokkban halálraítéltek várják, hogy végig menjenek a halálsoron - a folyosón, amely a villamosszékhez vezet. Edgecomb úgy gondolja, már semmilyen meglepetés sem érheti. Ám minden megváltozik, amikor új rab érkezik az E blokkba. Az óriás termetű fekete férfit, John Coffeyt az esküdtszék két fehér gyermek meggyilkolásáért ítélte halálra. A férfi azonban egyáltalán nem tűnik gyilkosnak, sőt, egészen különös képességekkel rendelkezik. Stephen King regényéből.";
+        $movie->cover = "..\assets\the_green_mile.jpg";
+        $movie->rating = "9.2";
+        $movie->length = "189";
         $movie->save();
     }
 
