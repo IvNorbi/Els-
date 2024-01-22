@@ -19,7 +19,7 @@ class CommentSeeder extends Seeder
         $faker = Faker::create();
 
         // Vegyük fel néhány kommentet a táblába
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i = 1; $i <= 15; $i++) {
             try {
                 $comment = new Comment();
                 $comment->movie_id = Movie::inRandomOrder()->first()->id;

@@ -21,5 +21,25 @@ class RoleSeeder extends Seeder
         $role = new Role();
         $role->role = "rendező";
         $role->save();
+
+        $role = new Role();
+        $role->role = "operatőr";
+        $role->save();
+
+        $role = new Role();
+        $role->role = "forgatókönyvíró";
+        $role->save();
+
+        $role = new Role();
+        $role->role = "producer";
+        $role->save();
+
+        $role = new Role();
+        $role->role = "zene";
+        $role->save();
+
+        $role = new Role();
+        $role->role = "vágó";
+        $role->save();
     }
 }

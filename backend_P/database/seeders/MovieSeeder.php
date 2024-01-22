@@ -217,7 +217,7 @@ class MovieSeeder extends Seeder
         $movie->release_year = "1983";
         $movie->cover = "D:\Péter\Jedlik\Vizsgaremek\filmSarok\FilmSarok\backend_P\assets\star_wars_episode_vi_return_of_the_jedi.jpg";
         $movie->description = "Miután Luke megmentette barátját, Han Solót és a szépséges Leia hercegnőt a biztos haláltól, ismét csatlakozik Yodához, hiszen igazi Jedi Lovaggá kell válnia ahhoz, hogy szembeszállhasson Darth Vaderrel és az Erő sötét oldalával. Végre eljött a végső összecsapás ideje! A felkelők készen állnak arra, hogy megsemmisítő csapást mérjenek a Halálcsillagra. Arra azonban nem számítanak, hogy a bolygót elpusztíthatatlan energiapajzs védi és a Birodalom csapdába csalja őket.";
-        $movie->rating = "0";
+        $movie->rating = "8.7";
 
         $movie->length = "134";
         $movie->save();
