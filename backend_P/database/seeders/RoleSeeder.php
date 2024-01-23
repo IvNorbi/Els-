@@ -27,6 +27,10 @@ class RoleSeeder extends Seeder
         $role->save();
 
         $role = new Role();
+        $role->role = "író";
+        $role->save();
+
+        $role = new Role();
         $role->role = "forgatókönyvíró";
         $role->save();
 
