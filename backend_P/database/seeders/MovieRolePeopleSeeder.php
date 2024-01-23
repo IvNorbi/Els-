@@ -318,7 +318,551 @@ class MovieRolePeopleSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        
+
+		DB::table('movie_role_people')->insert([
+            'people_id' => 15,
+            'movie_id' => 3,
+            'role_id' => 1,
+            'rolename' => "Bruce Wayne/Batman",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 33,
+            'movie_id' => 3,
+            'role_id' => 1,
+            'rolename' => "Joker",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 34,
+            'movie_id' => 3,
+            'role_id' => 1,
+            'rolename' => "Harvey Dent",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 23,
+            'movie_id' => 3,
+            'role_id' => 1,
+            'rolename' => "Lucius Fox",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 16,
+            'movie_id' => 3,
+            'role_id' => 1,
+            'rolename' => "Alfred",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 22,
+            'movie_id' => 3,
+            'role_id' => 1,
+            'rolename' => "James Gordon",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 35,
+            'movie_id' => 3,
+            'role_id' => 1,
+            'rolename' => "Rachel Dawes",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 36,
+            'movie_id' => 3,
+            'role_id' => 1,
+            'rolename' => "Salvatore Maroni",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 37,
+            'movie_id' => 3,
+            'role_id' => 1,
+            'rolename' => "Dr. Jonathan Crane",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 38,
+            'movie_id' => 3,
+            'role_id' => 1,
+            'rolename' => "Mike Engel",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 39,
+            'movie_id' => 3,
+            'role_id' => 1,
+            'rolename' => "Gambol",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 40,
+            'movie_id' => 3,
+            'role_id' => 1,
+            'rolename' => "Mayor",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 24,
+            'movie_id' => 3,
+            'role_id' => 2,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 24,
+            'movie_id' => 3,
+            'role_id' => 5,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 26,
+            'movie_id' => 3,
+            'role_id' => 5,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 26,
+            'movie_id' => 2,
+            'role_id' => 5,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 27,
+            'movie_id' => 3,
+            'role_id' => 5,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 25,
+            'movie_id' => 3,
+            'role_id' => 5,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 31,
+            'movie_id' => 3,
+            'role_id' => 7,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 42,
+            'movie_id' => 3,
+            'role_id' => 7,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 28,
+            'movie_id' => 3,
+            'role_id' => 3,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 29,
+            'movie_id' => 3,
+            'role_id' => 6,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 30,
+            'movie_id' => 3,
+            'role_id' => 6,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 32,
+            'movie_id' => 3,
+            'role_id' => 8,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 15,
+            'movie_id' => 4,
+            'role_id' => 1,
+            'rolename' => "Bruce Wayne/Batman",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 20,
+            'movie_id' => 4,
+            'role_id' => 1,
+            'rolename' => "Henri Ducard",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 23,
+            'movie_id' => 4,
+            'role_id' => 1,
+            'rolename' => "Lucius Fox",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 16,
+            'movie_id' => 4,
+            'role_id' => 1,
+            'rolename' => "Alfred",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+      
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 22,
+            'movie_id' => 4,
+            'role_id' => 1,
+            'rolename' => "James Gordon",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+      
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 43,
+            'movie_id' => 4,
+            'role_id' => 1,
+            'rolename' => "Rachel",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+      
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 44,
+            'movie_id' => 4,
+            'role_id' => 1,
+            'rolename' => "Ra's Al Ghul",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+      
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 37,
+            'movie_id' => 4,
+            'role_id' => 1,
+            'rolename' => "Dr. Jonathan Crane",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+      
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 45,
+            'movie_id' => 4,
+            'role_id' => 1,
+            'rolename' => "Earle",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+      
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 46,
+            'movie_id' => 4,
+            'role_id' => 1,
+            'rolename' => "Carmine Falcone",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+      
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 24,
+            'movie_id' => 4,
+            'role_id' => 2,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+      
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 26,
+            'movie_id' => 4,
+            'role_id' => 4,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+      
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 24,
+            'movie_id' => 4,
+            'role_id' => 5,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+      
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 26,
+            'movie_id' => 4,
+            'role_id' => 5,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+      
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 25,
+            'movie_id' => 4,
+            'role_id' => 5,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+      
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 31,
+            'movie_id' => 4,
+            'role_id' => 7,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+      
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 42,
+            'movie_id' => 4,
+            'role_id' => 7,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 28,
+            'movie_id' => 4,
+            'role_id' => 3,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 41,
+            'movie_id' => 4,
+            'role_id' => 6,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 29,
+            'movie_id' => 4,
+            'role_id' => 6,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 30,
+            'movie_id' => 4,
+            'role_id' => 6,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 32,
+            'movie_id' => 4,
+            'role_id' => 8,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 47,
+            'movie_id' => 5,
+            'role_id' => 1,
+            'rolename' => "Mai Zen'in",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 48,
+            'movie_id' => 5,
+            'role_id' => 1,
+            'rolename' => "Miguel",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 49,
+            'movie_id' => 5,
+            'role_id' => 1,
+            'rolename' => "Kasumi Miwa",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 50,
+            'movie_id' => 5,
+            'role_id' => 1,
+            'rolename' => "Shoko Ieiri",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 51,
+            'movie_id' => 5,
+            'role_id' => 1,
+            'rolename' => "Rika Orimoto",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 52,
+            'movie_id' => 5,
+            'role_id' => 1,
+            'rolename' => "Raru",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 53,
+            'movie_id' => 5,
+            'role_id' => 1,
+            'rolename' => "Takuma Ino",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 54,
+            'movie_id' => 5,
+            'role_id' => 1,
+            'rolename' => "Noritoshi Kamo",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 55,
+            'movie_id' => 5,
+            'role_id' => 2,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 56,
+            'movie_id' => 5,
+            'role_id' => 5,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 57,
+            'movie_id' => 5,
+            'role_id' => 5,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 58,
+            'movie_id' => 5,
+            'role_id' => 7,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+
+        DB::table('movie_role_people')->insert([
+            'people_id' => 59,
+            'movie_id' => 5,
+            'role_id' => 7,
+            'rolename' => "",
+            'created_at' => now(),
+            'updated_at' => now(),
+		]);
+      
       
     }
 }

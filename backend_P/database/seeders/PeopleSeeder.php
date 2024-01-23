@@ -164,7 +164,7 @@ class PeopleSeeder extends Seeder
         $people->save();
         
         $people = new People();
-        $people->name = "David S- Goyer";
+        $people->name = "David S. Goyer";
         $people->birth_date = new \DateTime('1965-12-22');
         $people->country = "USA";
         $people->save();
@@ -205,13 +205,170 @@ class PeopleSeeder extends Seeder
         $people->country = "Ausztrália";
         $people->save();
 
-        
+        $people = new People();
+        $people->name = "Heath Ledger";
+        $people->birth_date = new \DateTime('1979-04-04');
+        $people->country = "Ausztrália";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Aaron Eckhart";
+        $people->birth_date = new \DateTime('1968-03-12');
+        $people->country = "USA";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Maggie Gyllenhaal";
+        $people->birth_date = new \DateTime('1977-11-16');
+        $people->country = "USA";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Eric Roberts";
+        $people->birth_date = new \DateTime('1956-04-18');
+        $people->country = "USA";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Cillian Murphy";
+        $people->birth_date = new \DateTime('1976-05-25');
+        $people->country = "Írország";
+        $people->save();        
 		
+        $people = new People();
+        $people->name = "Anthony Michael Hall";
+        $people->birth_date = new \DateTime('1968-04-14');
+        $people->country = "USA";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Michael Jai White";
+        $people->birth_date = new \DateTime('1967-11-10');
+        $people->country = "USA";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Nestor Carbonell";
+        $people->birth_date = new \DateTime('1967-12-01');
+        $people->country = "USA";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Larry J. Franco";  //41
+        $people->birth_date = new \DateTime('1949-04-05');
+        $people->country = "USA";
+        $people->save();
+
+        $people = new People();
+        $people->name = "James Newton Howard"; //42
+        $people->birth_date = new \DateTime('1951-06-09');
+        $people->country = "USA";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Katie Holmes"; //43
+        $people->birth_date = new \DateTime('1978-12-18');
+        $people->country = "USA";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Ken Watanabe"; //44
+        $people->birth_date = new \DateTime('1959-10-21');
+        $people->country = "Japán";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Rutger Hauer"; //45
+        $people->birth_date = new \DateTime('1944-01-23');
+        $people->country = "Hollandia";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Tom Wilkinson"; //46
+        $people->birth_date = new \DateTime('1948-02-05');
+        $people->country = "UK";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Marina Inoue"; //47
+        $people->birth_date = new \DateTime('1985-01-20');
+        $people->country = "Japán";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Koichi Yamadera"; //48
+        $people->birth_date = new \DateTime('1961-06-17');
+        $people->country = "Japán";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Chinatsu Akasaki"; //49
+        $people->birth_date = new \DateTime('1987-08-10');
+        $people->country = "Japán";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Aya Endô"; //50
+        $people->birth_date = new \DateTime('1980-02-17');
+        $people->country = "Japán";
+        $people->save();
+
+        $people = new People(); //51
+        $people->name = "Kana Hanazawa";
+        $people->birth_date = new \DateTime('1989-02-25');
+        $people->country = "Japán";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Shou Hayami"; //52
+        $people->birth_date = new \DateTime('1958-08-02');
+        $people->country = "Japán";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Yu Hayashi"; //53
+        $people->birth_date = new \DateTime('1983-04-02');
+        $people->country = "Japán";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Satoshi Hino"; //54
+        $people->birth_date = new \DateTime('1978-08-04');
+        $people->country = "Japán";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Seong-Hu Park"; //55
+        $people->birth_date = new \DateTime('');
+        $people->country = "Dél-Korea";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Gege Akutami"; //56
+        $people->birth_date = new \DateTime('1992-02-26');
+        $people->country = "Japán";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Hiroshi Seko"; //57
+        $people->birth_date = new \DateTime('');
+        $people->country = "Japán";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Alisa Okehazama"; //58
+        $people->birth_date = new \DateTime('1993-02-04');
+        $people->country = "Japán";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Yoshimasa Terui"; //59
+        $people->birth_date = new \DateTime('');
+        $people->country = "Japán";
+        $people->save();
+
+
         
-
-
-
-
 
 
         $people = new People();
