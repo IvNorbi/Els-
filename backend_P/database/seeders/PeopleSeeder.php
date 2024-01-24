@@ -367,127 +367,246 @@ class PeopleSeeder extends Seeder
         $people->country = "Japán";
         $people->save();
 
-
-        
-
-
         $people = new People();
-        $people->name = "Elijah Wood";
+        $people->name = "Elijah Wood"; //60
         $people->birth_date = new \DateTime('1981-01-28');
-        //$people->role = "Zsákos Frodó";
         $people->country = "USA";
         $people->save();
 
         $people = new People();
-        $people->name = "Sir Ian McKellen";
+        $people->name = "Sir Ian McKellen"; //61
         $people->birth_date = new \DateTime('1939-05-25');
-        //$people->role = "Gandalf";
         $people->country = "UK";
         $people->save();
 
         $people = new People();
-        $people->name = "Viggo Mortensen";
+        $people->name = "Viggo Mortensen"; //62
         $people->birth_date = new \DateTime('1958-10-20');
-        //$people->role = "Aragorn";
         $people->country = "USA";
         $people->save();
 
         $people = new People();
-        $people->name = "Orlando Bloom";
+        $people->name = "Orlando Bloom"; //63
         $people->birth_date = new \DateTime('1977-01-13');
-        //$people->role = "Legolas";
         $people->country = "UK";
         $people->save();
 
         $people = new People();
-        $people->name = "Sean Astin";
+        $people->name = "Sean Astin"; //64
         $people->birth_date = new \DateTime('1971-02-25');
-        //$people->role = "Csavardi Samu";
         $people->country = "USA";
         $people->save();
 
         $people = new People();
-        $people->name = "John Rhys-Davies";
+        $people->name = "John Rhys-Davies"; //65
         $people->birth_date = new \DateTime('1944-05-05');
-        //$people->role = "Gimli";
         $people->country = "UK";
         $people->save();
 
         $people = new People();
-        $people->name = "Billy Boyd";
+        $people->name = "Billy Boyd"; //66
         $people->birth_date = new \DateTime('1968-08-28');
-        //$people->role = "Tuk Peregrin";
         $people->country = "UK";
         $people->save();
 
         $people = new People();
-        $people->name = "Sean Bean";
+        $people->name = "Sean Bean"; //67
         $people->birth_date = new \DateTime('1959-04-17');
-        //$people->role = "Boromir";
         $people->country = "UK";
         $people->save();
 
         $people = new People();
-        $people->name = "Christopher Lee";
+        $people->name = "Christopher Lee"; //68
         $people->birth_date = new \DateTime('1922-05-27');
-        //$people->role = "Szarumán";
         $people->country = "UK";
         $people->save();
 
         $people = new People();
-        $people->name = "Hugo Weaving";
+        $people->name = "Hugo Weaving"; //69
         $people->birth_date = new \DateTime('1960-04-04');
-        //$people->role = "Elrond";
         $people->country = "UK";
         $people->save();
 
         $people = new People();
-        $people->name = "Dominic Monaghan";
+        $people->name = "Dominic Monaghan"; //70
         $people->birth_date = new \DateTime('1976-12-08');
-        //$people->role = "Borbak Trufiádok";
         $people->country = "UK";
         $people->save();
 
         $people = new People();
-        $people->name = "Liv Tyler";
+        $people->name = "Liv Tyler"; //71
         $people->birth_date = new \DateTime('1977-07-01');
-        //$people->role = "Arwen";
-        $people->country = "USA";
-        $people->save();
-
-        $people = new People();
-        $people->name = "Sir Ian Holm";
-        $people->birth_date = new \DateTime('1931-09-12');
-        //$people->role = "Zsákos Bilbó";
         $people->country = "UK";
         $people->save();
 
         $people = new People();
-        $people->name = "Cate Blanchett";
-        $people->birth_date =new \DateTime('1969-05-14');
-        //$people->role = "Galadriel";
+        $people->name = "Sir Ian Holm"; //72
+        $people->birth_date = new \DateTime('1931-09-12');
+        $people->country = "UK";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Cate Blanchett"; //73
+        $people->birth_date = new \DateTime('1969-05-14');
         $people->country = "Ausztrália";
         $people->save();
 
         $people = new People();
-        $people->name = "Craig Parker";
+        $people->name = "Craig Parker"; //74
         $people->birth_date = new \DateTime('1970-11-12');
-        //$people->role = "Haldir";
         $people->country = "Új-Zéland";
         $people->save();
 
         $people = new People();
-        $people->name = "Csókás Márton";
+        $people->name = "Csókás Márton"; //75
         $people->birth_date = new \DateTime('1966-06-30');
-        //$people->role = "Celeborn";
         $people->country = "Új-Zéland";
         $people->save();
 
         $people = new People();
-        $people->name = "Andy Serkis";
+        $people->name = "Andy Serkis"; //76
         $people->birth_date = new \DateTime('1964-04-20');
-        //$people->role = "Gollam/Sméagol";
         $people->country = "UK";
         $people->save();
+
+        $people = new People();
+        $people->name = "Peter Jackson"; //77
+        $people->birth_date = new \DateTime('1961-10-31');
+        $people->country = "Új-Zéland";
+        $people->save();
+
+        $people = new People();
+        $people->name = "John Ronald Reuel Tolkien"; //78
+        $people->birth_date = new \DateTime('1892-01-03');
+        $people->country = "UK";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Frances Walsh"; //79
+        $people->birth_date = new \DateTime('1959-01-10');
+        $people->country = "Új-Zéland";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Philippa Boyens"; //80
+        $people->birth_date = new \DateTime('1962');
+        $people->country = "Új-Zéland";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Stephen Sinclair"; //81
+        $people->birth_date = new \DateTime('1956');
+        $people->country = "Új-Zéland";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Andrew Lesnie"; //82
+        $people->birth_date = new \DateTime('1956-01-01');
+        $people->country = "Ausztrália";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Howard Shore"; //83
+        $people->birth_date = new \DateTime('1946-10-18');
+        $people->country = "Kanada";
+        $people->save();
+        
+        $people = new People();
+        $people->name = "Barrie M. Osborne"; //84
+        $people->birth_date = new \DateTime('1944-02-07');
+        $people->country = "USA";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Tim Sanders"; //85
+        $people->birth_date = new \DateTime('1961-11-06');
+        $people->country = "USA";
+        $people->save();
+
+        $people = new People();
+        $people->name = "John Gilbert"; //86
+        $people->birth_date = new \DateTime('');
+        $people->country = "Új-Zéland";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Miranda Otto"; //87
+        $people->birth_date = new \DateTime('1967-12-16');
+        $people->country = "Ausztrália";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Brad Dourif"; //88
+        $people->birth_date = new \DateTime('1950-03-18');
+        $people->country = "USA";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Karl Urban"; //89
+        $people->birth_date = new \DateTime('1972-06-07');
+        $people->country = "Új-Zéland";
+        $people->save();
+
+        $people = new People();
+        $people->name = "David Wenham"; //90
+        $people->birth_date = new \DateTime('1965-09-21');
+        $people->country = "Ausztrália";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Bernard Hill"; //91
+        $people->birth_date = new \DateTime('1944-12-17');
+        $people->country = "UK";
+        $people->save();
+
+        $people = new People();
+        $people->name = "Michael Horton"; //92
+        $people->birth_date = new \DateTime('');
+        $people->country = "Új-Zéland";
+        $people->save();
+
+        $people = new People();
+        $people->name = ""; //93
+        $people->birth_date = new \DateTime('');
+        $people->country = "";
+        $people->save();
+
+        $people = new People();
+        $people->name = ""; //94
+        $people->birth_date = new \DateTime('');
+        $people->country = "";
+        $people->save();
+
+        $people = new People();
+        $people->name = ""; //95
+        $people->birth_date = new \DateTime('');
+        $people->country = "";
+        $people->save();
+
+        $people = new People();
+        $people->name = ""; //96
+        $people->birth_date = new \DateTime('');
+        $people->country = "";
+        $people->save();
+
+        $people = new People();
+        $people->name = ""; //97
+        $people->birth_date = new \DateTime('');
+        $people->country = "";
+        $people->save();
+
+        $people = new People();
+        $people->name = ""; //98
+        $people->birth_date = new \DateTime('');
+        $people->country = "";
+        $people->save();
+
+        $people = new People();
+        $people->name = ""; //99
+        $people->birth_date = new \DateTime('');
+        $people->country = "";
+        $people->save();
+
+       
     }
 }
