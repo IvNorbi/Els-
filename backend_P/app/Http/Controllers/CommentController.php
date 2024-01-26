@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use Illuminate\Http\Request;
+use App\Models\Movie;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
 
@@ -11,10 +13,12 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Movie $movie)
     {
-        //
+       // return $movie;//->with("comments")->get();
+       return Movie::where('id', '=', $movie->id)->with(["comments","comments.user"])->get();
     }
+    
 
     /**
      * Show the form for creating a new resource.

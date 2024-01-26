@@ -23,3 +23,13 @@ Route::resource('genre', GenreController::class);
 
 use \App\Http\Controllers\MovieController;
 Route::resource('movie', MovieController::class);
+//ezt lebontani 5 routra!
+
+
+
+
+
+use \App\Http\Controllers\CommentController;
+//Route::resource('movies.comments', CommentController::class);
+Route::get('movie/{movie}/comment', [CommentController::class, 'index']);
+

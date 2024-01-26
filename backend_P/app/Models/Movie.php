@@ -22,4 +22,9 @@ class Movie extends Model
     {
         return $this->hasMany(MovieRolePeople::class, 'movie_id', 'id');
     }
+
+    public function comments(): hasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

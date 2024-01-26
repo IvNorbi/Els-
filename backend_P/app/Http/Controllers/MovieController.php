@@ -22,7 +22,7 @@ class MovieController extends Controller
      */
     public function create()
     {
-        //
+        //nem kell
     }
 
     /**
@@ -30,7 +30,17 @@ class MovieController extends Controller
      */
     public function store(StoreMovieRequest $request)
     {
-        //
+        $movie = new Movie();
+
+        $movie->title = $request->title;
+        $movie->release_year = $request->release_year;
+        $movie->description = $request->description;
+        if( $request->cover != "")  
+            $movie->cover = $request->cover;
+        $movie->rating = $request->rating;
+        $movie->length = $request->length;
+        
+        $movie->save();
     }
 
     /**
@@ -38,7 +48,7 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        //
+        return $movie;
     }
 
     /**
@@ -46,7 +56,7 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {
-        //
+        //nem kell
     }
 
     /**
@@ -54,7 +64,13 @@ class MovieController extends Controller
      */
     public function update(UpdateMovieRequest $request, Movie $movie)
     {
-        //
+        if( $request->title != "")  $movie->title = $request->title;
+        if( $request->release_year != "")  $movie->release_year = $request->release_year;
+        if( $request->description != "")  $movie->description = $request->description;
+        if( $request->cover != "")  $movie->cover = $request->cover;
+        if( $request->rating != "")  $movie->rating = $request->rating;
+        if( $request->length != "")  $movie->length = $request->length;
+        $movie->save();
     }
 
     /**
@@ -62,6 +78,7 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        //
+        $movie->delete();
+        return true;
     }
 }

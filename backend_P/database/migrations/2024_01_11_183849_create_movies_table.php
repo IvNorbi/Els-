@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title', 64);
             $table->year('release_year')->nullable();
             $table->text('description')->nullable();
-            $table->string('cover', 255)->nullable();
+            $table->string('cover', 255)->default("https://images.justwatch.com/poster/116616519/s718/default-2018.jpg");
             $table->string('rating', 10)->nullable();
             $table->integer('length')->nullable();
             $table->timestamps();
