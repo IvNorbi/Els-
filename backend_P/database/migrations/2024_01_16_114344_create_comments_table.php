@@ -15,6 +15,7 @@ return new class extends Migration
             $table->unsignedBigInteger('movie_id');
             $table->unsignedBigInteger('user_id');
             $table->text('content')->nullable();
+            $table->integer('rating')->nullable();
             $table->dateTime('date')->nullable();
             
             // Az idegen kulcsok definiálása

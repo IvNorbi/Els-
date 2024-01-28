@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
+use App\database\seeders; //ha hiba van, kis/nagy betű csere
 
 class CommentController extends Controller
 {
@@ -17,7 +18,11 @@ class CommentController extends Controller
     {
        // return $movie;//->with("comments")->get();
        return Movie::where('id', '=', $movie->id)->with(["comments","comments.user"])->get();
+       $c= new CalculateAverageRating(); //ez a két sor leygen a vége, ez az újrakalkuláció
+       $c->run();
+    
     }
+
     
 
     /**
@@ -25,7 +30,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        //nem kell
     }
 
     /**
@@ -33,7 +38,9 @@ class CommentController extends Controller
      */
     public function store(StoreCommentRequest $request)
     {
-        //
+        //újra kell számolni a movie rating-jét ha felveszek egy új comment-et
+        $c= new CalculateAverageRating(); //ez a két sor leygen a vége, ez az újrakalkuláció
+        $c->run();
     }
 
     /**
@@ -49,7 +56,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        //
+        //nem kell
     }
 
     /**
@@ -57,7 +64,7 @@ class CommentController extends Controller
      */
     public function update(UpdateCommentRequest $request, Comment $comment)
     {
-        //
+        //újra kell számolni a movie rating-jét ha felveszek egy új comment-et
     }
 
     /**
@@ -65,6 +72,6 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        //újra kell számolni a movie rating-jét ha felveszek egy új comment-et
     }
 }
