@@ -1,35 +1,40 @@
-<div style="background-color: blue;">
-  <div class="container">
-    <div class="row">
-      <header>
-        <nav class="navbar navbar-expand-lg navbar-dark"> 
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto"> <!-- mx-auto középre igazítja a menü elemeket -->
-              <li class="nav-item">
-                <a class="navbar-brand" routerLink="Main">FilmSarok</a> 
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="Movies">Filmek</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="Toplist">Toplista</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="Login">Belépés</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link Register" routerLink="Register">Regisztráció</a>
-              </li>
-            </ul>
-          </div>
-          <div class="navbar-nav ml-auto">
-            <app-search class="search-container"></app-search>
-          </div>
-        </nav>
-      </header>
+<div class="header-container">
+  <mat-toolbar color="primary" class="header-toolbar">
+    <!-- Hamburger ikon -->
+    <button mat-icon-button (click)="toggleUserPanel()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span routerLink="Main" class="toolbar-title">FilmSarok</span>
+
+    <!-- Menüpontok -->
+    <div class="menu">
+      <button mat-button routerLink="Movies">
+        <mat-icon>movie</mat-icon><span class="menu-label">Filmek</span>
+      </button>
+      <button mat-button routerLink="Toplist">
+        <mat-icon>list</mat-icon><span class="menu-label">Toplista</span>
+      </button>
+      <button mat-button routerLink="Login">
+        <mat-icon>login</mat-icon><span class="menu-label">Belépés</span>
+      </button>
+      <button mat-button routerLink="Register">
+        <mat-icon>person_add</mat-icon><span class="menu-label">Regisztráció</span>
+      </button>
     </div>
+
+    <!-- Keresési Mező -->
+    <span class="spacer"></span>
+    <app-search class="search-container"></app-search>
+  </mat-toolbar>
+
+  <!-- Userpanel hivatkozás: -->
+  <div class="user-panel" [class.open]="userPanelOpen">
+    <app-userpanel *ngIf="userPanelOpen"></app-userpanel>
   </div>
+</div>
+
+<div class="main-content">
+  <!-- Menüpontok által megnyitott komponensek -->
+  <router-outlet></router-outlet>
 </div>

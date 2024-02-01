@@ -6,4 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  
+  //Hamburger ikon megjelenítés.
+  userPanelOpen = false;
+  toggleUserPanel() {
+    this.userPanelOpen = !this.userPanelOpen;
+  }
 }

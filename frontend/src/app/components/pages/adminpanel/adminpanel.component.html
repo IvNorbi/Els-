@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="paginator-container">
+    <mat-paginator [pageSize]="5"></mat-paginator>
+  
+    <ng-container *ngFor="let item of items; let i = index;">
+      <div class="row" [class.white-background]="i % 2 === 0" [class.grey-background]="i % 2 !== 0">
+        <div class="col">
+          <!-- Bal szélen képek -->
+          <img src="{{ item.image }}" alt="image">
+        </div>
+        <div class="col">
+          <!-- Középen film nevek -->
+          <p>{{ item.name }}</p>
+        </div>
+        <div class="col">
+          <!-- Jobb szélére tegyél kérlek 2 gombot -->
+          <button mat-icon-button color="warn" (click)="deleteItem(item)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" (click)="editItem(item)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  
+</div>
