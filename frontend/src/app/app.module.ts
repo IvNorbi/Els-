@@ -28,6 +28,9 @@ import { UserpanelComponent } from './components/pages/userpanel/userpanel.compo
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+
 
 
 
@@ -49,6 +52,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     ToplistComponent,
     AdminpanelComponent,
     UserpanelComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -63,7 +67,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatIconModule,
     MatToolbarModule,
     MatMenuModule,
-    MatSidenavModule
+    MatSidenavModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

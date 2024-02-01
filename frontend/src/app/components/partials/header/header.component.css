@@ -17,26 +17,24 @@
 .user-panel.open {
   display: block; /* Megnyitott állapot */
 }
-/* Ezt ne piszkáld idáig*/
 
-
+.header-toolbar {
+  display: flex;
+  justify-content: center; /* Középre igazítás */
+}
 
 .main-content {
-
   vertical-align: top;
 }
 
-
-
 .mat-button:hover {
-    background-color: orange;
-    transition: background-color 0.3s ease;
-  }
+  background-color: orange;
+  transition: background-color 0.3s ease;
+}
 
 .mat-button {
-    margin-right: 8px; 
-  }
-
+  margin-right: 8px; 
+}
 
 .toolbar-title {
   font-size: 30px;
@@ -45,10 +43,6 @@
 
 .search-container {
   margin-left: 20px;
-}
-
-.spacer {
-  flex: 1 1 auto;
 }
 
 .mat-icon-button {
