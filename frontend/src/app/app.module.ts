@@ -29,6 +29,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FooterComponent } from './components/partials/footer/footer.component';
 
 
 
@@ -52,6 +53,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ToplistComponent,
     AdminpanelComponent,
     UserpanelComponent,
+    FooterComponent,
   
   ],
   imports: [
