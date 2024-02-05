@@ -1,9 +1,7 @@
 footer {
-    background-color: blue;
-    color: #fff;
+  font-weight: bold;
     text-align: center;
     padding: 1px 0;
-    position: fixed;
     bottom: 0;
     width: 100%;
   }
@@ -13,7 +11,7 @@ footer {
   }
   
   .footer-section a {
-    color: #fff;
+    color: blue;
     margin: 0 5px;
     text-decoration: none;
   }
