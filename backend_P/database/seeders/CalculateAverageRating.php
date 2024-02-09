@@ -14,7 +14,7 @@ class CalculateAverageRating extends Seeder
      */
     public function run()
     {
-        $this->command->info('Calculating average ratings...');
+        //$this->command->info('Calculating average ratings...');
 
         $movies = Movie::all();
 
@@ -27,7 +27,7 @@ class CalculateAverageRating extends Seeder
             $movie->save();
         }
 
-        $this->command->info('Average ratings calculation completed.');
+        //$this->command->info('Average ratings calculation completed.');
     }
 
     private function calculateAverageRating($movieId): float
@@ -39,12 +39,12 @@ class CalculateAverageRating extends Seeder
                 return 0; // Vagy más default érték, ha a film nem található
             }
         
-            $totalRating = $movie->comments()->whereNotNull('rating')->sum('rating');
-            $numberOfRatings = $movie->comments()->whereNotNull('rating')->count();
+            $totalRating = $movie->ratings()->whereNotNull('rating')->sum('rating');
+            $numberOfRatings = $movie->ratings()->whereNotNull('rating')->count();
         
             //return $numberOfRatings > 0 ? $totalRating / $numberOfRatings : 0;
 
-            $averageRating = $numberOfRatings > 0 ? round($totalRating / $numberOfRatings, 1) : 0;
+            $averageRating = $numberOfRatings > 0 ? $totalRating / $numberOfRatings : 0;
 
             return $averageRating;
         }

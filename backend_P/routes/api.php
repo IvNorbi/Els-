@@ -25,16 +25,16 @@ use \App\Http\Controllers\GenreController;
 Route::get('genres', [GenreController::class, 'index']);
 
 // Új műfaj létrehozása
-Route::post('genres', [GenreController::class, 'store'])->middleware('auth:api');
+Route::post('genres', [GenreController::class, 'store'])->middleware('auth:sanctum');
 
 // Adott műfaj megtekintése
 Route::get('genres/{genre}', [GenreController::class, 'show']);
 
 // Adott műfaj szerkesztése
-Route::put('genres/{genre}', [GenreController::class, 'update'])->middleware('auth:api');
+Route::put('genres/{genre}', [GenreController::class, 'update'])->middleware('auth:sanctum');
 
 // Adott műfaj törlése
-Route::delete('genres/{genre}', [GenreController::class, 'destroy'])->middleware('auth:api');
+Route::delete('genres/{genre}', [GenreController::class, 'destroy'])->middleware('auth:sanctum');
 
 // Film műfajok lekérése
 //Route::get('movies/{movie}/genres', function (Movie $movie) {
@@ -44,40 +44,50 @@ Route::delete('genres/{genre}', [GenreController::class, 'destroy'])->middleware
 
 
 use \App\Http\Controllers\MovieController;
+use \App\Http\Controllers\CommentController;
+use \App\Http\Controllers\RatingController;
+
+
 //Route::resource('movie', MovieController::class);
 //ezt lebontani 5 routra!
+
 // Összes film lekérdezése
 Route::get('movies', [MovieController::class, 'index']);
 
-// Új film létrehozása
-Route::post('movies', [MovieController::class, 'store'])->middleware('auth:api');
+// Összes komment megtekintése egy filmnél
+Route::get('movies/{movie}/comments', [CommentController::class, 'indexByMovieID']);
 
 // Adott film megtekintése
 Route::get('movies/{movie}', [MovieController::class, 'show']);
 
+// Új film létrehozása
+Route::post('movies', [MovieController::class, 'store'])->middleware('auth:sanctum');
+
 // Adott film szerkesztése
-Route::put('movies/{movie}', [MovieController::class, 'update'])->middleware('auth:api');
+Route::put('movies/{movie}', [MovieController::class, 'update'])->middleware('auth:sanctum');
 
 // Adott film törlése
-Route::delete('movies/{movie}', [MovieController::class, 'destroy'])->middleware('auth:api');
+Route::delete('movies/{movie}', [MovieController::class, 'destroy'])->middleware('auth:sanctum');
+
+
+Route::get('movies/toplist', [MovieController::class, 'toplist']);
 
 
 
-
-use \App\Http\Controllers\CommentController;
 //Route::resource('movies.comments', CommentController::class);
 //Route::get('movie/{movie}/comment', [CommentController::class, 'index']);
-// Új komment hozzáadása
-Route::post('movies/{movie}/comments', [CommentController::class, 'store'])->middleware('auth:api');
 
 // Komment megtekintése
-Route::get('movies/{movie}/comments/{comment}', [CommentController::class, 'show']);
+Route::get('movies/{movie}/comments/{user}', [CommentController::class, 'show']);
+
+// Új komment hozzáadása
+Route::post('movies/comments', [CommentController::class, 'store'])->middleware('auth:sanctum');
 
 // Komment szerkesztése
-Route::put('movies/{movie}/comments/{comment}', [CommentController::class, 'update'])->middleware('auth:api');
+Route::put('movies/comments/{comment}', [CommentController::class, 'update'])->middleware('auth:sanctum');
 
 // Komment törlése
-Route::delete('movies/{movie}/comments/{comment}', [CommentController::class, 'destroy'])->middleware('auth:api');
+Route::delete('movies/comments/{comment}', [CommentController::class, 'destroy'])->middleware('auth:sanctum');
 
 
 
@@ -86,13 +96,41 @@ use \App\Http\Controllers\PeopleController;
 Route::get('people', [PeopleController::class, 'index']);
 
 // Új színész létrehozása
-Route::post('people', [PeopleController::class, 'store'])->middleware('auth:api');
+Route::post('people', [PeopleController::class, 'store'])->middleware('auth:sanctum');
 
 // Színész megtekintése
 Route::get('people/{people}', [PeopleController::class, 'show']);
 
 // Színész szerkesztése
-Route::put('people/{people}', [PeopleController::class, 'update'])->middleware('auth:api');
+Route::put('people/{people}', [PeopleController::class, 'update'])->middleware('auth:sanctum');
 
 // Színész törlése
-Route::delete('people/{people}', [PeopleController::class, 'destroy'])->middleware('auth:api');
+Route::delete('people/{people}', [PeopleController::class, 'destroy'])->middleware('auth:sanctum');
+
+
+
+// Új rating hozzáadása
+Route::post('movies/ratings', [RatingController::class, 'store'])->middleware('auth:sanctum');
+
+Route::get('comments', [CommentController::class, 'index']);
+
+use \App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
+
+Route::post('/user/login', function (Request $request) {
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+ 
+    $user = User::where('email', $request->email)->first();
+ 
+    if (! $user || ! Hash::check($request->password, $user->password)) {
+        throw ValidationException::withMessages([
+            'email' => ['The provided credentials are incorrect.'],
+        ]);
+    }
+ 
+    return $user->createToken("MovieCorner");
+});

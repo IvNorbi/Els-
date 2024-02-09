@@ -4,13 +4,13 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Comment;
+use App\Models\Rating;
 use App\Models\Movie;
 use App\Models\User;
 use Faker\Factory as Faker;
 use Illuminate\Database\QueryException;
 
-class CommentSeeder extends Seeder
+class RatingSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -22,12 +22,11 @@ class CommentSeeder extends Seeder
         // Vegyük fel néhány kommentet a táblába
         for ($i = 1; $i <= 300; $i++) {
             try {
-                $comment = new Comment();
-                $comment->movie_id = Movie::inRandomOrder()->first()->id;
-                $comment->user_id = User::inRandomOrder()->first()->id;
-                $comment->content = $faker->paragraph;
-                $comment->date = $faker->dateTimeBetween('-1 year', 'now');
-                $comment->save();
+                $rating = new Rating();
+                $rating->movie_id = Movie::inRandomOrder()->first()->id;
+                $rating->user_id = User::inRandomOrder()->first()->id;
+                $rating->rating = $faker->numberBetween(5, 10);
+                $rating->save();
             } catch (QueryException $e) {
                 // Ellenőrizzük, hogy az adott kivétel egyedi kulcs megsértése
                 if ($e->getCode() == '23000') {

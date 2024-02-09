@@ -11,19 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->id();
+        Schema::create('ratings', function (Blueprint $table) {
             $table->unsignedBigInteger('movie_id');
             $table->unsignedBigInteger('user_id');
-            $table->text('content')->nullable();
-            $table->dateTime('date')->nullable();
+            $table->integer('rating')->nullable();
             
             // Az idegen kulcsok definiálása
             $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             
             // Az elsődleges kulcs definiálása
-           // $table->primary(['movie_id', 'user_id']);
+            $table->primary(['movie_id', 'user_id']);
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('ratings');
     }
 };

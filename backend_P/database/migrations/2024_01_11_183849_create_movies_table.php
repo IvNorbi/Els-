@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 64);
+            $table->string('name', 64);
             $table->year('release_year')->nullable();
             $table->text('description')->nullable();
-            $table->string('cover', 255)->default("..\storage\default_cover.jpg");
-            $table->decimal('ratings', 3, 1)->default(0);
+            $table->string('imageUrl', 255)->default("..\storage\default_cover.jpg");
+            $table->decimal('ratings',8,5)->default(0);
             $table->integer('length')->nullable();
+            $table->string('origin', 64)->default("USA");;
+
             $table->timestamps();
         });
     }

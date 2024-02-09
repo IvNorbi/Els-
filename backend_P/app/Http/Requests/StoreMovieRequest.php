@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreMovieRequest extends FormRequest
 {
@@ -19,17 +20,34 @@ class StoreMovieRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    /*public function rules(): array
     {
         return [
-            'title' => 'required'
+            'name' => ['required','unique:movies,name,NULL,release_year']
+            
         ];
     }
 
     public function messages(): array
     {
         return [
-            'title.required' => 'Kötelező címet megadni'
+            'name.required' => 'Kötelező címet megadni'
         ];
-    }
+    }*/
+
+
+public function rules(): array
+{
+    return [
+        'name' => ['required', Rule::unique('movies', 'name')
+            ->where(function ($query) {
+                // Ellenőrizzük, hogy a megadott című filmek között van-e már olyan, aminek a dátuma megegyezik
+                $query->where('release_year', $this->input('release_year'));
+            })
+            ->ignore($this->route('movie')), // Kizárjuk az aktuális film rekordját az ellenőrzésből
+        ],
+        'release_year' => 'required|int',
+    ];
+}
+
 }

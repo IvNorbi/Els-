@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\Movie;
+use App\Models\User;
+
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
 //use App\database\seeders; //ha hiba van, kis/nagy betű csere
@@ -17,22 +19,18 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Movie $movie)
+    public function indexByMovieID(Movie $movie)
     {
        // return $movie;//->with("comments")->get();
-       return Movie::where('id', '=', $movie->id)->with(["comments","comments.user"])->get();
+       return Comment::with(["movie"])->where('movie_id', '=', $movie->id)->get();
        $c= new CalculateAverageRating(); //ez a két sor legyen a vége, ez az újrakalkuláció
        $c->run();
     }
 
-    
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function index()
     {
-        //nem kell
+       // return $movie;//->with("comments")->get();
+       return Comment::with(["movie","user"])->get();
     }
 
     /**
@@ -42,29 +40,24 @@ class CommentController extends Controller
     {
         $comment = new Comment();
         
+        $comment->movie_id = $request->movie_id;
+        $comment->user_id = $request->user()->id;
+
         $comment->content = $request->content;
-        if($request->rating !="")
-            $comment->rating = $request->rating;
         $comment->date = Carbon::now();
         $comment->save();       //újra kell számolni a movie rating-jét ha felveszek egy új comment-et
-        $c= new CalculateAverageRating(); //ez a két sor leygen a vége, ez az újrakalkuláció
-        $c->run();
+        return $comment;
     }   
 
     /**
      * Display the specified resource.
      */
-    public function show(Comment $comment)
+    public function show(Movie $movie, User $user)
     {
-        return $comment;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Comment $comment)
-    {
-        //nem kell
+        return Comment::with(["movie"])
+            ->where('movie_id', '=', $movie->id)
+            ->where('user_id', '=', $user->id)
+            ->get();
     }
 
     /**
@@ -72,12 +65,11 @@ class CommentController extends Controller
      */
     public function update(UpdateCommentRequest $request, Comment $comment)
     {
-        if($request->content != "") $comment->content = $request->content;
-        if($request->rating != "") $comment->rating = $request->rating;
+        if($request->content != "") 
+            $comment->content = $request->content;
         $comment->date = Carbon::now();
         $comment->save(); 
-        $c= new CalculateAverageRating();   //újra kell számolni a movie rating-jét ha felveszek egy új comment-et
-        $c->run();  //ez a két sor leygen a vége, ez az újrakalkuláció
+        return $comment;
     }
 
     /**
@@ -85,9 +77,14 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        $comment->delete();
-        return true;
-        $c= new CalculateAverageRating();
-        $c->run();  
+        try {
+            $comment->delete();
+            return true;
+        } catch (\Exception $e) {
+            return response()->json([
+                'Hiba' => 'nem sikerült törölni'
+            ], 404);
+        }
+       
     }
 }

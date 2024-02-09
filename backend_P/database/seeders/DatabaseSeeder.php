@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
              PeopleSeeder::class,
              MovieSeeder::class,
              CommentSeeder::class,
+             RatingSeeder::class,
              CalculateAverageRating::class, // Itt hívd meg az új parancsot a CommentSeeder után
              MovieRolePeopleSeeder::class,
              GenreMovieSeeder::class,

@@ -28,6 +28,11 @@ class Movie extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function ratings(): hasMany
+    {
+        return $this->hasMany(Rating::class);
+    }
+
     // public function calculateAverageRating(): float // A felhasználók által adott pontokból kiszámolja egy film átlagos pontozását
     // {
     //     $totalRating = $this->comments()->whereNotNull('rating')->sum('rating');    
@@ -35,4 +40,8 @@ class Movie extends Model
 
     //     return $numberOfRatings > 0 ? $totalRating / $numberOfRatings : 0;
     // }
+
+    protected $casts = array(
+        "ratings" => "decimal:1"
+    );
 }
