@@ -13,7 +13,7 @@ class PeopleController extends Controller
      */
     public function index()
     {
-        //
+        return People::with('movies')->get();
     }
 
     /**
@@ -21,7 +21,7 @@ class PeopleController extends Controller
      */
     public function create()
     {
-        //
+        //nem kell
     }
 
     /**
@@ -29,7 +29,13 @@ class PeopleController extends Controller
      */
     public function store(StorePeopleRequest $request)
     {
-        //
+        $people = new People();
+
+        $people->name = $request->name;
+        $people->birth_date = $request->birth_date;
+        $people->country = $request->country;
+        $people->save();
+
     }
 
     /**
@@ -37,7 +43,7 @@ class PeopleController extends Controller
      */
     public function show(People $people)
     {
-        //
+        return $people->with('movies')->first();    //visszaadja az ember adatait a kacsolódó filmekkel együtt
     }
 
     /**
@@ -45,7 +51,7 @@ class PeopleController extends Controller
      */
     public function edit(People $people)
     {
-        //
+        //nem kell
     }
 
     /**
@@ -53,7 +59,18 @@ class PeopleController extends Controller
      */
     public function update(UpdatePeopleRequest $request, People $people)
     {
-        //
+        if ($request->name) {
+            $people->name = $request->name;
+        }
+        if ($request->birth_date) {
+            $people->birth_date = $request->birth_date;
+        }
+        if ($request->country) {
+            $people->country = $request->country;
+        }
+        $people->save();
+
+        return $people;
     }
 
     /**
@@ -61,6 +78,7 @@ class PeopleController extends Controller
      */
     public function destroy(People $people)
     {
-        //
+        $people->delete();
+        return true;
     }
 }

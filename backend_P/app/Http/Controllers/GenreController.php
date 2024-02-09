@@ -22,7 +22,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        //
+        //nem kell
     }
 
     /**
@@ -30,7 +30,10 @@ class GenreController extends Controller
      */
     public function store(StoreGenreRequest $request)
     {
-        //
+        $genre = new Genre();
+
+        if($request->name != "") $genre->name = $request->name;
+        $genre->save();
     }
 
     /**
@@ -46,7 +49,7 @@ class GenreController extends Controller
      */
     public function edit(Genre $genre)
     {
-        //
+        //nem kell
     }
 
     /**
@@ -54,7 +57,8 @@ class GenreController extends Controller
      */
     public function update(UpdateGenreRequest $request, Genre $genre)
     {
-        //
+        if($request->name != "") $genre->name = $request->name;
+        $genre->save();
     }
 
     /**
@@ -62,6 +66,7 @@ class GenreController extends Controller
      */
     public function destroy(Genre $genre)
     {
-        //
+        $genre->delete();
+        return true;
     }
 }

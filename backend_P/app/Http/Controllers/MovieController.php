@@ -37,9 +37,8 @@ class MovieController extends Controller
         $movie->description = $request->description;
         if( $request->cover != "")  
             $movie->cover = $request->cover;
-        $movie->rating = $request->rating;
-        $movie->length = $request->length;
-        
+        $movie->ratings = $request->ratings;
+        $movie->length = $request->length;  
         $movie->save();
     }
 
