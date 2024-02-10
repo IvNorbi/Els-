@@ -8,6 +8,11 @@ import { RegComponent } from './components/pages/reg/reg.component';
 import { MoviePageComponent } from './components/pages/movie-page/movie-page.component';
 import { SearchComponent } from './components/partials/search/search.component';
 import { ToplistComponent } from './components/pages/toplist/toplist.component';
+import { AdminpanelComponent } from './components/pages/adminpanel/adminpanel.component';
+import { UserpanelComponent } from './components/pages/userpanel/userpanel.component';
+
+//Angular material importok:
+
 
 const routes: Routes = [
 
@@ -42,6 +47,17 @@ const routes: Routes = [
     component : ToplistComponent
   },
 
+  {
+    title     : 'Adminpanel',
+    path      : 'adminpanel',
+    component : AdminpanelComponent
+  },
+
+  {
+    title     : 'UserPanel',
+    path      : 'userpanel',
+    component : UserpanelComponent
+  },
 
   
 

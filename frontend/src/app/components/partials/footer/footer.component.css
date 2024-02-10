@@ -1,0 +1,27 @@
+footer {
+  font-weight: bold;
+    text-align: center;
+    padding: 1px 0;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .footer-section {
+    margin-top: 5px;
+  }
+  
+  .footer-section a {
+    color: blue;
+    margin: 0 5px;
+    text-decoration: none;
+  }
+  
+  .footer-bottom {
+    margin-top: 10px;
+    font-size: 0.9em;
+  }
+
+  .a{
+    margin:5px;
+  }
+  
