@@ -84,6 +84,8 @@ class MovieController extends Controller
         }
         $movie->tags = $tags;
         $movie->stars = round($movie->ratings/2.0);
+        $movie->imageUrl = asset('storage/public' . $movie->imageUrl);
+
         return $movie;
     }
 

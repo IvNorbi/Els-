@@ -46,6 +46,7 @@ Route::delete('genres/{genre}', [GenreController::class, 'destroy'])->middleware
 use \App\Http\Controllers\MovieController;
 use \App\Http\Controllers\CommentController;
 use \App\Http\Controllers\RatingController;
+use \App\Models\Movie;
 
 
 //Route::resource('movie', MovieController::class);
@@ -59,6 +60,22 @@ Route::get('movies/{movie}/comments', [CommentController::class, 'indexByMovieID
 
 // Adott film megtekintése
 Route::get('movies/{movie}', [MovieController::class, 'show']);
+
+// Route::get('movies/{id}', function ($id) {
+//     $movie = Movie::findOrFail($id);
+
+//     $image = base64_encode(file_get_contents($movie->imageUrl));
+
+//     return response()->json([
+//         'id' => $movie->id,
+//         'name' => $movie->name,
+//         'release_year' => $movie->release_year,
+//         'description' => $movie->description,
+//         'imageUrl' => $movie->imageUrl,
+//         'length' => $movie->length,
+//         'origin' => $movie->origin
+//     ]);
+// });
 
 // Új film létrehozása
 Route::post('movies', [MovieController::class, 'store'])->middleware('auth:sanctum');
