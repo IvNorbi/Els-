@@ -45,7 +45,7 @@ class CommentController extends Controller
 
         $comment->content = $request->content;
         $comment->date = Carbon::now();
-        $comment->save();       //újra kell számolni a movie rating-jét ha felveszek egy új comment-et
+        $comment->save();       
         return $comment;
     }   
 

@@ -13,7 +13,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        return Role::with('movies')->get();
     }
 
     /**
@@ -29,7 +29,10 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-        //
+        $role = new Role();
+
+        if($request->role != "") $role->role = $request->role;
+        $role->save();
     }
 
     /**
@@ -37,7 +40,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        return $role;
     }
 
     /**
@@ -53,7 +56,8 @@ class RoleController extends Controller
      */
     public function update(UpdateRoleRequest $request, Role $role)
     {
-        //
+        if($request->role != "") $role->role = $request->role;
+        $role->save();
     }
 
     /**
@@ -61,6 +65,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->delete();
+        return true;
     }
 }

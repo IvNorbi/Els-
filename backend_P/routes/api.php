@@ -151,3 +151,20 @@ Route::post('/user/login', function (Request $request) {
  
     return $user->createToken("MovieCorner");
 });
+
+
+use \App\Http\Controllers\RoleController;
+// Role-ok lekérdezése
+Route::get('role', [RoleController::class, 'index']);
+
+// Új role létrehozása
+Route::post('role', [RoleController::class, 'store'])->middleware('auth:sanctum');
+
+// Role megtekintése
+Route::get('role/{role}', [RoleController::class, 'show']);
+
+// Role szerkesztése
+Route::put('role/{role}', [RoleController::class, 'update'])->middleware('auth:sanctum');
+
+// Role törlése
+Route::delete('role/{role}', [RoleController::class, 'destroy'])->middleware('auth:sanctum');
