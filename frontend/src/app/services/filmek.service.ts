@@ -16,6 +16,8 @@ export class FilmekService {
   getAll(): Observable<Film[]> {
     return this.http.get<Film[]>(MOVIES_URL);
   }
+
+  
   getTopList(): Observable<Film[]> {
     return this.http.get<Film[]>(MOVIES_URL).pipe(
       map((movies: Film[]) => {

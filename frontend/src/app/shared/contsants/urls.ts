@@ -1,4 +1,4 @@
-const BASE_URL ='http://localhost:5000';
+const BASE_URL ='http://localhost:5100';
 
 export const MOVIES_URL = BASE_URL + '/api/movies';
 export const MOVIES_TAGS_URL = MOVIES_URL + '/tags';

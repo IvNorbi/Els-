@@ -1,6 +1,7 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 .header-container {
+  margin-bottom: 15px;
   background-color: blue;
   position: relative;
 }

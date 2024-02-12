@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Pipe, PipeTransform } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { FilmekService } from 'src/app/services/filmek.service';
+import { Film } from 'src/app/shared/models/filmek';
 
 @Component({
   selector: 'app-adminpanel',
@@ -6,26 +10,46 @@ import { Component } from '@angular/core';
   styleUrls: ['./adminpanel.component.css']
 })
 export class AdminpanelComponent {
-  items = [
-    { image: 'path/to/image1.jpg', name: 'Film' },
-    { image: 'path/to/image2.jpg', name: 'Film' },
-    { image: 'path/to/image3.jpg', name: 'Film' },
-    { image: 'path/to/image3.jpg', name: 'Film' },
-    { image: 'path/to/image3.jpg', name: 'Film' },
-    { image: 'path/to/image3.jpg', name: 'Film' },
-    { image: 'path/to/image3.jpg', name: 'Film' },
-    { image: 'path/to/image3.jpg', name: 'Film' },
-    { image: 'path/to/image3.jpg', name: 'Film' },
-    { image: 'path/to/image3.jpg', name: 'Film' },
+  showTagBox: boolean = false;
+  filmek: Film[] = [];
+  constructor(private filmService: FilmekService, activatedRoute: ActivatedRoute) {
+    let moviesObservalbe:Observable<Film[]>;
+    activatedRoute.params.subscribe((params) => {
+      if (params.searchTerm)
+        moviesObservalbe = this.filmService.getAllFilmBySearchTerm(params.searchTerm);
+      else if (params.tag)
+        moviesObservalbe = this.filmService.getAllMovieByTag(params.tag);
+      else
+        moviesObservalbe = filmService.getAll();
 
-    // további elemek...
-  ];
-
-  deleteItem(item: any) {
-    // Törlés logika
+        moviesObservalbe.subscribe((serverMovies) => {
+          this.filmek = serverMovies;
+        })
+    })
   }
+deleteItem(film: any) {
+    // Törlés logika
+}
 
-  editItem(item: any) {
+editItem(film: any) {
     // Módosítás logika
+}
+
+  toggleTagBox() {
+    this.showTagBox = !this.showTagBox;
+  }
+}
+
+// chunkPipe, 1 sorba 3-as tördeléshez.
+@Pipe({
+  name: 'chunkPipe'
+})
+export class ChunkPipe implements PipeTransform {
+  transform(array: any[], chunkSize: number): any[] {
+    const result = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+      result.push(array.slice(i, i + chunkSize));
+    }
+    return result;
   }
 }
