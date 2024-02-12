@@ -31,7 +31,7 @@ class RoleController extends Controller
     {
         $role = new Role();
 
-        if($request->role != "") $role->role = $request->role;
+        if($request->name != "") $role->name = $request->name;
         $role->save();
     }
 
@@ -56,7 +56,7 @@ class RoleController extends Controller
      */
     public function update(UpdateRoleRequest $request, Role $role)
     {
-        if($request->role != "") $role->role = $request->role;
+        if($request->name != "") $role->name = $request->name;
         $role->save();
     }
 

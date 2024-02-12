@@ -11,6 +11,11 @@ class Genre extends Model
 {
     use HasFactory;
 
+    public function getRouteKeyName(): string
+    {
+        return 'name';
+    }
+
     public function movies(): BelongsToMany
     {
         return $this->belongsToMany(Movie::class);

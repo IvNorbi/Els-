@@ -23,6 +23,8 @@ use \App\Http\Controllers\GenreController;
 // Film műfajok lekérése
 // Műfajok lekérése
 Route::get('genres', [GenreController::class, 'index']);
+Route::get('tags',   [GenreController::class, 'index']);
+
 
 // Új műfaj létrehozása
 Route::post('genres', [GenreController::class, 'store'])->middleware('auth:sanctum');
@@ -57,6 +59,9 @@ Route::get('movies', [MovieController::class, 'index']);
 
 // Összes komment megtekintése egy filmnél
 Route::get('movies/{movie}/comments', [CommentController::class, 'indexByMovieID']);
+
+Route::get('movies/tag/{genre}', [MovieController::class, 'indexByGenre']);
+
 
 // Adott film megtekintése
 Route::get('movies/{movie}', [MovieController::class, 'show']);

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 64);
             $table->year('release_year')->nullable();
             $table->text('description')->nullable();
-            $table->string('imageUrl', 255)->default("\storage\app\public\default_cover.jpg");
+            $table->string('imageUrl', 255)->default("default_cover.jpg");
             $table->decimal('ratings',8,5)->default(0);
             $table->integer('length')->nullable();
             $table->string('origin', 64)->default("USA");;

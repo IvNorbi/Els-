@@ -8,6 +8,10 @@ use App\Http\Requests\UpdateMovieRequest;
 use App\Models\MovieRolePeople;
 use App\Models\Comment;
 use App\Models\Rating;
+use App\Models\Genre;
+use Illuminate\Support\Facades\Storage;
+
+
 
 class MovieController extends Controller
 {
@@ -24,9 +28,32 @@ class MovieController extends Controller
             }
             $movie->tags = $tags;
             $movie->stars = round($movie->ratings/2.0);
+            $movie->imageUrl = asset("storage/".$movie->imageUrl);
         }
 
         return $return;
+
+    }
+
+
+    public function indexByGenre(Genre $genre)
+    {
+        $return = Movie::with([ 'rolesPeople.roles','rolesPeople.people'])->get();
+        $return2 = [];
+        foreach ($return as $key => $movie) {
+            $belekellrakni = false;
+            $tags = [];
+            foreach ($movie->genres as $g) {
+                if ($genre->name == $g->name) $belekellrakni = true;
+                $tags[] = $g->name;
+            }
+            $movie->tags = $tags;
+            $movie->stars = round($movie->ratings/2.0);
+            $movie->imageUrl = asset("storage/".$movie->imageUrl);
+            if ($belekellrakni) $return2[]= $movie;
+        }
+
+        return $return2;
 
     }
 
@@ -40,6 +67,8 @@ class MovieController extends Controller
             }
             $movie->tags = $tags;
             $movie->stars = round($movie->ratings/2.0);
+            $movie->imageUrl = asset("storage/".$movie->imageUrl);
+
         }
 
         return $return;
@@ -64,11 +93,26 @@ class MovieController extends Controller
         $movie->name = $request->name;
         $movie->release_year = $request->release_year;
         $movie->description = $request->description;
+        
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+
+        $movie->imageUrl = str_replace('public/', '', $file->storeAs('public', $request->name.".".$extension));
+
         if( $request->imageUrl != "")  
             $movie->imageUrl = $request->imageUrl;
        // $movie->ratings = $request->ratings;
         $movie->length = $request->length;  
+
+
+        
         $movie->save();
+
+    /*    $people = new People();
+        $people->name = $request->people[0]->name;
+        $people->birth_date = $request->birth_date;
+        $people->country = $request->country;
+        $people->save();*/
         return $movie;
     }
 
@@ -84,7 +128,7 @@ class MovieController extends Controller
         }
         $movie->tags = $tags;
         $movie->stars = round($movie->ratings/2.0);
-        $movie->imageUrl = asset('storage/public' . $movie->imageUrl);
+        $movie->imageUrl = asset("storage/".$movie->imageUrl);
 
         return $movie;
     }
@@ -119,6 +163,8 @@ class MovieController extends Controller
         Rating::where("movie_id","=",$movie->id)->delete();
         Comment::where("movie_id","=",$movie->id)->delete();
         MovieRolePeople::where("movie_id","=",$movie->id)->delete();
+        Storage::delete("public/".$movie->imageUrl);
+
         $movie->delete();
         return true;
     }

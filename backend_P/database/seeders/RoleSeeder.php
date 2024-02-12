@@ -15,35 +15,35 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         $role = new Role();
-        $role->role = "színész/színésznő";
+        $role->name = "színész/színésznő";
         $role->save();
 
         $role = new Role();
-        $role->role = "rendező";
+        $role->name = "rendező";
         $role->save();
 
         $role = new Role();
-        $role->role = "operatőr";
+        $role->name = "operatőr";
         $role->save();
 
         $role = new Role();
-        $role->role = "író";
+        $role->name = "író";
         $role->save();
 
         $role = new Role();
-        $role->role = "forgatókönyvíró";
+        $role->name = "forgatókönyvíró";
         $role->save();
 
         $role = new Role();
-        $role->role = "producer";
+        $role->name = "producer";
         $role->save();
 
         $role = new Role();
-        $role->role = "zene";
+        $role->name = "zene";
         $role->save();
 
         $role = new Role();
-        $role->role = "vágó";
+        $role->name = "vágó";
         $role->save();
     }
 }
