@@ -53,12 +53,6 @@ const routes: Routes = [
     component : AdminpanelComponent
   },
 
-  {
-    title     : 'UserPanel',
-    path      : 'userpanel',
-    component : UserpanelComponent
-  },
-
   
 
 
