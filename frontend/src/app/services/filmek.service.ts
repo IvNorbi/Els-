@@ -31,8 +31,10 @@ export class FilmekService {
   }
 
 
-  getAllFilmBySearchTerm(searchTerm: string) {
-    return this.http.get<Film[]>(MOVIES_BY_SEARCH_URL + searchTerm);
+  getAllFilmBySearchTerm(searchTerm: string): Observable<Film[]> {
+    return this.getAll().pipe(
+      map(films => films.filter(film => film.name.toLowerCase().includes(searchTerm.toLowerCase())))
+    );
   }
 
 
