@@ -1,28 +1,36 @@
-.container {
+.container{
   background-color: #e2e2e2;
+  width: 30%;
   padding: 10px;
-  max-width: 65%;
-  height: auto;
 }
 
-.card-img-left {
-  width: 45%;
-  background: scroll center url('https://previews.123rf.com/images/9dreamstudio/9dreamstudio1802/9dreamstudio180203976/96443516-cinema-background-film-watching-popcorn-and-clapperboard-on-yellow-background-top-view.jpg');
-  background-size: cover;
+.login-fieldset, .success-fieldset {
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
-.btn-login {
-  font-size: 0.9rem;
-  letter-spacing: 0.05rem;
-  padding: 0.75rem 1rem;
+.login-fieldset legend, .success-fieldset legend {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
 }
 
-.btn-google {
-  color: white !important;
-  background-color: #ea4335;
+.input-field {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-.btn-facebook {
-  color: white !important;
-  background-color: #3b5998;
+.login-button, .logout-button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: blue;
+}
+
+.success-fieldset {
+  background-color: #e6ffe6;
 }

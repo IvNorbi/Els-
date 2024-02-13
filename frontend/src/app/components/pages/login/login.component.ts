@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
+import { UserModel } from 'src/app/shared/models/userModel';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +10,23 @@ import { FormGroup } from '@angular/forms';
 })
 export class LoginComponent {
 
-  loginForm!:FormGroup;
-  isSubmitted = false;
+  public user:UserModel = {
+    email :"admin@example.com",
+    password :"password"
+  };
 
-  // constructor(private formBuilder : FormBuilder) { }  -
+  constructor (public service:UserService) {
+
+  }
+
+  login() {
+    this.service.login(this.user);
+  }
+
+  logout() {
+    this.service.logout(this.user);
+  }
 
 }
+
+

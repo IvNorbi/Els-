@@ -16,6 +16,7 @@ import { NotFoundComponent } from './components/partials/not-found/not-found.com
 import { ToplistComponent } from './components/pages/toplist/toplist.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminpanelComponent } from './components/pages/adminpanel/adminpanel.component';
+import { FormsModule } from '@angular/forms';
 
 //Angular material importok:
 import { MatTableModule }   from '@angular/material/table';
@@ -70,7 +71,8 @@ import { FooterComponent } from './components/partials/footer/footer.component';
     MatToolbarModule,
     MatMenuModule,
     MatSidenavModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
