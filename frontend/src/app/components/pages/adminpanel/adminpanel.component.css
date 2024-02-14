@@ -1,3 +1,9 @@
+.filmname{
+  font-weight: bold;
+}
+
+
+/* PAGINÁTORHOZ */
 .paginator-container {
     width: 100%;
   }

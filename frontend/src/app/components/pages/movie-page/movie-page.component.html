@@ -2,12 +2,12 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <img [src]="film.imageUrl" [alt]="film.name" class="img-fluid"/>
+      <img src="{{ film.imageUrl }}" alt="{{ film.name }}" class="img-fluid"/>
     </div>
     <div class="col-md-6 details">
       <div class="header d-flex align-items-center">
         <h1 class="name">{{film.name}}</h1>
-        <span class="favorite {{film.favorite ? 'text-danger' : 'text-secondary'}}">❤</span>
+        <!-- <span class="favorite {{film.favorite ? 'text-danger' : 'text-secondary'}}">❤</span> -->
       </div>
       <div class="description">
         <p class="descr">{{film.description}}</p>
@@ -29,11 +29,7 @@
       </div>
     </div>
   </div>
-</div>
-
-
-<!-- KOMMENT SZEKCIÓ -->
-<div class="container">
+  <!-- KOMMENT SZEKCIÓ -->
   <div class="row">
     <div class="col-md-12">
       <div class="comment-box">
@@ -75,4 +71,7 @@
       </div>
     </div>
   </div>
+</div>
+<!-- KOMMENT SZEKCIÓ -->
+<div class="container">
 </div>
