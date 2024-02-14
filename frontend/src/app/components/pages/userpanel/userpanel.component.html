@@ -13,7 +13,10 @@
             <li><a href="#"><i class="fas fa-cog"></i> Beállítások</a></li>
             <li><a href="#"><i class="fas fa-users"></i> Felhasználók</a></li>
             <li><a href="#"><i class="fas fa-file-alt"></i> Dokumentumok</a></li>
-            <li><a routerLink="adminpanel" class="admin"><i class="fas fa-user-shield"></i> Admin felület</a></li>
+            <fieldset *ngIf="this.service.isUserLoggedIn()" >
+              <li><a routerLink="adminpanel" class="admin"><i class="fas fa-user-shield"></i> Admin felület</a></li>
+            </fieldset>
+            
           </ul>
         </div>
       </div>
