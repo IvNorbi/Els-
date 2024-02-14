@@ -22,8 +22,8 @@ use \App\Http\Controllers\GenreController;
 //Route::resource('genre', GenreController::class);
 // Film műfajok lekérése
 // Műfajok lekérése
-Route::get('genres', [GenreController::class, 'index']);
-Route::get('tags',   [GenreController::class, 'index']);
+//Route::get('genres', [GenreController::class, 'index']);
+Route::get('movies/tags',   [GenreController::class, 'index']);
 
 
 // Új műfaj létrehozása
