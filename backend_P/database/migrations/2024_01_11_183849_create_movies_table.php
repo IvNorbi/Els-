@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
             $table->string('name', 64);
-            $table->year('release_year')->nullable();
+            $table->year('release_year');
             $table->text('description')->nullable();
             $table->string('imageUrl', 255)->default("default_cover.jpg");
             $table->decimal('ratings',8,5)->default(0);
