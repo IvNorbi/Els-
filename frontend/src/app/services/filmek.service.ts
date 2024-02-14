@@ -63,4 +63,14 @@ deleteMovie(film:Film):Observable<boolean> {
     });
   }
 
+updateMovie(film:Film):Observable<Film> {
+  let token = sessionStorage.getItem("token");
+  
+  return this.http.put<Film>(MOVIES_URL+"/"+film.id, film, {headers: {
+    "Authorization": "Bearer "+token
+    }
+  });
 }
+
+}
+

@@ -30,11 +30,6 @@ export class UserService {
     );
   }
   
-  
-  
-  
-  
-  
   logout(user:UserModel) {
     let token = sessionStorage.getItem("token");
   

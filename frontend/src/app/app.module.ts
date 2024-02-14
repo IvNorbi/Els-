@@ -31,6 +31,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FooterComponent } from './components/partials/footer/footer.component';
+import { MovieFormComponent } from './components/partials/movie-form/movie-form.component';
 
 
 
@@ -62,6 +63,7 @@ import { FooterComponent } from './components/partials/footer/footer.component';
     AdminpanelComponent,
     UserpanelComponent,
     FooterComponent,
+    MovieFormComponent,
   
   ],
   imports: [
