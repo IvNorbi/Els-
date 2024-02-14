@@ -1,0 +1,11 @@
+<h1>Edit Movie</h1>
+<form (ngSubmit)="onSaveClick(film)">
+  <label>Title:</label>
+  <input type="text" [(ngModel)]="film.name" name="name" required>
+  <br>
+  <label>Description:</label>
+  <textarea [(ngModel)]="film.description" name="description" required></textarea>
+  <br>
+  <button type="button" (click)="onCancelClick()">Cancel</button>
+  <button type="submit">Save</button>
+</form>

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FilmekService } from 'src/app/services/filmek.service';
 import { Film } from 'src/app/shared/models/filmek';
+import { MovieFormComponent } from '../../partials/movie-form/movie-form.component';
 
 @Component({
   selector: 'app-adminpanel',
@@ -57,7 +58,23 @@ export class AdminpanelComponent {
     });
   }
 
-  editItem(film: Film) {
+  editMovie(film: Film) {
+    const dialogRef = this.dialog.open(MovieFormComponent, {
+      width: '400px',
+      data: film 
+    });
+
+    dialogRef.afterClosed().subscribe(updatedFilm => {
+      if (updatedFilm) {
+        this.filmService.updateMovie(updatedFilm).subscribe(response => {
+          if (response) {
+            this.loadMovies();
+          } else {
+            console.error('Hiba történt a módosítás során.');
+          }
+        });
+      }
+    });
   }
 
   toggleTagBox() {
@@ -65,7 +82,7 @@ export class AdminpanelComponent {
   }
 }
 
-//Egy külön komponens kellene később ennek: 
+
 @Component({
   selector: 'confirmation-dialog',
   template: `
@@ -78,5 +95,5 @@ export class AdminpanelComponent {
     imports:[MatDialogModule]
 })
 export class ConfirmationDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public title: string) {} 
+  constructor(@Inject(MAT_DIALOG_DATA) public title: string) {} // Inject az adatokat, de nem kell az Inject importálni
 }
