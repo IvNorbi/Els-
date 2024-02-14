@@ -22,8 +22,8 @@ import { FormsModule } from '@angular/forms';
 import { MatTableModule }   from '@angular/material/table';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule} from '@angular/material/button';
-import { MatDialogModule} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { UserpanelComponent } from './components/pages/userpanel/userpanel.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -31,6 +31,13 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FooterComponent } from './components/partials/footer/footer.component';
+
+
+
+
+
+
+
 
 
 
@@ -63,7 +70,6 @@ import { FooterComponent } from './components/partials/footer/footer.component';
     HttpClientModule,
     BrowserAnimationsModule, 
     MatTableModule,
-    MatPaginatorModule,
     MatSnackBarModule,
     MatButtonModule,
     MatDialogModule,
@@ -72,7 +78,9 @@ import { FooterComponent } from './components/partials/footer/footer.component';
     MatMenuModule,
     MatSidenavModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

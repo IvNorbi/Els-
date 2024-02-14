@@ -15,18 +15,26 @@ export class UserService {
 
   constructor(private http:HttpClient) { }
 
-  login(user:UserModel) {
-    return this.http.post<string>(USER_URL+"login", user)
-      .subscribe( 
-        (answer:any) => {
-          if (answer.token != "")  {
-            sessionStorage.setItem("token", answer.token);
-            sessionStorage.setItem("abilities", answer.abilities);
-          }
-        }
-      );
-  }
 
+  login(user: UserModel) {
+    return this.http.post<any>(USER_URL + "login", user).subscribe(
+      (answer: any) => {
+        if (answer.accessToken && answer.accessToken.token) {
+          sessionStorage.setItem("token", answer.accessToken.token);
+          sessionStorage.setItem("abilities", JSON.stringify(answer.accessToken.abilities));
+        } else if (answer.plainTextToken && answer.plainTextToken !== "") {
+          sessionStorage.setItem("token", answer.plainTextToken);
+          sessionStorage.setItem("abilities", "[]");
+        }
+      }
+    );
+  }
+  
+  
+  
+  
+  
+  
   logout(user:UserModel) {
     let token = sessionStorage.getItem("token");
   
@@ -43,6 +51,18 @@ export class UserService {
     let token = sessionStorage.getItem("token");
     return token != null && token !== "";
   }
+
+  getCookie(name:string) {
+    function escape(s:any) { return s.replace(/([.*+?\^$(){}|\[\]\/\\])/g, '\\$1'); }
+    var match = document.cookie.match(RegExp('(?:^|;\\s*)' + escape(name) + '=([^;]*)'));
+    return match ? match[1] : null;
+}
+
+ hasAbilities(ability:string) {
+   let abilities = sessionStorage.getItem("abilities")||"";
+   return (abilities.indexOf(ability) >= 0);
+}
+
   
 }
 

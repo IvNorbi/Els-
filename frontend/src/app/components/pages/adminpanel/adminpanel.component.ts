@@ -1,4 +1,5 @@
-import { Component, Pipe, PipeTransform } from '@angular/core';
+import { Component, Pipe, PipeTransform, Inject } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FilmekService } from 'src/app/services/filmek.service';
@@ -12,44 +13,70 @@ import { Film } from 'src/app/shared/models/filmek';
 export class AdminpanelComponent {
   showTagBox: boolean = false;
   filmek: Film[] = [];
-  constructor(private filmService: FilmekService, activatedRoute: ActivatedRoute) {
-    let moviesObservalbe:Observable<Film[]>;
-    activatedRoute.params.subscribe((params) => {
-      if (params.searchTerm)
-        moviesObservalbe = this.filmService.getAllFilmBySearchTerm(params.searchTerm);
-      else if (params.tag)
-        moviesObservalbe = this.filmService.getAllMovieByTag(params.tag);
-      else
-        moviesObservalbe = filmService.getAll();
-
-        moviesObservalbe.subscribe((serverMovies) => {
-          this.filmek = serverMovies;
-        })
-    })
+  
+  constructor(
+    private filmService: FilmekService,
+    private activatedRoute: ActivatedRoute,
+    private dialog: MatDialog
+  ) {
+    this.loadMovies();
   }
-deleteItem(film: any) {
-    // Törlés logika
-}
+  
+  loadMovies() {
+    this.activatedRoute.params.subscribe((params) => {
+      let moviesObservable: Observable<Film[]>;
+      if (params.searchTerm)
+        moviesObservable = this.filmService.getAllFilmBySearchTerm(params.searchTerm);
+      else if (params.tag)
+        moviesObservable = this.filmService.getAllMovieByTag(params.tag);
+      else
+        moviesObservable = this.filmService.getAll();
 
-editItem(film: any) {
-    // Módosítás logika
-}
+      moviesObservable.subscribe((serverMovies) => {
+        this.filmek = serverMovies;
+      });
+    });
+  }
+
+  deleteMovie(film: Film) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '250px',
+      data: 'Biztos törölni szeretné?'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.filmService.deleteMovie(film).subscribe(response => {
+          if (response) {
+            this.loadMovies();
+          } else {
+            console.error('Hiba történt a törlés során.');
+          }
+        });
+      }
+    });
+  }
+
+  editItem(film: Film) {
+  }
 
   toggleTagBox() {
     this.showTagBox = !this.showTagBox;
   }
 }
 
-// chunkPipe, 1 sorba 3-as tördeléshez.
-@Pipe({
-  name: 'chunkPipe'
+//Egy külön komponens kellene később ennek: 
+@Component({
+  selector: 'confirmation-dialog',
+  template: `
+    <h1 mat-dialog-title>{{ title }}</h1>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Igen</button>
+      <button mat-button [mat-dialog-close]="false">Mégsem</button>
+    </div>`,
+    standalone:true,
+    imports:[MatDialogModule]
 })
-export class ChunkPipe implements PipeTransform {
-  transform(array: any[], chunkSize: number): any[] {
-    const result = [];
-    for (let i = 0; i < array.length; i += chunkSize) {
-      result.push(array.slice(i, i + chunkSize));
-    }
-    return result;
-  }
+export class ConfirmationDialogComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public title: string) {} 
 }

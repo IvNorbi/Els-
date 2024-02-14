@@ -117,10 +117,12 @@ img{
   cursor: pointer;
   margin-top: 10px;
   margin-bottom: 60px;
+  border-radius: 5px;
 }
 
 .comment-list {
   margin-top: 20px;
+  margin-left: 5px;
 }
 
 .comment {
@@ -133,7 +135,7 @@ img{
 }
 
 .comment:nth-child(odd) {
-  background-color: #1000ff;
+  background-color: rgba(121, 117, 117, 0.452);
 }
 
 .comment:nth-child(odd) .comment-content {

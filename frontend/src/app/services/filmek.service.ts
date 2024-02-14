@@ -10,6 +10,8 @@ import { Observable, map } from 'rxjs';
 })
 export class FilmekService {
 
+
+  // private url:string = 'http://localhost:5100/api/movies'
   constructor(private http:HttpClient) { }
 
 
@@ -52,5 +54,13 @@ getAllMovieByTag(tag:string): Observable<Film[]>{
   this.http.get<Film[]>(MOVIES_BY_TAG_URL + tag);
   }
 
+deleteMovie(film:Film):Observable<boolean> {
+  let token = sessionStorage.getItem("token");
+
+    return this.http.delete<boolean>(MOVIES_URL+"/"+film.id,{headers: {
+      "Authorization": "Bearer "+token
+      }
+    });
+  }
 
 }

@@ -6,6 +6,6 @@ export class Film{
     stars!:number;
     imageUrl!: string;
     toplist!: number;
-    origins!: string[];
+    origin!: string[];
     description!: string;
 }
