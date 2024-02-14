@@ -1,19 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserModel } from '../shared/models/userModel';
+import { Observable, map } from 'rxjs';
+import {USER_URL} from '../shared/contsants/urls';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  // A MAIN URL-eket kellene használni majd később, de egyenlőre így.
-  private url:string = 'http://localhost:5100/api/user/';
+
 
   constructor(private http:HttpClient) { }
 
   login(user:UserModel) {
-    return this.http.post<string>(this.url+"login", user)
+    return this.http.post<string>(USER_URL+"login", user)
       .subscribe( 
         (answer:any) => {
           if (answer.token != "")  {
@@ -27,7 +30,7 @@ export class UserService {
   logout(user:UserModel) {
     let token = sessionStorage.getItem("token");
   
-    this.http.post<boolean>(this.url+"logout", "", 
+    this.http.post<boolean>(USER_URL+"logout", "", 
     { headers: {
       "Authorization": "Bearer "+token
      }
