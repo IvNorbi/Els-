@@ -1,0 +1,320 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "MovieCorner",
+    "dateExported": "2024-02-09T20:12:25.469Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "b8471d33-fd2a-4fce-98a1-9b36250f2a0a",
+            "colId": "ada182ba-9184-46e3-aee0-af9e299a43d6",
+            "containerId": "",
+            "name": "összes comment lekérése",
+            "url": "http://localhost:{{port}}/api/comments",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-02-09T17:11:18.652Z",
+            "modified": "2024-02-09T17:11:18.652Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "9c7872a1-59ff-4383-b2d8-f02b172a629f",
+            "colId": "ada182ba-9184-46e3-aee0-af9e299a43d6",
+            "containerId": "",
+            "name": "Adott film id-hoz tartozó kommentek, kommentekhez tartozó userek visszaadása",
+            "url": "http://localhost:{{port}}/api/movies/5/comments",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-02-09T17:22:15.999Z",
+            "modified": "2024-02-09T17:22:15.999Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "158b35dc-a4b7-4411-ad57-976a21b160d0",
+            "colId": "ada182ba-9184-46e3-aee0-af9e299a43d6",
+            "containerId": "",
+            "name": "Egyetlen comment megtekintés",
+            "url": "http://localhost:{{port}}/api/movies/5/comments/4",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-02-09T17:22:43.085Z",
+            "modified": "2024-02-09T18:47:52.355Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "a0af86d4-c140-41d8-add1-74fc955bd1f7",
+            "colId": "ada182ba-9184-46e3-aee0-af9e299a43d6",
+            "containerId": "",
+            "name": "Új komment felvétele",
+            "url": "http://localhost:{{port}}/api/movies/comments?movie_id=7&content=asdasdadadas",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-02-09T17:31:58.288Z",
+            "modified": "2024-02-09T18:01:13.316Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "movie_id",
+                    "value": "7",
+                    "isPath": false
+                },
+                {
+                    "name": "content",
+                    "value": "asdasdadadas",
+                    "isPath": false
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "5e1ccb72-0516-46af-8688-85b35d2aa4b1",
+            "colId": "ada182ba-9184-46e3-aee0-af9e299a43d6",
+            "containerId": "",
+            "name": "Login",
+            "url": "http://localhost:{{port}}/api/user/login?email=admin@example.com&password=password",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-02-09T17:33:34.500Z",
+            "modified": "2024-02-09T17:53:40.426Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "email",
+                    "value": "admin@example.com",
+                    "isPath": false
+                },
+                {
+                    "name": "password",
+                    "value": "password",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "json.plainTextToken",
+                    "action": "setto",
+                    "value": "{{token}}"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.",
+                    "action": "isjson",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "_id": "f233ef9b-aefe-4487-8da2-27d65c56efcc",
+            "colId": "ada182ba-9184-46e3-aee0-af9e299a43d6",
+            "containerId": "",
+            "name": "Új rating felvétele vagy módosítása",
+            "url": "http://localhost:{{port}}/api/movies/ratings?movie_id=2&rating=1",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-02-09T18:19:31.961Z",
+            "modified": "2024-02-09T18:43:45.277Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "movie_id",
+                    "value": "2",
+                    "isPath": false
+                },
+                {
+                    "name": "rating",
+                    "value": "1",
+                    "isPath": false
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "2a118b2b-310f-48d3-84a3-6a37a9aeeb15",
+            "colId": "ada182ba-9184-46e3-aee0-af9e299a43d6",
+            "containerId": "",
+            "name": "Meglévő komment módosítása",
+            "url": "http://localhost:{{port}}/api/movies/comments/97?content=asdasdadadas",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-02-09T18:48:39.867Z",
+            "modified": "2024-02-09T18:49:40.741Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "movie_id",
+                    "value": "7",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "content",
+                    "value": "asdasdadadas",
+                    "isPath": false
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "2986cfb4-c75e-400a-b8bd-9c8fb4dde71f",
+            "colId": "ada182ba-9184-46e3-aee0-af9e299a43d6",
+            "containerId": "",
+            "name": "Komment törlése",
+            "url": "http://localhost:{{port}}/api/movies/comments/205",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2024-02-09T18:51:09.055Z",
+            "modified": "2024-02-09T18:55:20.750Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "dcb53bfa-df68-48b8-a66a-321453c2689b",
+            "colId": "ada182ba-9184-46e3-aee0-af9e299a43d6",
+            "containerId": "",
+            "name": "Összes film lekérdezése",
+            "url": "http://localhost:{{port}}/api/movies",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2024-02-09T19:00:22.431Z",
+            "modified": "2024-02-09T19:00:49.445Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "6f59129e-cf10-4249-bca5-da2681e13746",
+            "colId": "ada182ba-9184-46e3-aee0-af9e299a43d6",
+            "containerId": "",
+            "name": "Egy film adatai",
+            "url": "http://localhost:{{port}}/api/movies/1",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2024-02-09T19:01:13.848Z",
+            "modified": "2024-02-09T19:05:35.989Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "1bebf92a-c1a6-4e34-b705-1d4a4defa55d",
+            "colId": "ada182ba-9184-46e3-aee0-af9e299a43d6",
+            "containerId": "",
+            "name": "Egy új film felvétele",
+            "url": "http://localhost:{{port}}/api/movies",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2024-02-09T19:10:00.077Z",
+            "modified": "2024-02-09T19:37:20.079Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "Application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"Mi ez a film2\",\n  \"release_year\": \"1982\",\n  \"description\": \"Yuta Okkotsut a Jujutsu Boszorkánymesterek a Tokiói Prefektúra Jujutsu Középiskolájába íratják be, hogy segítsenek neki kontrollálni az erejét, és szemmel tartsák őt.\",\n  \"length\": 105\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "bf6689b7-066c-4ab7-a800-fa3c40dbea9e",
+            "colId": "ada182ba-9184-46e3-aee0-af9e299a43d6",
+            "containerId": "",
+            "name": "Egy film módosítása",
+            "url": "http://localhost:{{port}}/api/movies/35",
+            "method": "PUT",
+            "sortNum": 80000,
+            "created": "2024-02-09T19:38:47.533Z",
+            "modified": "2024-02-09T19:47:19.714Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "Application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"Mi ez a film2\",\n  \"release_year\": \"1982\",\n  \"description\": \"asdasdasd basadféajshjdf \",\n  \"length\": 105\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "29fca38d-b2a0-4128-90ce-9219fc5d1b0a",
+            "colId": "ada182ba-9184-46e3-aee0-af9e299a43d6",
+            "containerId": "",
+            "name": "Egy film törlése",
+            "url": "http://localhost:{{port}}/api/movies/2",
+            "method": "DELETE",
+            "sortNum": 90000,
+            "created": "2024-02-09T19:47:56.220Z",
+            "modified": "2024-02-09T19:59:41.427Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "Application/json"
+                }
+            ],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        }
+    ],
+    "settings": {
+        "preReq": {
+            "runRequests": [
+                {
+                    "reqId": "5e1ccb72-0516-46af-8688-85b35d2aa4b1",
+                    "colId": "ada182ba-9184-46e3-aee0-af9e299a43d6",
+                    "triggerCondition": "run-always",
+                    "triggerValue": ""
+                }
+            ]
+        },
+        "envId": "3541acdf-b568-4d6b-918d-3e2372991639"
+    }
+}

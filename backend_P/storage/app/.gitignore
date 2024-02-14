@@ -1,0 +1,8 @@
+*
+!public/
+!public/*.jpg
+!public/*.png
+!public/*.gif
+!public/*.webp
+!frontend/**
+!.gitignore
