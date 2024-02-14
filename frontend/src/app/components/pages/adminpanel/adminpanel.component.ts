@@ -17,7 +17,7 @@ export class AdminpanelComponent {
   constructor(
     private filmService: FilmekService,
     private activatedRoute: ActivatedRoute,
-    private dialog: MatDialog // Importáljuk a MatDialog-ot a felugró ablakhoz
+    private dialog: MatDialog
   ) {
     this.loadMovies();
   }
@@ -65,7 +65,7 @@ export class AdminpanelComponent {
   }
 }
 
-
+//Egy külön komponens kellene később ennek: 
 @Component({
   selector: 'confirmation-dialog',
   template: `
@@ -78,5 +78,5 @@ export class AdminpanelComponent {
     imports:[MatDialogModule]
 })
 export class ConfirmationDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public title: string) {} // Inject az adatokat, de nem kell az Inject importálni
+  constructor(@Inject(MAT_DIALOG_DATA) public title: string) {} 
 }
