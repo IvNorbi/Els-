@@ -1,11 +1,14 @@
 <div class="container">
+  <div class="search-container">
+    <input type="text" placeholder="Keresés..." [(ngModel)]="searchTerm" (input)="filterMovies()">
+  </div>
   <div class="paginator-container">
     <mat-paginator [pageSize]="5"></mat-paginator>
   
-    <ng-container *ngFor="let film of filmek; let i = index;">
+    <ng-container *ngFor="let film of filteredFilms; let i = index;">
       <div class="row" [class.white-background]="i % 2 === 0" [class.grey-background]="i % 2 !== 0">
         <div class="col">
-          <img src="{{ film.imageUrl }}" alt="image">
+          <img src="{{ film.imageUrl }}" alt="Film kép">
         </div>
         <div class="col">
           <p class="filmname">{{ film.name }}</p>
@@ -21,5 +24,4 @@
       </div>
     </ng-container>
   </div>
-  
 </div>

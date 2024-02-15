@@ -14,6 +14,8 @@ import { MovieFormComponent } from '../../partials/movie-form/movie-form.compone
 export class AdminpanelComponent {
   showTagBox: boolean = false;
   filmek: Film[] = [];
+  filteredFilms: Film[] = []; // Keresett filmek tömbje.
+  searchTerm: string = '';
   
   constructor(
     private filmService: FilmekService,
@@ -23,6 +25,7 @@ export class AdminpanelComponent {
     this.loadMovies();
   }
   
+  //FILMEK LISTÁZÁSA
   loadMovies() {
     this.activatedRoute.params.subscribe((params) => {
       let moviesObservable: Observable<Film[]>;
@@ -35,10 +38,23 @@ export class AdminpanelComponent {
 
       moviesObservable.subscribe((serverMovies) => {
         this.filmek = serverMovies;
+        this.filteredFilms = serverMovies; // Frissítjük a szűrt filmeket is
       });
     });
   }
 
+  //KERESÉS
+  filterMovies() {
+    if (this.searchTerm.trim() === '') {
+      this.filteredFilms = this.filmek;
+    } else {
+      this.filteredFilms = this.filmek.filter(film =>
+        film.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
+  }
+
+  //FILM TÖRLÉS
   deleteMovie(film: Film) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
@@ -58,6 +74,7 @@ export class AdminpanelComponent {
     });
   }
 
+  //FILM MÓDOSÍTÁS
   editMovie(film: Film) {
     const dialogRef = this.dialog.open(MovieFormComponent, {
       width: '400px',
@@ -76,13 +93,9 @@ export class AdminpanelComponent {
       }
     });
   }
-
-  toggleTagBox() {
-    this.showTagBox = !this.showTagBox;
-  }
 }
 
-
+//Erősen megkérdőjelezhető rész következik: 
 @Component({
   selector: 'confirmation-dialog',
   template: `
@@ -95,5 +108,5 @@ export class AdminpanelComponent {
     imports:[MatDialogModule]
 })
 export class ConfirmationDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public title: string) {} // Inject az adatokat, de nem kell az Inject importálni
+  constructor(@Inject(MAT_DIALOG_DATA) public title: string) {}
 }

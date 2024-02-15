@@ -1,38 +1,45 @@
-.filmname{
-  font-weight: bold;
+.container {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 20px;
+  
 }
 
-
-/* PAGINÁTORHOZ */
 .paginator-container {
-    width: 100%;
-  }
-  
-  .row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .col {
-    flex: 1;
-    display: flex;
-    align-items: center;
-  }
-  
-  img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    margin-right: 10px;
-  }
-  
-  .white-background {
-    background-color: white;
-  }
-  
-  .grey-background {
-    background-color: lightgrey;
-  }
-  
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.col {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.filmname {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.white-background {
+  background-color: #f9f9f9;
+}
+
+.grey-background {
+  background-color: #eaeaea;
+}
