@@ -25,7 +25,6 @@ import { MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { UserpanelComponent } from './components/pages/userpanel/userpanel.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -61,7 +60,6 @@ import { MovieFormComponent } from './components/partials/movie-form/movie-form.
     NotFoundComponent,
     ToplistComponent,
     AdminpanelComponent,
-    UserpanelComponent,
     FooterComponent,
     MovieFormComponent,
   
