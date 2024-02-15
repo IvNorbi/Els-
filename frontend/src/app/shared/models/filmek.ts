@@ -1,7 +1,9 @@
+import { Tag } from "./Tag";
+
 export class Film{
     id!:string;
     name!:string;
-    tags?: string[];
+    tags?: Tag[];
     favorite!: boolean;
     stars!:number;
     imageUrl!: string;
