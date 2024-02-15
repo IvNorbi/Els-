@@ -13,7 +13,8 @@ class GenreController extends Controller
      */
     public function index()
     {
-        return Genre::with('movies')->get();
+        //return Genre::with('movies')->get();
+        return Genre::all();
     
     }
 
