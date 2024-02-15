@@ -1,4 +1,5 @@
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* HEADER RÉSZ */
 
 .header-container {
   margin-bottom: 15px;
@@ -6,38 +7,10 @@
   position: relative;
 }
 
-.header-toolbar{
-  background-color: blue;
-}
-
-.user-panel {
-  position: absolute;
-  top: 100%; 
-  left: 0;
-  z-index: 1; 
-  background-color: white; 
-  display: none;  
-}
-
-.user-panel.open {
-  display: block; /* Megnyitott állapot */
-}
-
 .header-toolbar {
   display: flex;
-  justify-content: center; /* Középre igazítás */
-}
-
-.main-content {
-  vertical-align: top;
-}
-
-.mat-button:hover {
-  transition: background-color 0.3s ease;
-}
-
-.mat-button {
-  margin-right: 8px; 
+  justify-content: center; 
+  background-color: blue;
 }
 
 .toolbar-title {
@@ -51,4 +24,36 @@
 
 .mat-icon-button {
   color: white;
+}
+
+
+/* HORIZONTÁLIS MENÜ RÉSZ */
+
+.horizontal-menu {
+  display: none;
+}
+
+.horizontal-menu.open {
+  display: block;
+}
+
+.horizontal-menu ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center; 
+}
+
+.horizontal-menu ul li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.horizontal-menu ul li a {
+  text-decoration: none;
+  color: white; 
+  font-weight: bold;
+}
+
+.horizontal-menu ul li.admin a {
+  background-color: red; /* Piros háttérszín */
 }

@@ -28,13 +28,16 @@
     <app-search class="search-container"></app-search>
   </mat-toolbar>
 
-  <!-- Userpanel hivatkozás: -->
-  <div class="user-panel" [class.open]="userPanelOpen">
-    <app-userpanel *ngIf="userPanelOpen"></app-userpanel>
+  <!-- Vízszintes menü -->
+  <div class="horizontal-menu" [ngClass]="{ 'open': userPanelOpen }">
+    <ul>
+      <li><a routerLink="Main"><i class="fas fa-home"></i> Főoldal</a></li>
+      <li><a href="#"><i class="fas fa-chart-bar"></i> Statisztikák</a></li>
+      <li><a href="#"><i class="fas fa-envelope"></i> Üzenetek</a></li>
+      <li><a href="#"><i class="fas fa-cog"></i> Beállítások</a></li>
+      <li><a href="#"><i class="fas fa-users"></i> Felhasználók</a></li>
+      <li><a href="#"><i class="fas fa-file-alt"></i> Dokumentumok</a></li>
+      <li *ngIf="this.service.isUserLoggedIn()" class="admin"><a routerLink="adminpanel"><i class="fas fa-user-shield"></i> Admin felület</a></li>
+    </ul>
   </div>
-</div>
-
-<div class="main-content">
-  <!-- Menüpontok által megnyitott komponensek -->
-  <router-outlet></router-outlet>
 </div>

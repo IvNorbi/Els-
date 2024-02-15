@@ -11,7 +11,6 @@ import { Observable, map } from 'rxjs';
 export class FilmekService {
 
 
-  // private url:string = 'http://localhost:5100/api/movies'
   constructor(private http:HttpClient) { }
 
 
@@ -23,9 +22,7 @@ export class FilmekService {
   getTopList(): Observable<Film[]> {
     return this.http.get<Film[]>(MOVIES_URL).pipe(
       map((movies: Film[]) => {
-        // Rendezés a toplist alapján
         return movies.sort((a, b) => {
-          // Feltételezzük, hogy a "toplist" a filmek egyik tulajdonsága
           return a.toplist - b.toplist; // Növekvő sorrend
         });
       })
