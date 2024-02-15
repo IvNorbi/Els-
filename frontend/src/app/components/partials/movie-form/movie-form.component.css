@@ -1,0 +1,63 @@
+.container {
+    height: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+
+
+.name, .description {
+    margin: 15px;
+}
+
+.name label, .description label {
+    font-weight: bold;
+    font-size: 16px;
+
+}
+
+.filmname input, .description textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.description textarea{
+    margin-top: 15px;
+    height: 200px;
+}
+
+.button {
+    margin: 10px;
+    text-align: center
+}
+
+.button button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.button button:nth-child(1) {
+    background-color: #ddd;
+    color: #333;
+}
+  .button button:nth-child(2) {
+    background-color: #007bff;
+    color: #fff;
+}
+  
+  .button button:hover {
+    opacity: 0.8;
+}
