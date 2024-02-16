@@ -27,7 +27,7 @@ Route::get('movies/tags',   [GenreController::class, 'index']);
 
 
 // Új műfaj létrehozása
-Route::post('genres', [GenreController::class, 'store'])->middleware('auth:sanctum');
+Route::post('genres', [GenreController::class, 'store'])->middleware(['auth:sanctum', 'abilities:admin']);
 
 // Adott műfaj megtekintése
 Route::get('genres/{genre}', [GenreController::class, 'show']);
@@ -50,6 +50,9 @@ use \App\Http\Controllers\CommentController;
 use \App\Http\Controllers\RatingController;
 use \App\Models\Movie;
 
+/*************************************************************************************************************************************/
+/******* Movie ***********************************************************************************************************************/
+/*************************************************************************************************************************************/
 
 //Route::resource('movie', MovieController::class);
 //ezt lebontani 5 routra!
@@ -62,28 +65,15 @@ Route::get('movies/{movie}/comments', [CommentController::class, 'indexByMovieID
 
 Route::get('movies/tag/{genre}', [MovieController::class, 'indexByGenre']);
 
+//Randon 4 film
+Route::get('movies/randommovies', [MovieController::class, 'randomMovies']);
 
 // Adott film megtekintése
 Route::get('movies/{movie}', [MovieController::class, 'show']);
 
-// Route::get('movies/{id}', function ($id) {
-//     $movie = Movie::findOrFail($id);
-
-//     $image = base64_encode(file_get_contents($movie->imageUrl));
-
-//     return response()->json([
-//         'id' => $movie->id,
-//         'name' => $movie->name,
-//         'release_year' => $movie->release_year,
-//         'description' => $movie->description,
-//         'imageUrl' => $movie->imageUrl,
-//         'length' => $movie->length,
-//         'origin' => $movie->origin
-//     ]);
-// });
 
 // Új film létrehozása
-Route::post('movies', [MovieController::class, 'store'])->middleware('auth:sanctum');
+Route::post('movies', [MovieController::class, 'store'])->middleware(['auth:sanctum', 'abilities:admin']);
 
 // Adott film szerkesztése
 Route::put('movies/{movie}', [MovieController::class, 'update'])->middleware('auth:sanctum');
@@ -92,7 +82,7 @@ Route::put('movies/{movie}', [MovieController::class, 'update'])->middleware('au
 Route::delete('movies/{movie}', [MovieController::class, 'destroy'])->middleware('auth:sanctum');
 
 
-Route::get('movies/toplist', [MovieController::class, 'toplist']);
+Route::get('toplist', [MovieController::class, 'toplist']);
 
 
 
@@ -103,13 +93,13 @@ Route::get('movies/toplist', [MovieController::class, 'toplist']);
 Route::get('movies/{movie}/comments/{user}', [CommentController::class, 'show']);
 
 // Új komment hozzáadása
-Route::post('movies/comments', [CommentController::class, 'store'])->middleware('auth:sanctum');
+Route::post('movies/comments', [CommentController::class, 'store'])->middleware(['auth:sanctum', 'abilities:user']);
 
 // Komment szerkesztése
-Route::put('movies/comments/{comment}', [CommentController::class, 'update'])->middleware('auth:sanctum');
+Route::put('movies/comments/{comment}', [CommentController::class, 'update'])->middleware(['auth:sanctum', 'abilities:moderator']);
 
 // Komment törlése
-Route::delete('movies/comments/{comment}', [CommentController::class, 'destroy'])->middleware('auth:sanctum');
+Route::delete('movies/comments/{comment}', [CommentController::class, 'destroy'])->middleware(['auth:sanctum', 'abilities:moderator']);
 
 
 
@@ -122,6 +112,8 @@ Route::post('people', [PeopleController::class, 'store'])->middleware('auth:sanc
 
 // Színész megtekintése
 Route::get('people/{people}', [PeopleController::class, 'show']);
+// Színész megtekintése
+Route::get('people/name/{peoplename}', [PeopleController::class, 'showByName']);
 
 // Színész szerkesztése
 Route::put('people/{people}', [PeopleController::class, 'update'])->middleware('auth:sanctum');
@@ -132,44 +124,52 @@ Route::delete('people/{people}', [PeopleController::class, 'destroy'])->middlewa
 
 
 // Új rating hozzáadása
-Route::post('movies/ratings', [RatingController::class, 'store'])->middleware('auth:sanctum');
+Route::post('movies/ratings', [RatingController::class, 'store'])->middleware(['auth:sanctum', 'abilities:user']);
 
 Route::get('comments', [CommentController::class, 'index']);
 
-use \App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
-
-Route::post('/user/login', function (Request $request) {
-    $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
- 
-    $user = User::where('email', $request->email)->first();
- 
-    if (! $user || ! Hash::check($request->password, $user->password)) {
-        throw ValidationException::withMessages([
-            'email' => ['The provided credentials are incorrect.'],
-        ]);
-    }
- 
-    return $user->createToken("MovieCorner");
-});
 
 
 use \App\Http\Controllers\RoleController;
 // Role-ok lekérdezése
-Route::get('role', [RoleController::class, 'index']);
+Route::get('roles', [RoleController::class, 'index']);
 
 // Új role létrehozása
-Route::post('role', [RoleController::class, 'store'])->middleware('auth:sanctum');
+Route::post('roles', [RoleController::class, 'store'])->middleware('auth:sanctum');
 
 // Role megtekintése
-Route::get('role/{role}', [RoleController::class, 'show']);
+Route::get('roles/{role}', [RoleController::class, 'show']);
 
 // Role szerkesztése
-Route::put('role/{role}', [RoleController::class, 'update'])->middleware('auth:sanctum');
+Route::put('roles/{role}', [RoleController::class, 'update'])->middleware('auth:sanctum');
 
 // Role törlése
-Route::delete('role/{role}', [RoleController::class, 'destroy'])->middleware('auth:sanctum');
+Route::delete('roles/{role}', [RoleController::class, 'destroy'])->middleware('auth:sanctum');
+
+
+
+
+
+
+use \App\Models\User;
+
+use \App\Http\Controllers\UserController;
+
+Route::post('/user/login', [UserController::class, 'login']);
+
+/* ....hiányzik a logout */
+
+// User-ok lekérdezése
+Route::get('users', [UserController::class, 'index'])->middleware('auth:sanctum');
+
+// Új User létrehozása
+Route::post('users', [UserController::class, 'store']);
+
+// Role megtekintése
+Route::get('users/{user}', [UserController::class, 'show'])->middleware('auth:sanctum');
+
+// User szerkesztése
+Route::put('users/{user}', [UserController::class, 'update'])->middleware(['auth:sanctum', 'abilities:admin']);
+
+// User törlése
+Route::delete('users/{user}', [UserController::class, 'destroy'])->middleware('auth:sanctum');

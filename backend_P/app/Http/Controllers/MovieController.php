@@ -10,6 +10,7 @@ use App\Models\Comment;
 use App\Models\Rating;
 use App\Models\Genre;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 
 
 
@@ -74,6 +75,32 @@ class MovieController extends Controller
         return $return;
 
     }
+
+    public function randomMovies()
+    {
+    $previousMovies = Session::get('previousMovies', []);                                               // Előző lekérdezésből származó filmek
+
+    
+    $movieIds = Movie::pluck('id')->toArray();                                                          // Lekérdezi az összes film ID-jét
+
+    if (count($movieIds) < 4) {                                                                         // Ellenőrzi, hogy van-e elegendő film az adatbázisban
+        $movies = Movie::all();                                                                         // Ha kevesebb, mint 4 film van az adatbázisban, visszaad mindent
+        Session::put('previousMovies', $movies->pluck('id'));                                           // Frissíti a session-t az összes film ID-jével
+    } else {
+        shuffle($movieIds);                                                                             // Összekeveri a filmeket
+        $filteredMovieIds = array_diff($movieIds, $previousMovies);                                     // Kiszűri azokat a filmeket, amelyek már szerepeltek
+        $movies = Movie::whereIn('id', array_slice($filteredMovieIds, 0, 4))->get();                    // Lekérdezi a 4 véletlenszerű filmet 
+        foreach ($movies as $movie) {
+            $movie->imageUrl = asset("storage/".$movie->imageUrl);
+        }
+        Session::put('previousMovies', array_merge($previousMovies, $movies->pluck('id')->toArray()));  // Tárolja az aktuális lekérdezésből származó filmeket a sessionben
+        if (count($filteredMovieIds) < 4) {                                                             // Ha kevesebb, mint 4 új film van megjelenítendő, újraindítja a ciklust
+            return $this->randomMovies();
+        }
+    }
+    return response()->json($movies);                                                                    // Visszatér a filmekkel
+}
+
 
     /**
      * Show the form for creating a new resource.

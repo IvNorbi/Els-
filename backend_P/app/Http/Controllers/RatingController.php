@@ -31,7 +31,6 @@ class RatingController extends Controller
         
         
         $rating->rating = $request->rating;
-    
         $rating->save();       //újra kell számolni a movie rating-jét ha felveszek egy új comment-et
         $c= new CalculateAverageRating(); //ez a két sor leygen a vége, ez az újrakalkuláció
         $c->run();

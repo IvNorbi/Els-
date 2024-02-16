@@ -13,15 +13,7 @@ class PeopleController extends Controller
      */
     public function index()
     {
-        return People::with('movies')->get();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //nem kell
+        return People::with(['rolesPeople.movies', 'rolesPeople.roles'])->get();
     }
 
     /**
@@ -43,7 +35,12 @@ class PeopleController extends Controller
      */
     public function show(People $people)
     {
-        return $people->with('movies')->first();    //visszaadja az ember adatait a kacsolódó filmekkel együtt
+        return People::with(['rolesPeople.movies', 'rolesPeople.roles'])->where('id', '=', $people->id)->first();    //visszaadja az ember adatait a kacsolódó filmekkel együtt
+    }
+
+    public function showByName(string $peoplename)
+    {
+        return People::with(['rolesPeople.movies', 'rolesPeople.roles'])->where('name', '=', $peoplename)->first();    //visszaadja az ember adatait a kacsolódó filmekkel együtt
     }
 
     /**

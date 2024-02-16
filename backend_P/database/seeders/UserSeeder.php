@@ -19,6 +19,18 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Admin User',
             'email' => 'admin@example.com',
+            'ability' => 'admin,moderator,user',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'), // Jelszó: password
+            'remember_token' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => "Moderator",
+            'email' => "moderator@example.com",
+            'ability' => 'moderator,user',
             'email_verified_at' => now(),
             'password' => Hash::make('password'), // Jelszó: password
             'remember_token' => null,

@@ -13,6 +13,6 @@ class Role extends Model
 
     public function rolesPeople(): HasMany
     {
-        return $this->hasMany(MovieRolePeople::class, 'id', 'role_id');
+        return $this->hasMany(MovieRolePeople::class, 'role_id','id');
     }
 }
