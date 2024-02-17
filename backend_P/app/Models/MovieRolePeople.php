@@ -13,7 +13,7 @@ class MovieRolePeople extends Model
 
     public function movies(): BelongsTo
     {
-        return $this->belongsTo(Movie::class, 'movie_id', 'id')->select(['id', 'title']);
+        return $this->belongsTo(Movie::class, 'movie_id', 'id')->select(['id', 'name']);
     }
 
     public function people(): BelongsTo
