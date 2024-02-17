@@ -2,6 +2,15 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\PeopleController;
+use \App\Http\Controllers\GenreController;
+use \App\Http\Controllers\MovieController;
+use \App\Http\Controllers\CommentController;
+use \App\Http\Controllers\RatingController;
+use \App\Http\Controllers\RoleController;
+use \App\Http\Controllers\UserController;
+use \App\Models\User;
+use \App\Models\Movie;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,48 +23,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//************************************************************************************************************************************/
+/******* Genre/Tag *******************************************************************************************************************/
+/*************************************************************************************************************************************/
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-use \App\Http\Controllers\GenreController;
-//Route::resource('genre', GenreController::class);
-// Film műfajok lekérése
-// Műfajok lekérése
+
 //Route::get('genres', [GenreController::class, 'index']);
 Route::get('movies/tags',   [GenreController::class, 'index']);
 
 
 // Új műfaj létrehozása
-Route::post('genres', [GenreController::class, 'store'])->middleware(['auth:sanctum', 'abilities:admin']);
+Route::post('genres', [GenreController::class, 'store'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
 // Adott műfaj megtekintése
 Route::get('genres/{genre}', [GenreController::class, 'show']);
 
 // Adott műfaj szerkesztése
-Route::put('genres/{genre}', [GenreController::class, 'update'])->middleware('auth:sanctum');
+Route::put('genres/{genre}', [GenreController::class, 'update'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
 // Adott műfaj törlése
-Route::delete('genres/{genre}', [GenreController::class, 'destroy'])->middleware('auth:sanctum');
+Route::delete('genres/{genre}', [GenreController::class, 'destroy'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
-// Film műfajok lekérése
-//Route::get('movies/{movie}/genres', function (Movie $movie) {
-//    return $movie->genres;
-//});       EZ A BLOKK IDE VALÓ??
-
-
-
-use \App\Http\Controllers\MovieController;
-use \App\Http\Controllers\CommentController;
-use \App\Http\Controllers\RatingController;
-use \App\Models\Movie;
 
 /*************************************************************************************************************************************/
 /******* Movie ***********************************************************************************************************************/
 /*************************************************************************************************************************************/
-
-//Route::resource('movie', MovieController::class);
-//ezt lebontani 5 routra!
 
 // Összes film lekérdezése
 Route::get('movies', [MovieController::class, 'index']);
@@ -73,22 +69,24 @@ Route::get('movies/{movie}', [MovieController::class, 'show']);
 
 
 // Új film létrehozása
-Route::post('movies', [MovieController::class, 'store'])->middleware(['auth:sanctum', 'abilities:admin']);
+Route::post('movies', [MovieController::class, 'store'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
 // Adott film szerkesztése
-Route::put('movies/{movie}', [MovieController::class, 'update'])->middleware('auth:sanctum');
+Route::put('movies/{movie}', [MovieController::class, 'update'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
 // Adott film törlése
-Route::delete('movies/{movie}', [MovieController::class, 'destroy'])->middleware('auth:sanctum');
+Route::delete('movies/{movie}', [MovieController::class, 'destroy'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
-
+// Filmes toplista
 Route::get('toplist', [MovieController::class, 'toplist']);
 
 
+/*************************************************************************************************************************************/
+/******* Comment *********************************************************************************************************************/
+/*************************************************************************************************************************************/
 
-//Route::resource('movies.comments', CommentController::class);
-//Route::get('movie/{movie}/comment', [CommentController::class, 'index']);
-
+// Összes komment megtekintése
+Route::get('comments', [CommentController::class, 'index']);
 // Komment megtekintése
 Route::get('movies/{movie}/comments/{user}', [CommentController::class, 'show']);
 
@@ -102,13 +100,15 @@ Route::put('movies/comments/{comment}', [CommentController::class, 'update'])->m
 Route::delete('movies/comments/{comment}', [CommentController::class, 'destroy'])->middleware(['auth:sanctum', 'abilities:moderator']);
 
 
+/*************************************************************************************************************************************/
+/******* People **********************************************************************************************************************/
+/*************************************************************************************************************************************/
 
-use \App\Http\Controllers\PeopleController;
 // Színészek lekérése
 Route::get('people', [PeopleController::class, 'index']);
 
 // Új színész létrehozása
-Route::post('people', [PeopleController::class, 'store'])->middleware('auth:sanctum');
+Route::post('people', [PeopleController::class, 'store'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
 // Színész megtekintése
 Route::get('people/{people}', [PeopleController::class, 'show']);
@@ -116,60 +116,61 @@ Route::get('people/{people}', [PeopleController::class, 'show']);
 Route::get('people/name/{peoplename}', [PeopleController::class, 'showByName']);
 
 // Színész szerkesztése
-Route::put('people/{people}', [PeopleController::class, 'update'])->middleware('auth:sanctum');
+Route::put('people/{people}', [PeopleController::class, 'update'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
 // Színész törlése
-Route::delete('people/{people}', [PeopleController::class, 'destroy'])->middleware('auth:sanctum');
+Route::delete('people/{people}', [PeopleController::class, 'destroy'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
 
+/*************************************************************************************************************************************/
+/******* Rating **********************************************************************************************************************/
+/*************************************************************************************************************************************/
 
 // Új rating hozzáadása
 Route::post('movies/ratings', [RatingController::class, 'store'])->middleware(['auth:sanctum', 'abilities:user']);
 
-Route::get('comments', [CommentController::class, 'index']);
 
+/*************************************************************************************************************************************/
+/******* Role ************************************************************************************************************************/
+/*************************************************************************************************************************************/
 
-
-use \App\Http\Controllers\RoleController;
 // Role-ok lekérdezése
 Route::get('roles', [RoleController::class, 'index']);
 
 // Új role létrehozása
-Route::post('roles', [RoleController::class, 'store'])->middleware('auth:sanctum');
+Route::post('roles', [RoleController::class, 'store'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
 // Role megtekintése
 Route::get('roles/{role}', [RoleController::class, 'show']);
 
 // Role szerkesztése
-Route::put('roles/{role}', [RoleController::class, 'update'])->middleware('auth:sanctum');
+Route::put('roles/{role}', [RoleController::class, 'update'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
 // Role törlése
-Route::delete('roles/{role}', [RoleController::class, 'destroy'])->middleware('auth:sanctum');
+Route::delete('roles/{role}', [RoleController::class, 'destroy'])->middleware(['auth:sanctum', 'abilities:admin']);
 
 
+/*************************************************************************************************************************************/
+/******* User ************************************************************************************************************************/
+/*************************************************************************************************************************************/
 
-
-
-
-use \App\Models\User;
-
-use \App\Http\Controllers\UserController;
-
+// User login
 Route::post('/user/login', [UserController::class, 'login']);
 
-/* ....hiányzik a logout */
+// User logout
+Route::post('/user/logout', [UserController::class, 'logout']);
 
-// User-ok lekérdezése
-Route::get('users', [UserController::class, 'index'])->middleware('auth:sanctum');
+// User-ek lekérdezése
+Route::get('users', [UserController::class, 'index'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
-// Új User létrehozása
+// Új user létrehozása
 Route::post('users', [UserController::class, 'store']);
 
 // Role megtekintése
-Route::get('users/{user}', [UserController::class, 'show'])->middleware('auth:sanctum');
+Route::get('users/{user}', [UserController::class, 'show'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
 // User szerkesztése
 Route::put('users/{user}', [UserController::class, 'update'])->middleware(['auth:sanctum', 'abilities:admin']);
 
 // User törlése
-Route::delete('users/{user}', [UserController::class, 'destroy'])->middleware('auth:sanctum');
+Route::delete('users/{user}', [UserController::class, 'destroy'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);

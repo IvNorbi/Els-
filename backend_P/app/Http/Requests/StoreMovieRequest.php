@@ -41,10 +41,9 @@ public function rules(): array
     return [
         'name' => ['required', Rule::unique('movies', 'name')
             ->where(function ($query) {
-                // Ellenőrizzük, hogy a megadott című filmek között van-e már olyan, aminek a dátuma megegyezik
-                $query->where('release_year', $this->input('release_year'));
+                $query->where('release_year', $this->input('release_year'));    // Ellenőrizzük, hogy a megadott című filmek között van-e már olyan, aminek a dátuma megegyezik
             })
-            ->ignore($this->route('movie')), // Kizárjuk az aktuális film rekordját az ellenőrzésből
+            ->ignore($this->route('movie')),    // Kizárjuk az aktuális film rekordját az ellenőrzésből
         ],
         'release_year' => 'required|int',
     ];

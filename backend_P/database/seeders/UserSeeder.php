@@ -21,18 +21,20 @@ class UserSeeder extends Seeder
             'email' => 'admin@example.com',
             'ability' => 'admin,moderator,user',
             'email_verified_at' => now(),
-            'password' => Hash::make('password'), // Jelszó: password
+            'password' => Hash::make('password'), 
             'remember_token' => null,
+            'imageUrl' => 'admin_profile.jpg',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
+        // Moderátor felhasználó létrehozása
         DB::table('users')->insert([
             'name' => "Moderator",
             'email' => "moderator@example.com",
             'ability' => 'moderator,user',
             'email_verified_at' => now(),
-            'password' => Hash::make('password'), // Jelszó: password
+            'password' => Hash::make('password'), 
             'remember_token' => null,
             'created_at' => now(),
             'updated_at' => now(),
@@ -44,7 +46,7 @@ class UserSeeder extends Seeder
                 'name' => "User $i",
                 'email' => "user$i@example.com",
                 'email_verified_at' => now(),
-                'password' => Hash::make('password'), // Jelszó: password
+                'password' => Hash::make('password'), 
                 'remember_token' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
