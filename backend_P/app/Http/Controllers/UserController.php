@@ -17,19 +17,21 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
+        // Érvényesítjük a beküldött adatokat
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
+        // Felhasználót keresünk az email alapján
         $user = User::where('email', $request->email)->first();
-
+        // Ellenőrizzük a jelszót és a felhasználót
         if (!$user || !Hash::check($request->password, $user->password)) {
+            // Hibát dobunk, ha a hitelesítés sikertelen
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         }
-
+        // Token létrehozása és visszaadása
         return $user->createToken("MovieCorner", explode(',', $user->ability));
     }
 
@@ -37,15 +39,12 @@ class UserController extends Controller
     public function logout(Request $request)
     {
         $user = auth()->user();
-
         if ($user) {
             // Eredményezd a token érvénytelenítését
             $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();
         }
-
         // Töröld a lejárt tokeneket
         Token::where('expires_at', '<=', now())->delete();
-
         // Visszatérés kilépési üzenettel
         return response()->json(['message' => 'Successfully logged out']);
     }
@@ -81,14 +80,17 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
+        // Felhasználó beküldött adatok validációja
         $this->validateUserRequest($request);
-
+        // Új felhasználó létrehozása
         $user = new User();
+        // Felhasználó adatainak feltöltése a kérés alapján
         $this->fillUserFromRequest($user, $request);
+        // Felhasználó profilképének feltöltése
         $this->uploadImage($user, $request);
-
+        // Felhasználó mentése az adatbázisba
         $user->save();
-
+        // JSON válasz küldése az új felhasználóval
         return response()->json($user);
     }
 
@@ -124,15 +126,17 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
+        // Név módosítása, ha a kérés tartalmaz nevet
         if ($request->filled('name')) {
             $user->name = $request->input('name');
         }
-
+        // Felhasználó adatainak frissítése a kérés alapján
         $this->fillUserFromRequest($user, $request);
+        // Felhasználó profilképének frissítése
         $this->uploadImage($user, $request);
-
+        // Felhasználó mentése az adatbázisba
         $user->save();
-
+        // JSON válasz küldése a frissített felhasználóval
         return response()->json($user);
     }
 
@@ -165,15 +169,18 @@ class UserController extends Controller
 
     protected function fillUserFromRequest(User $user, $request)
     {
+        // Felhasználó e-mail címének beállítása a kérés alapján
         $user->email = $request->input('email');
+        // Felhasználó jelszavának beállítása, hash-elése a kérés alapján
         $user->password = Hash::make($request->input('password'));
-
+        // Ellenőrzés: Az 'ability' jelenléte és érvényessége
         if ($request->has('ability')) {
-            $validAbilities = ['admin', 'moderator', 'user']; // Helyettesítse a megfelelő értékekkel
+            $validAbilities = ['admin', 'moderator', 'user'];
+            // Az ability érvényességének ellenőrzése
             if (in_array($request->input('ability'), $validAbilities)) {
                 $user->ability = $request->input('ability');
             } else {
-                // Hibaüzenetet küldünk, ha az ability érvénytelen
+                // Hiba dobása, ha érvénytelen ability-t adnak meg
                 throw new \Exception('Invalid ability provided');
             }
         }
@@ -181,12 +188,12 @@ class UserController extends Controller
 
     protected function uploadImage(User $user, $request)
     {
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
+        if ($request->hasFile('image')) {                       // Ellenőrzés: Van-e 'image' mező a kérésben          
+            $file = $request->file('image');                    // Kép feltöltése és elérési útvonal beállítása, ha van 'image' mező
             $extension = $file->getClientOriginalExtension();
             $user->imageUrl = str_replace('public/', '', $file->storeAs('public', $user->name . "." . $extension));
-        } elseif ($request->filled('imageUrl')) {
-            $user->imageUrl = $request->input('imageUrl');
+        } elseif ($request->filled('imageUrl')) {               // Ellenőrzés: Van-e 'imageUrl' mező a kérésben és nem üres-e            
+            $user->imageUrl = $request->input('imageUrl');      // Az elérési útvonal beállítása a 'imageUrl' mező értéke alapján
         }
     }
 }
