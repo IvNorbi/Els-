@@ -80,12 +80,14 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
+       
         // Felhasználó beküldött adatok validációja
-        $this->validateUserRequest($request);
+       //$this->validateUserRequest($request);
         // Új felhasználó létrehozása
         $user = new User();
         // Felhasználó adatainak feltöltése a kérés alapján
-        $this->fillUserFromRequest($user, $request);
+        $this->fillUserFromRequestWhenStore($user, $request);
+        $user->save();
         // Felhasználó profilképének feltöltése
         $this->uploadImage($user, $request);
         // Felhasználó mentése az adatbázisba
@@ -127,11 +129,30 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         // Név módosítása, ha a kérés tartalmaz nevet
+       
+        // Felhasználó adatainak frissítése a kérés alapján
+        $this->fillUserFromRequestWhenUpdateByAdmin($user, $request);
+        // Felhasználó profilképének frissítése
+        $this->uploadImage($user, $request);
+        // Felhasználó mentése az adatbázisba
+        $user->save();
+        // JSON válasz küldése a frissített felhasználóval
+        return response()->json($user);
+    }
+
+    public function updateMyProfile(UpdateUserRequest $request)
+    {
+
+        $tokenuser = auth()->user();
+       // dd($tokenuser);
+        $user = User::where('id', $tokenuser->currentAccessToken()->tokenable_id)->first();
+
+        // Név módosítása, ha a kérés tartalmaz nevet
         if ($request->filled('name')) {
             $user->name = $request->input('name');
         }
         // Felhasználó adatainak frissítése a kérés alapján
-        $this->fillUserFromRequest($user, $request);
+        $this->fillUserFromRequestWhenUpdateByUser($user, $request);
         // Felhasználó profilképének frissítése
         $this->uploadImage($user, $request);
         // Felhasználó mentése az adatbázisba
@@ -149,15 +170,31 @@ class UserController extends Controller
         return true;
     }
 
-    protected function validateUserRequest($request)
+   /* protected function validateUserRequest($request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'imageUrl' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-    }
+        try{
+            $request->validate([
+                'name' => 'required|string|max:255',
+            
+            ]);
+            $request->validate([
+            
+                'email' => 'required|string|email|unique:users',
+            
+            ]);
+            $request->validate([
+        
+                'password' => 'required|string|min:8',
+            
+            ]);
+            $request->validate([
+
+                'imageUrl' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $th) {
+            return $th->validator->errors();
+        }
+    }*/
 
     // protected function fillUserFromRequest(User $user, $request)
     // {
@@ -167,18 +204,36 @@ class UserController extends Controller
     //     // További attribútumok feltöltése a request alapján
     // }
 
-    protected function fillUserFromRequest(User $user, $request)
+    protected function fillUserFromRequestWhenStore(User $user, $request)
     {
         // Felhasználó e-mail címének beállítása a kérés alapján
+       
+        $user->name = $request->input('name');
+        
         $user->email = $request->input('email');
         // Felhasználó jelszavának beállítása, hash-elése a kérés alapján
         $user->password = Hash::make($request->input('password'));
         // Ellenőrzés: Az 'ability' jelenléte és érvényessége
+        $user->ability = "user";
+    }
+
+    protected function fillUserFromRequestWhenUpdateByAdmin(User $user, $request)
+    {
+        if ($request->filled('name'))
+            $user->name = $request->input('name');
+
+        if ($request->filled('email'))
+            $user->email = $request->input('email');
+
+        if ($request->filled('password'))
+            $user->password = Hash::make($request->input('password'));
+
         if ($request->has('ability')) {
-            $validAbilities = ['admin', 'moderator', 'user'];
+            $validAbilities = ['moderator', 'user'];
             // Az ability érvényességének ellenőrzése
             if (in_array($request->input('ability'), $validAbilities)) {
-                $user->ability = $request->input('ability');
+                if ($request->input('ability') == "moderator") $user->ability = "moderator,user";
+                if ($request->input('ability') == "user") $user->ability = "user";
             } else {
                 // Hiba dobása, ha érvénytelen ability-t adnak meg
                 throw new \Exception('Invalid ability provided');
@@ -186,12 +241,24 @@ class UserController extends Controller
         }
     }
 
+    protected function fillUserFromRequestWhenUpdateByUser(User $user, $request)
+    {
+        if ($request->filled('name'))
+            $user->name = $request->input('name');
+
+        if ($request->filled('email'))
+            $user->email = $request->input('email');
+
+        if ($request->filled('password'))
+            $user->password = Hash::make($request->input('password'));
+    }
+
     protected function uploadImage(User $user, $request)
     {
         if ($request->hasFile('image')) {                       // Ellenőrzés: Van-e 'image' mező a kérésben          
             $file = $request->file('image');                    // Kép feltöltése és elérési útvonal beállítása, ha van 'image' mező
             $extension = $file->getClientOriginalExtension();
-            $user->imageUrl = str_replace('public/', '', $file->storeAs('public', $user->name . "." . $extension));
+            $user->imageUrl = str_replace('public/', '', $file->storeAs('public/userprofile', $user->id . "." . $extension));
         } elseif ($request->filled('imageUrl')) {               // Ellenőrzés: Van-e 'imageUrl' mező a kérésben és nem üres-e            
             $user->imageUrl = $request->input('imageUrl');      // Az elérési útvonal beállítása a 'imageUrl' mező értéke alapján
         }

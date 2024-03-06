@@ -103,70 +103,6 @@
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>220 px</X>
-              <Y>-350 px</Y>
-            </Location>
-            <Size>
-              <Width>234 px</Width>
-              <Height>151 px</Height>
-            </Size>
-            <DbOid>
-              <Path>moviecorner2.genre_movie</Path>
-              <TypeName>Table</TypeName>
-            </DbOid>
-            <Compartments>
-              <ConstraintsCollapsed>True</ConstraintsCollapsed>
-              <IndexesCollapsed>True</IndexesCollapsed>
-              <TriggersCollapsed>True</TriggersCollapsed>
-            </Compartments>
-          </Model>
-          <Model xsi:type="RelationLinkModel">
-            <CustomProperties>
-              <OID>4</OID>
-              <OutModel>3</OutModel>
-              <InModel>2</InModel>
-              <OutPort>5</OutPort>
-              <InPort>6</InPort>
-              <Parent>0</Parent>
-            </CustomProperties>
-            <PortAnchors>
-              <Port>
-                <Location>
-                  <X>227 px</X>
-                  <Y>50 px</Y>
-                </Location>
-                <Anchors>None</Anchors>
-                <Align>Right</Align>
-                <CustomProperties>
-                  <OID>5</OID>
-                  <PortType>FixedAnchor</PortType>
-                </CustomProperties>
-              </Port>
-              <Port>
-                <Location>
-                  <X>1 px</X>
-                  <Y>50 px</Y>
-                </Location>
-                <Anchors>None</Anchors>
-                <Align>Left</Align>
-                <CustomProperties>
-                  <OID>6</OID>
-                  <PortType>FixedAnchor</PortType>
-                </CustomProperties>
-              </Port>
-            </PortAnchors>
-            <IsManuallyRouted>false</IsManuallyRouted>
-            <DbOid>
-              <Path>moviecorner2.genre_movie.genre_movie_genre_id_foreign</Path>
-              <TypeName>ForeignKey</TypeName>
-            </DbOid>
-          </Model>
-          <Model xsi:type="TableModel">
-            <CustomProperties>
-              <OID>7</OID>
-              <Parent>0</Parent>
-            </CustomProperties>
-            <Location>
               <X>-110 px</X>
               <Y>-350 px</Y>
             </Location>
@@ -186,11 +122,11 @@
           </Model>
           <Model xsi:type="RelationLinkModel">
             <CustomProperties>
-              <OID>8</OID>
+              <OID>4</OID>
               <OutModel>1</OutModel>
-              <InModel>7</InModel>
-              <OutPort>9</OutPort>
-              <InPort>10</InPort>
+              <InModel>3</InModel>
+              <OutPort>5</OutPort>
+              <InPort>6</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
@@ -202,7 +138,7 @@
                 <Anchors>None</Anchors>
                 <Align>Right</Align>
                 <CustomProperties>
-                  <OID>9</OID>
+                  <OID>5</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -214,7 +150,7 @@
                 <Anchors>None</Anchors>
                 <Align>Left</Align>
                 <CustomProperties>
-                  <OID>10</OID>
+                  <OID>6</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -225,50 +161,9 @@
               <TypeName>ForeignKey</TypeName>
             </DbOid>
           </Model>
-          <Model xsi:type="RelationLinkModel">
-            <CustomProperties>
-              <OID>11</OID>
-              <OutModel>3</OutModel>
-              <InModel>7</InModel>
-              <OutPort>12</OutPort>
-              <InPort>13</InPort>
-              <Parent>0</Parent>
-            </CustomProperties>
-            <PortAnchors>
-              <Port>
-                <Location>
-                  <X>-1 px</X>
-                  <Y>51 px</Y>
-                </Location>
-                <Anchors>None</Anchors>
-                <Align>Left</Align>
-                <CustomProperties>
-                  <OID>12</OID>
-                  <PortType>FixedAnchor</PortType>
-                </CustomProperties>
-              </Port>
-              <Port>
-                <Location>
-                  <X>235 px</X>
-                  <Y>51 px</Y>
-                </Location>
-                <Anchors>None</Anchors>
-                <Align>Right</Align>
-                <CustomProperties>
-                  <OID>13</OID>
-                  <PortType>FixedAnchor</PortType>
-                </CustomProperties>
-              </Port>
-            </PortAnchors>
-            <IsManuallyRouted>false</IsManuallyRouted>
-            <DbOid>
-              <Path>moviecorner2.genre_movie.genre_movie_movie_id_foreign</Path>
-              <TypeName>ForeignKey</TypeName>
-            </DbOid>
-          </Model>
           <Model xsi:type="TableModel">
             <CustomProperties>
-              <OID>14</OID>
+              <OID>7</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
@@ -291,11 +186,11 @@
           </Model>
           <Model xsi:type="RelationLinkModel">
             <CustomProperties>
-              <OID>15</OID>
-              <OutModel>14</OutModel>
-              <InModel>7</InModel>
-              <OutPort>16</OutPort>
-              <InPort>17</InPort>
+              <OID>8</OID>
+              <OutModel>7</OutModel>
+              <InModel>3</InModel>
+              <OutPort>9</OutPort>
+              <InPort>10</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
@@ -307,7 +202,7 @@
                 <Anchors>None</Anchors>
                 <Align>Top</Align>
                 <CustomProperties>
-                  <OID>16</OID>
+                  <OID>9</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -319,7 +214,7 @@
                 <Anchors>None</Anchors>
                 <Align>Bottom</Align>
                 <CustomProperties>
-                  <OID>17</OID>
+                  <OID>10</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -332,7 +227,7 @@
           </Model>
           <Model xsi:type="TableModel">
             <CustomProperties>
-              <OID>18</OID>
+              <OID>11</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
@@ -355,11 +250,11 @@
           </Model>
           <Model xsi:type="RelationLinkModel">
             <CustomProperties>
-              <OID>19</OID>
-              <OutModel>14</OutModel>
-              <InModel>18</InModel>
-              <OutPort>20</OutPort>
-              <InPort>21</InPort>
+              <OID>12</OID>
+              <OutModel>7</OutModel>
+              <InModel>11</InModel>
+              <OutPort>13</OutPort>
+              <InPort>14</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
@@ -371,7 +266,7 @@
                 <Anchors>None</Anchors>
                 <Align>Bottom</Align>
                 <CustomProperties>
-                  <OID>20</OID>
+                  <OID>13</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -383,7 +278,7 @@
                 <Anchors>None</Anchors>
                 <Align>Top</Align>
                 <CustomProperties>
-                  <OID>21</OID>
+                  <OID>14</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -396,7 +291,7 @@
           </Model>
           <Model xsi:type="TableModel">
             <CustomProperties>
-              <OID>22</OID>
+              <OID>15</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
@@ -419,11 +314,11 @@
           </Model>
           <Model xsi:type="RelationLinkModel">
             <CustomProperties>
-              <OID>23</OID>
-              <OutModel>22</OutModel>
-              <InModel>7</InModel>
-              <OutPort>24</OutPort>
-              <InPort>25</InPort>
+              <OID>16</OID>
+              <OutModel>15</OutModel>
+              <InModel>3</InModel>
+              <OutPort>17</OutPort>
+              <InPort>18</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
@@ -435,7 +330,7 @@
                 <Anchors>None</Anchors>
                 <Align>Right</Align>
                 <CustomProperties>
-                  <OID>24</OID>
+                  <OID>17</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -447,7 +342,7 @@
                 <Anchors>None</Anchors>
                 <Align>Left</Align>
                 <CustomProperties>
-                  <OID>25</OID>
+                  <OID>18</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -470,7 +365,7 @@
           </Model>
           <Model xsi:type="TableModel">
             <CustomProperties>
-              <OID>26</OID>
+              <OID>19</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
@@ -493,11 +388,11 @@
           </Model>
           <Model xsi:type="RelationLinkModel">
             <CustomProperties>
-              <OID>27</OID>
-              <OutModel>14</OutModel>
-              <InModel>26</InModel>
-              <OutPort>28</OutPort>
-              <InPort>29</InPort>
+              <OID>20</OID>
+              <OutModel>7</OutModel>
+              <InModel>19</InModel>
+              <OutPort>21</OutPort>
+              <InPort>22</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
@@ -509,7 +404,7 @@
                 <Anchors>None</Anchors>
                 <Align>Right</Align>
                 <CustomProperties>
-                  <OID>28</OID>
+                  <OID>21</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -521,7 +416,7 @@
                 <Anchors>Top Bottom</Anchors>
                 <Align>Left</Align>
                 <CustomProperties>
-                  <OID>29</OID>
+                  <OID>22</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -544,7 +439,7 @@
           </Model>
           <Model xsi:type="TableModel">
             <CustomProperties>
-              <OID>30</OID>
+              <OID>23</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
@@ -567,11 +462,11 @@
           </Model>
           <Model xsi:type="RelationLinkModel">
             <CustomProperties>
-              <OID>31</OID>
+              <OID>24</OID>
               <OutModel>1</OutModel>
-              <InModel>30</InModel>
-              <OutPort>32</OutPort>
-              <InPort>33</InPort>
+              <InModel>23</InModel>
+              <OutPort>25</OutPort>
+              <InPort>26</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
@@ -583,7 +478,7 @@
                 <Anchors>Top Bottom</Anchors>
                 <Align>Left</Align>
                 <CustomProperties>
-                  <OID>32</OID>
+                  <OID>25</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -595,7 +490,7 @@
                 <Anchors>None</Anchors>
                 <Align>Right</Align>
                 <CustomProperties>
-                  <OID>33</OID>
+                  <OID>26</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -618,11 +513,11 @@
           </Model>
           <Model xsi:type="RelationLinkModel">
             <CustomProperties>
-              <OID>34</OID>
-              <OutModel>22</OutModel>
-              <InModel>30</InModel>
-              <OutPort>35</OutPort>
-              <InPort>36</InPort>
+              <OID>27</OID>
+              <OutModel>15</OutModel>
+              <InModel>23</InModel>
+              <OutPort>28</OutPort>
+              <InPort>29</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
@@ -634,7 +529,7 @@
                 <Anchors>Top Bottom</Anchors>
                 <Align>Left</Align>
                 <CustomProperties>
-                  <OID>35</OID>
+                  <OID>28</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -646,7 +541,7 @@
                 <Anchors>Left Right</Anchors>
                 <Align>Bottom</Align>
                 <CustomProperties>
-                  <OID>36</OID>
+                  <OID>29</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
