@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use App\Http\Requests\StoreMovieRequest;
+use Illuminate\Http\Request;
 use App\Http\Requests\UpdateMovieRequest;
 use App\Models\MovieRolePeople;
 use App\Models\Comment;
 use App\Models\Rating;
 use App\Models\Genre;
+use App\Models\GenreMovie;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 
@@ -21,7 +23,13 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $return = Movie::with(['rolesPeople.roles', 'rolesPeople.people'])->get();
+         $request = request();
+
+        //dd($request->input("order"));
+        if ($request->input("order")!= null)
+            $return = Movie::with(['rolesPeople.roles', 'rolesPeople.people'])->orderBy($request->input("order"))->get();
+        else
+            $return = Movie::with(['rolesPeople.roles', 'rolesPeople.people'])->get();
         foreach ($return as $key => $movie) {
             $tags = [];
             foreach ($movie->genres as $genre) {
@@ -164,38 +172,38 @@ class MovieController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    // public function update(UpdateMovieRequest $request, Movie $movie)
-    // {
-    //     if ($request->name != "")  $movie->name = $request->name;
-    //     if ($request->release_year != "")  $movie->release_year = $request->release_year;
-    //     if ($request->description != "")  $movie->description = $request->description;
-    //     if ($request->imageUrl != "")  $movie->imageUrl = $request->imageUrl;
-    //     if ($request->length != "")  $movie->length = $request->length;
-    //     $movie->save();
-    //     return $movie;
-    // }
     public function update(UpdateMovieRequest $request, Movie $movie)
     {
-        if ($request->has('name')) {
-            $movie->name = $request->input('name');
-        }
-        if ($request->has('description')) {
-            $movie->description = $request->input('description');
-        }
-        if ($request->has('release_year')) {
-            $movie->release_year = $request->input('release_year');
-        }
-        if ($request->has('length')) {
-            $movie->length = $request->input('length');
-        }
-        if ($request->has('imageUrl')) {
-            $this->uploadImage($movie, $request);
-        }
-    
+        if ($request->name != "")  $movie->name = $request->name;
+        if ($request->release_year != "")  $movie->release_year = $request->release_year;
+        if ($request->description != "")  $movie->description = $request->description;
+        if ($request->imageUrl != "")  $this->uploadImage($movie, $request);    //$movie->imageUrl = $request->imageUrl;
+        if ($request->length != "")  $movie->length = $request->length;
         $movie->save();
-    
         return $movie;
     }
+    // public function update(UpdateMovieRequest $request, Movie $movie)
+    // {
+    //     if ($request->has('name')) {
+    //         $movie->name = $request->input('name');
+    //     }
+    //     if ($request->has('description')) {
+    //         $movie->description = $request->input('description');
+    //     }
+    //     if ($request->has('release_year')) {
+    //         $movie->release_year = $request->input('release_year');
+    //     }
+    //     if ($request->has('length')) {
+    //         $movie->length = $request->input('length');
+    //     }
+    //     if ($request->has('imageUrl')) {
+    //         $this->uploadImage($movie, $request);
+    //     }
+    
+    //     $movie->save();
+    
+    //     return $movie;
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -220,5 +228,57 @@ class MovieController extends Controller
         } elseif ($request->filled('imageUrl')) {
             $movie->imageUrl = $request->input('imageUrl');
         }
+    }
+
+    protected function addGenre(Movie $movie, Request $request) {
+        
+        
+  
+        $genre = Genre::where("name", "=", $request->input("tag"))->first();
+        if ( $genre  == null) return response()->json(["error"=>"Nincs ilyen műfaj"], 404); 
+        
+        $letezik = GenreMovie::where("movie_id" ,"=", $movie->id)->where("genre_id" ,"=", $genre->id)->first();
+        if ( $letezik != null) return response()->json(["error"=>"Már van ilyen műfaja a filmnek"], 505); 
+        
+        
+        $genreMovie             = new GenreMovie();
+        $genreMovie->movie_id   = $movie->id;
+        $genreMovie->genre_id   = $genre->id;
+        $genreMovie->save();
+
+
+
+        $tags = [];
+        foreach ($movie->genres as $genre) {
+            $tags[] = $genre->name;
+        }
+        $movie->tags = $tags;
+        $movie->stars = round($movie->ratings / 2.0);
+        $movie->imageUrl = asset("storage/" . $movie->imageUrl);
+
+        return $movie;
+    }
+
+    protected function deleteGenre(Movie $movie, Request $request) {
+        
+        
+  
+        $genre = Genre::where("name", "=", $request->input("tag"))->first();
+        if ( $genre  == null) return response()->json(["error"=>"Nincs ilyen műfaj"], 404); 
+        
+        $letezik = GenreMovie::where("movie_id" ,"=", $movie->id)->where("genre_id" ,"=", $genre->id)->first();
+        if ( $letezik == null) return response()->json(["error"=>"Nem is volt ilyen műfaja a filmnek"], 505); 
+        
+        $letezik->delete();
+
+        $tags = [];
+        foreach ($movie->genres as $genre) {
+            $tags[] = $genre->name;
+        }
+        $movie->tags = $tags;
+        $movie->stars = round($movie->ratings / 2.0);
+        $movie->imageUrl = asset("storage/" . $movie->imageUrl);
+
+        return $movie;
     }
 }

@@ -27,10 +27,6 @@ use \App\Models\Movie;
 /******* Genre/Tag *******************************************************************************************************************/
 /*************************************************************************************************************************************/
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 
 //Route::get('genres', [GenreController::class, 'index']);
 Route::get('movies/tags',   [GenreController::class, 'index']);
@@ -80,6 +76,9 @@ Route::delete('movies/{movie}', [MovieController::class, 'destroy'])->middleware
 // Filmes toplista
 Route::get('toplist', [MovieController::class, 'toplist']);
 
+
+// Új műfaj hozzáadása filmhez
+Route::post('movies/{movie}/tag', [MovieController::class, 'addGenre'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
 /*************************************************************************************************************************************/
 /******* Comment *********************************************************************************************************************/
@@ -158,19 +157,27 @@ Route::delete('roles/{role}', [RoleController::class, 'destroy'])->middleware(['
 Route::post('/user/login', [UserController::class, 'login']);
 
 // User logout
-Route::post('/user/logout', [UserController::class, 'logout']);
+Route::post('/user/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
 
 // User-ek lekérdezése
 Route::get('users', [UserController::class, 'index'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
 // Új user létrehozása
-Route::post('users', [UserController::class, 'store']);
+Route::post('registration', [UserController::class, 'store']);
 
 // Role megtekintése
 Route::get('users/{user}', [UserController::class, 'show'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
 // User szerkesztése
 Route::put('users/{user}', [UserController::class, 'update'])->middleware(['auth:sanctum', 'abilities:admin']);
+
+// User szerkesztése
+Route::put('user/', [UserController::class, 'updateMyProfile'])->middleware('auth:sanctum');
 
 // User törlése
 Route::delete('users/{user}', [UserController::class, 'destroy'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);

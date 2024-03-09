@@ -106,15 +106,15 @@
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>961 px</X>
-              <Y>82 px</Y>
+              <X>659 px</X>
+              <Y>39 px</Y>
             </Location>
             <Size>
-              <Width>234 px</Width>
-              <Height>115 px</Height>
+              <Width>241 px</Width>
+              <Height>201 px</Height>
             </Size>
             <DbOid>
-              <Path>moviecorner2.genre_movie</Path>
+              <Path>moviecorner2.movies</Path>
               <TypeName>Table</TypeName>
             </DbOid>
             <Compartments>
@@ -127,8 +127,8 @@
             <CustomProperties>
               <OID>4</OID>
               <Comment>5</Comment>
-              <OutModel>3</OutModel>
-              <InModel>2</InModel>
+              <OutModel>1</OutModel>
+              <InModel>3</InModel>
               <OutPort>6</OutPort>
               <InPort>7</InPort>
               <Parent>0</Parent>
@@ -136,8 +136,8 @@
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>233.4 px</X>
-                  <Y>57.9 px</Y>
+                  <X>233.775 px</X>
+                  <Y>75.9 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Right</Align>
@@ -148,8 +148,8 @@
               </Port>
               <Port>
                 <Location>
-                  <X>0.450000000000273 px</X>
-                  <Y>55.9 px</Y>
+                  <X>-0.174999999999841 px</X>
+                  <Y>100.9 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Left</Align>
@@ -161,7 +161,7 @@
             </PortAnchors>
             <IsManuallyRouted>false</IsManuallyRouted>
             <DbOid>
-              <Path>moviecorner2.genre_movie.genre_movie_genre_id_foreign</Path>
+              <Path>moviecorner2.comments.comments_movie_id_foreign</Path>
               <TypeName>ForeignKey</TypeName>
             </DbOid>
           </Model>
@@ -177,7 +177,7 @@
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>-30 px</X>
+                  <X>-30.5 px</X>
                   <Y>6.10351563068434E-06 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
@@ -200,171 +200,6 @@
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>659 px</X>
-              <Y>39 px</Y>
-            </Location>
-            <Size>
-              <Width>241 px</Width>
-              <Height>201 px</Height>
-            </Size>
-            <DbOid>
-              <Path>moviecorner2.movies</Path>
-              <TypeName>Table</TypeName>
-            </DbOid>
-            <Compartments>
-              <ConstraintsCollapsed>True</ConstraintsCollapsed>
-              <IndexesCollapsed>True</IndexesCollapsed>
-              <TriggersCollapsed>True</TriggersCollapsed>
-            </Compartments>
-          </Model>
-          <Model xsi:type="RelationLinkModel">
-            <CustomProperties>
-              <OID>10</OID>
-              <Comment>11</Comment>
-              <OutModel>1</OutModel>
-              <InModel>9</InModel>
-              <OutPort>12</OutPort>
-              <InPort>13</InPort>
-              <Parent>0</Parent>
-            </CustomProperties>
-            <PortAnchors>
-              <Port>
-                <Location>
-                  <X>233.775 px</X>
-                  <Y>75.9 px</Y>
-                </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
-                <CustomProperties>
-                  <OID>12</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
-              <Port>
-                <Location>
-                  <X>-0.174999999999841 px</X>
-                  <Y>100.9 px</Y>
-                </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Left</Align>
-                <CustomProperties>
-                  <OID>13</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
-            </PortAnchors>
-            <IsManuallyRouted>false</IsManuallyRouted>
-            <DbOid>
-              <Path>moviecorner2.comments.comments_movie_id_foreign</Path>
-              <TypeName>ForeignKey</TypeName>
-            </DbOid>
-          </Model>
-          <Model xsi:type="RelationCommentModel">
-            <CustomProperties>
-              <OID>11</OID>
-              <ForeColor>68, 68, 68</ForeColor>
-              <HolderModel>10</HolderModel>
-              <Port>14</Port>
-              <Font>Tahoma, 9pt</Font>
-              <Parent>0</Parent>
-            </CustomProperties>
-            <PortAnchors>
-              <Port xsi:type="LinkPort">
-                <Location>
-                  <X>-30.5 px</X>
-                  <Y>6.10351563068434E-06 px</Y>
-                </Location>
-                <Anchors>None</Anchors>
-                <Align>Right</Align>
-                <CustomProperties>
-                  <OID>14</OID>
-                  <PortType>FixedAnchor</PortType>
-                </CustomProperties>
-                <LinkPortAnchor>OutPoint</LinkPortAnchor>
-              </Port>
-            </PortAnchors>
-            <CommentOffset>
-              <X>22 px</X>
-              <Y>2 px</Y>
-            </CommentOffset>
-          </Model>
-          <Model xsi:type="RelationLinkModel">
-            <CustomProperties>
-              <OID>15</OID>
-              <Comment>16</Comment>
-              <OutModel>3</OutModel>
-              <InModel>9</InModel>
-              <OutPort>17</OutPort>
-              <InPort>18</InPort>
-              <Parent>0</Parent>
-            </CustomProperties>
-            <PortAnchors>
-              <Port>
-                <Location>
-                  <X>0.300000000000296 px</X>
-                  <Y>57.9 px</Y>
-                </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Left</Align>
-                <CustomProperties>
-                  <OID>17</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
-              <Port>
-                <Location>
-                  <X>241.25 px</X>
-                  <Y>100.9 px</Y>
-                </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
-                <CustomProperties>
-                  <OID>18</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
-            </PortAnchors>
-            <IsManuallyRouted>false</IsManuallyRouted>
-            <DbOid>
-              <Path>moviecorner2.genre_movie.genre_movie_movie_id_foreign</Path>
-              <TypeName>ForeignKey</TypeName>
-            </DbOid>
-          </Model>
-          <Model xsi:type="RelationCommentModel">
-            <CustomProperties>
-              <OID>16</OID>
-              <ForeColor>68, 68, 68</ForeColor>
-              <HolderModel>15</HolderModel>
-              <Port>19</Port>
-              <Font>Tahoma, 9pt</Font>
-              <Parent>0</Parent>
-            </CustomProperties>
-            <PortAnchors>
-              <Port xsi:type="LinkPort">
-                <Location>
-                  <X>30.5 px</X>
-                  <Y>6.10351563068434E-06 px</Y>
-                </Location>
-                <Anchors>None</Anchors>
-                <Align>Left</Align>
-                <CustomProperties>
-                  <OID>19</OID>
-                  <PortType>FixedAnchor</PortType>
-                </CustomProperties>
-                <LinkPortAnchor>OutPoint</LinkPortAnchor>
-              </Port>
-            </PortAnchors>
-            <CommentOffset>
-              <X>22 px</X>
-              <Y>2 px</Y>
-            </CommentOffset>
-          </Model>
-          <Model xsi:type="TableModel">
-            <CustomProperties>
-              <OID>20</OID>
-              <Parent>0</Parent>
-            </CustomProperties>
-            <Location>
               <X>664 px</X>
               <Y>301 px</Y>
             </Location>
@@ -384,12 +219,12 @@
           </Model>
           <Model xsi:type="RelationLinkModel">
             <CustomProperties>
-              <OID>21</OID>
-              <Comment>22</Comment>
-              <OutModel>20</OutModel>
-              <InModel>9</InModel>
-              <OutPort>23</OutPort>
-              <InPort>24</InPort>
+              <OID>10</OID>
+              <Comment>11</Comment>
+              <OutModel>9</OutModel>
+              <InModel>3</InModel>
+              <OutPort>12</OutPort>
+              <InPort>13</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
@@ -401,7 +236,7 @@
                 <Anchors>Left Right</Anchors>
                 <Align>Top</Align>
                 <CustomProperties>
-                  <OID>23</OID>
+                  <OID>12</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -413,7 +248,7 @@
                 <Anchors>Left Right</Anchors>
                 <Align>Bottom</Align>
                 <CustomProperties>
-                  <OID>24</OID>
+                  <OID>13</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -426,10 +261,10 @@
           </Model>
           <Model xsi:type="RelationCommentModel">
             <CustomProperties>
-              <OID>22</OID>
+              <OID>11</OID>
               <ForeColor>68, 68, 68</ForeColor>
-              <HolderModel>21</HolderModel>
-              <Port>25</Port>
+              <HolderModel>10</HolderModel>
+              <Port>14</Port>
               <Font>Tahoma, 9pt</Font>
               <Parent>0</Parent>
             </CustomProperties>
@@ -442,7 +277,7 @@
                 <Anchors>None</Anchors>
                 <Align>Top</Align>
                 <CustomProperties>
-                  <OID>25</OID>
+                  <OID>14</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
                 <LinkPortAnchor>OutPoint</LinkPortAnchor>
@@ -455,7 +290,7 @@
           </Model>
           <Model xsi:type="TableModel">
             <CustomProperties>
-              <OID>26</OID>
+              <OID>15</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
@@ -478,12 +313,12 @@
           </Model>
           <Model xsi:type="RelationLinkModel">
             <CustomProperties>
-              <OID>27</OID>
-              <Comment>28</Comment>
-              <OutModel>20</OutModel>
-              <InModel>26</InModel>
-              <OutPort>29</OutPort>
-              <InPort>30</InPort>
+              <OID>16</OID>
+              <Comment>17</Comment>
+              <OutModel>9</OutModel>
+              <InModel>15</InModel>
+              <OutPort>18</OutPort>
+              <InPort>19</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
@@ -495,7 +330,7 @@
                 <Anchors>Left Right</Anchors>
                 <Align>Bottom</Align>
                 <CustomProperties>
-                  <OID>29</OID>
+                  <OID>18</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -507,7 +342,7 @@
                 <Anchors>Left Right</Anchors>
                 <Align>Top</Align>
                 <CustomProperties>
-                  <OID>30</OID>
+                  <OID>19</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -520,10 +355,10 @@
           </Model>
           <Model xsi:type="RelationCommentModel">
             <CustomProperties>
-              <OID>28</OID>
+              <OID>17</OID>
               <ForeColor>68, 68, 68</ForeColor>
-              <HolderModel>27</HolderModel>
-              <Port>31</Port>
+              <HolderModel>16</HolderModel>
+              <Port>20</Port>
               <Font>Tahoma, 9pt</Font>
               <Parent>0</Parent>
             </CustomProperties>
@@ -536,7 +371,7 @@
                 <Anchors>None</Anchors>
                 <Align>Bottom</Align>
                 <CustomProperties>
-                  <OID>31</OID>
+                  <OID>20</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
                 <LinkPortAnchor>OutPoint</LinkPortAnchor>
@@ -549,7 +384,7 @@
           </Model>
           <Model xsi:type="TableModel">
             <CustomProperties>
-              <OID>32</OID>
+              <OID>21</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
@@ -572,12 +407,12 @@
           </Model>
           <Model xsi:type="RelationLinkModel">
             <CustomProperties>
-              <OID>33</OID>
-              <Comment>34</Comment>
-              <OutModel>20</OutModel>
-              <InModel>32</InModel>
-              <OutPort>35</OutPort>
-              <InPort>36</InPort>
+              <OID>22</OID>
+              <Comment>23</Comment>
+              <OutModel>9</OutModel>
+              <InModel>21</InModel>
+              <OutPort>24</OutPort>
+              <InPort>25</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
@@ -589,7 +424,7 @@
                 <Anchors>Top Bottom</Anchors>
                 <Align>Right</Align>
                 <CustomProperties>
-                  <OID>35</OID>
+                  <OID>24</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -601,7 +436,7 @@
                 <Anchors>Top Bottom</Anchors>
                 <Align>Left</Align>
                 <CustomProperties>
-                  <OID>36</OID>
+                  <OID>25</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -614,10 +449,10 @@
           </Model>
           <Model xsi:type="RelationCommentModel">
             <CustomProperties>
-              <OID>34</OID>
+              <OID>23</OID>
               <ForeColor>68, 68, 68</ForeColor>
-              <HolderModel>33</HolderModel>
-              <Port>37</Port>
+              <HolderModel>22</HolderModel>
+              <Port>26</Port>
               <Font>Tahoma, 9pt</Font>
               <Parent>0</Parent>
             </CustomProperties>
@@ -630,7 +465,7 @@
                 <Anchors>None</Anchors>
                 <Align>Right</Align>
                 <CustomProperties>
-                  <OID>37</OID>
+                  <OID>26</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
                 <LinkPortAnchor>OutPoint</LinkPortAnchor>
@@ -643,7 +478,7 @@
           </Model>
           <Model xsi:type="TableModel">
             <CustomProperties>
-              <OID>38</OID>
+              <OID>27</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
@@ -666,12 +501,12 @@
           </Model>
           <Model xsi:type="RelationLinkModel">
             <CustomProperties>
-              <OID>39</OID>
-              <Comment>40</Comment>
+              <OID>28</OID>
+              <Comment>29</Comment>
               <OutModel>1</OutModel>
-              <InModel>38</InModel>
-              <OutPort>41</OutPort>
-              <InPort>42</InPort>
+              <InModel>27</InModel>
+              <OutPort>30</OutPort>
+              <InPort>31</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
@@ -683,7 +518,7 @@
                 <Anchors>Top Bottom</Anchors>
                 <Align>Left</Align>
                 <CustomProperties>
-                  <OID>41</OID>
+                  <OID>30</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -695,7 +530,7 @@
                 <Anchors>Top Bottom</Anchors>
                 <Align>Right</Align>
                 <CustomProperties>
-                  <OID>42</OID>
+                  <OID>31</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -708,10 +543,10 @@
           </Model>
           <Model xsi:type="RelationCommentModel">
             <CustomProperties>
-              <OID>40</OID>
+              <OID>29</OID>
               <ForeColor>68, 68, 68</ForeColor>
-              <HolderModel>39</HolderModel>
-              <Port>43</Port>
+              <HolderModel>28</HolderModel>
+              <Port>32</Port>
               <Font>Tahoma, 9pt</Font>
               <Parent>0</Parent>
             </CustomProperties>
@@ -724,7 +559,7 @@
                 <Anchors>None</Anchors>
                 <Align>Left</Align>
                 <CustomProperties>
-                  <OID>43</OID>
+                  <OID>32</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
                 <LinkPortAnchor>OutPoint</LinkPortAnchor>
@@ -737,7 +572,7 @@
           </Model>
           <Model xsi:type="TableModel">
             <CustomProperties>
-              <OID>44</OID>
+              <OID>33</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
@@ -760,12 +595,12 @@
           </Model>
           <Model xsi:type="RelationLinkModel">
             <CustomProperties>
-              <OID>45</OID>
-              <Comment>46</Comment>
-              <OutModel>44</OutModel>
-              <InModel>9</InModel>
-              <OutPort>47</OutPort>
-              <InPort>48</InPort>
+              <OID>34</OID>
+              <Comment>35</Comment>
+              <OutModel>33</OutModel>
+              <InModel>3</InModel>
+              <OutPort>36</OutPort>
+              <InPort>37</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
@@ -777,7 +612,7 @@
                 <Anchors>Top Bottom</Anchors>
                 <Align>Right</Align>
                 <CustomProperties>
-                  <OID>47</OID>
+                  <OID>36</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -789,7 +624,7 @@
                 <Anchors>Left Right</Anchors>
                 <Align>Bottom</Align>
                 <CustomProperties>
-                  <OID>48</OID>
+                  <OID>37</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -816,6 +651,187 @@
           </Model>
           <Model xsi:type="RelationCommentModel">
             <CustomProperties>
+              <OID>35</OID>
+              <ForeColor>68, 68, 68</ForeColor>
+              <HolderModel>34</HolderModel>
+              <Port>38</Port>
+              <Font>Tahoma, 9pt</Font>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <PortAnchors>
+              <Port xsi:type="LinkPort">
+                <Location>
+                  <X>-72.625 px</X>
+                  <Y>76.5 px</Y>
+                </Location>
+                <Anchors>None</Anchors>
+                <Align>Right</Align>
+                <CustomProperties>
+                  <OID>38</OID>
+                  <PortType>FixedAnchor</PortType>
+                </CustomProperties>
+                <LinkPortAnchor>OutPoint</LinkPortAnchor>
+              </Port>
+            </PortAnchors>
+            <CommentOffset>
+              <X>22 px</X>
+              <Y>2 px</Y>
+            </CommentOffset>
+          </Model>
+          <Model xsi:type="RelationLinkModel">
+            <CustomProperties>
+              <OID>39</OID>
+              <Comment>40</Comment>
+              <OutModel>33</OutModel>
+              <InModel>27</InModel>
+              <OutPort>41</OutPort>
+              <InPort>42</InPort>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <PortAnchors>
+              <Port>
+                <Location>
+                  <X>0 px</X>
+                  <Y>66.5 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Left</Align>
+                <CustomProperties>
+                  <OID>41</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>132.5 px</X>
+                  <Y>0 px</Y>
+                </Location>
+                <Anchors>Left Right</Anchors>
+                <Align>Bottom</Align>
+                <CustomProperties>
+                  <OID>42</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+            </PortAnchors>
+            <BendPoints>
+              <PointD>
+                <X>171.5 px</X>
+                <Y>336.5 px</Y>
+              </PointD>
+            </BendPoints>
+            <IsManuallyRouted>false</IsManuallyRouted>
+            <DbOid>
+              <Path>moviecorner2.ratings.ratings_user_id_foreign</Path>
+              <TypeName>ForeignKey</TypeName>
+            </DbOid>
+          </Model>
+          <Model xsi:type="RelationCommentModel">
+            <CustomProperties>
+              <OID>40</OID>
+              <ForeColor>68, 68, 68</ForeColor>
+              <HolderModel>39</HolderModel>
+              <Port>43</Port>
+              <Font>Tahoma, 9pt</Font>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <PortAnchors>
+              <Port xsi:type="LinkPort">
+                <Location>
+                  <X>94.25 px</X>
+                  <Y>0 px</Y>
+                </Location>
+                <Anchors>None</Anchors>
+                <Align>Left</Align>
+                <CustomProperties>
+                  <OID>43</OID>
+                  <PortType>FixedAnchor</PortType>
+                </CustomProperties>
+                <LinkPortAnchor>OutPoint</LinkPortAnchor>
+              </Port>
+            </PortAnchors>
+            <CommentOffset>
+              <X>22 px</X>
+              <Y>2 px</Y>
+            </CommentOffset>
+          </Model>
+          <Model xsi:type="TableModel">
+            <CustomProperties>
+              <OID>44</OID>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <Location>
+              <X>950 px</X>
+              <Y>70 px</Y>
+            </Location>
+            <Size>
+              <Width>234 px</Width>
+              <Height>115 px</Height>
+            </Size>
+            <DbOid>
+              <Path>moviecorner2.genre_movie</Path>
+              <TypeName>Table</TypeName>
+            </DbOid>
+            <Compartments>
+              <ConstraintsCollapsed>True</ConstraintsCollapsed>
+              <IndexesCollapsed>True</IndexesCollapsed>
+              <TriggersCollapsed>True</TriggersCollapsed>
+            </Compartments>
+          </Model>
+          <Model xsi:type="RelationLinkModel">
+            <CustomProperties>
+              <OID>45</OID>
+              <Comment>46</Comment>
+              <OutModel>44</OutModel>
+              <InModel>2</InModel>
+              <OutPort>47</OutPort>
+              <InPort>48</InPort>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <PortAnchors>
+              <Port>
+                <Location>
+                  <X>0 px</X>
+                  <Y>37.5 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Right</Align>
+                <CustomProperties>
+                  <OID>47</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>0 px</X>
+                  <Y>73.5 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Left</Align>
+                <CustomProperties>
+                  <OID>48</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+            </PortAnchors>
+            <BendPoints>
+              <PointD>
+                <X>1294 px</X>
+                <Y>107.5 px</Y>
+              </PointD>
+              <PointD>
+                <X>1294 px</X>
+                <Y>157.5 px</Y>
+              </PointD>
+            </BendPoints>
+            <IsManuallyRouted>false</IsManuallyRouted>
+            <DbOid>
+              <Path>moviecorner2.genre_movie.genre_movie_genre_id_foreign</Path>
+              <TypeName>ForeignKey</TypeName>
+            </DbOid>
+          </Model>
+          <Model xsi:type="RelationCommentModel">
+            <CustomProperties>
               <OID>46</OID>
               <ForeColor>68, 68, 68</ForeColor>
               <HolderModel>45</HolderModel>
@@ -826,8 +842,8 @@
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>-72.625 px</X>
-                  <Y>76.5 px</Y>
+                  <X>-55 px</X>
+                  <Y>0 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Right</Align>
@@ -848,7 +864,7 @@
               <OID>50</OID>
               <Comment>51</Comment>
               <OutModel>44</OutModel>
-              <InModel>38</InModel>
+              <InModel>3</InModel>
               <OutPort>52</OutPort>
               <InPort>53</InPort>
               <Parent>0</Parent>
@@ -857,7 +873,7 @@
               <Port>
                 <Location>
                   <X>0 px</X>
-                  <Y>66.5 px</Y>
+                  <Y>57.5 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Left</Align>
@@ -868,11 +884,11 @@
               </Port>
               <Port>
                 <Location>
-                  <X>132.5 px</X>
-                  <Y>0 px</Y>
+                  <X>0 px</X>
+                  <Y>138.5 px</Y>
                 </Location>
-                <Anchors>Left Right</Anchors>
-                <Align>Bottom</Align>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>53</OID>
                   <PortType>FloatAnchor</PortType>
@@ -881,13 +897,17 @@
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>171.5 px</X>
-                <Y>336.5 px</Y>
+                <X>930 px</X>
+                <Y>127.5 px</Y>
+              </PointD>
+              <PointD>
+                <X>930 px</X>
+                <Y>177.5 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <DbOid>
-              <Path>moviecorner2.ratings.ratings_user_id_foreign</Path>
+              <Path>moviecorner2.genre_movie.genre_movie_movie_id_foreign</Path>
               <TypeName>ForeignKey</TypeName>
             </DbOid>
           </Model>
@@ -903,8 +923,8 @@
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>94.25 px</X>
-                  <Y>0 px</Y>
+                  <X>20 px</X>
+                  <Y>-25 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Left</Align>

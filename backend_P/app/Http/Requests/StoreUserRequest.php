@@ -11,6 +11,7 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        
         return true;
     }
 
@@ -22,7 +23,22 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255', //ez a rész nem jó, homokórázik
+            'password' => 'required|string',
+            'email' => 'required|string|email|unique:users',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Kötelező nevet megadni',
+            'email.required' => 'Kötelező email címet megadni',
+            'password.required' => 'Kötelező jelszót megadni',
+            'email.unique' => 'Már regisztrált email cím',
+            'image.image' => 'Nem megfelelő képformátum.',
+            'image.mimes' => 'Nem megfelelő formátum, csak jpeg,png,jpg,gif fogadható el.',
         ];
     }
 }
