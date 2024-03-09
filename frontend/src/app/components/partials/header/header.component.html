@@ -37,7 +37,7 @@
       <li><a href="#"><i class="fas fa-cog"></i> Beállítások</a></li>
       <li><a href="#"><i class="fas fa-users"></i> Felhasználók</a></li>
       <li><a href="#"><i class="fas fa-file-alt"></i> Dokumentumok</a></li>
-      <li *ngIf="this.service.isUserLoggedIn()" class="admin"><a routerLink="adminpanel"><i class="fas fa-user-shield"></i> Admin felület</a></li>
+      <li *ngIf="this.service.isUserLoggedIn() && this.service.hasAbilities('admin')" class="admin"><a routerLink="adminpanel"><i class="fas fa-user-shield"></i> Admin felület</a></li>
     </ul>
   </div>
 </div>

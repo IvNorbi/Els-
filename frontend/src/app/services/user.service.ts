@@ -24,11 +24,16 @@ export class UserService {
           sessionStorage.setItem("abilities", JSON.stringify(answer.accessToken.abilities));
         } else if (answer.plainTextToken && answer.plainTextToken !== "") {
           sessionStorage.setItem("token", answer.plainTextToken);
-          sessionStorage.setItem("abilities", "[]");
+          if (answer.accessToken && answer.accessToken.abilities) {
+            sessionStorage.setItem("abilities", JSON.stringify(answer.accessToken.abilities));
+          } else {
+            sessionStorage.setItem("abilities", JSON.stringify(answer.abilities));
+          }
         }
       }
     );
   }
+  
   
   logout(user:UserModel) {
     let token = sessionStorage.getItem("token");
@@ -56,8 +61,6 @@ export class UserService {
  hasAbilities(ability:string) {
    let abilities = sessionStorage.getItem("abilities")||"";
    return (abilities.indexOf(ability) >= 0);
-}
-
-  
+ }
 }
 
