@@ -9,6 +9,7 @@ import { MoviePageComponent } from './components/pages/movie-page/movie-page.com
 import { SearchComponent } from './components/partials/search/search.component';
 import { ToplistComponent } from './components/pages/toplist/toplist.component';
 import { AdminpanelComponent } from './components/pages/adminpanel/adminpanel.component';
+import { UseroptionsComponent } from './components/pages/useroptions/useroptions.component';
 
 
 //Angular material importok:
@@ -51,6 +52,12 @@ const routes: Routes = [
     title     : 'Adminpanel',
     path      : 'adminpanel',
     component : AdminpanelComponent
+  },
+
+  {
+    title     : 'UserBeállítások',
+    path      : 'editprofile',
+    component : UseroptionsComponent
   },
 
   
