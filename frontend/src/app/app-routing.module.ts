@@ -57,7 +57,7 @@ const routes: Routes = [
 
 
 
-  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Alapértelmezett útvonal átirányítása a home-ra
+  { path: '', redirectTo: '/Main', pathMatch: 'full' }, // Alapértelmezett útvonal átirányítása a home-ra
   { path: 'home', component: HomeComponent },
   { path: 'search/:searchTerm', component: HomeComponent }, 
   { path: 'film/:id', component: MoviePageComponent },

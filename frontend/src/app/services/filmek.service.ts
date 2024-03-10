@@ -9,6 +9,8 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root'
 })
 export class FilmekService {
+  private baseUrl = 'http://localhost:5100/api/movies/randommovies'; // Az API végpont URL-je
+
 
 
   constructor(private http:HttpClient) { }
@@ -17,6 +19,11 @@ export class FilmekService {
   getAll(): Observable<Film[]> {
     return this.http.get<Film[]>(MOVIES_URL);
   }
+
+  getRandomMovies(): Observable<Film[]> {
+    return this.http.get<Film[]>(this.baseUrl);
+  }
+
 
   
   getTopList(): Observable<Film[]> {
