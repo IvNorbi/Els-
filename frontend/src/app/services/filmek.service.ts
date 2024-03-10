@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Film } from '../shared/models/filmek';
 import { Tag } from '../shared/models/Tag';
 import { HttpClient } from '@angular/common/http';
-import { MOVIES_BY_ID_URL, MOVIES_BY_SEARCH_URL, MOVIES_BY_TAG_URL,  MOVIES_TAGS_URL, MOVIES_URL } from '../shared/contsants/urls';
+import { MOVIES_BY_ID_URL, MOVIES_BY_SEARCH_URL, MOVIES_BY_TAG_URL,  MOVIES_TAGS_URL, MOVIES_URL, RANDOM_MOVIES_URL } from '../shared/contsants/urls';
 import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilmekService {
-  private baseUrl = 'http://localhost:5100/api/movies/randommovies'; // Az API végpont URL-je
+
 
 
 
@@ -21,11 +21,10 @@ export class FilmekService {
   }
 
   getRandomMovies(): Observable<Film[]> {
-    return this.http.get<Film[]>(this.baseUrl);
+    return this.http.get<Film[]>(RANDOM_MOVIES_URL);
   }
 
 
-  
   getTopList(): Observable<Film[]> {
     return this.http.get<Film[]>(MOVIES_URL).pipe(
       map((movies: Film[]) => {
@@ -35,7 +34,6 @@ export class FilmekService {
       })
     );
   }
-
 
   getAllFilmBySearchTerm(searchTerm: string): Observable<Film[]> {
     return this.getAll().pipe(
