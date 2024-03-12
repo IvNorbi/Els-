@@ -72,5 +72,13 @@ updateMovie(film:Film):Observable<Film> {
   });
 }
 
+addMovie(film:Film):Observable<Film> {
+  let token = sessionStorage.getItem("token");
+  return this.http.post<Film>(MOVIES_URL, film, {headers: {
+    "Authorization": "Bearer "+token
+   }
+  });
+}
+
 }
 

@@ -34,6 +34,7 @@ import { MovieFormComponent } from './components/partials/movie-form/movie-form.
 import { UseroptionsComponent } from './components/pages/useroptions/useroptions.component';
 import { UserlistComponent } from './components/pages/userlist/userlist.component';
 import { MatCardModule } from '@angular/material/card';
+import { AddmoviedialogComponent } from './components/pages/addmoviedialog/addmoviedialog.component';
 
 
 
@@ -69,9 +70,11 @@ import { MatCardModule } from '@angular/material/card';
     MovieFormComponent,
     UseroptionsComponent,
     UserlistComponent,
+    AddmoviedialogComponent
   
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -85,7 +88,6 @@ import { MatCardModule } from '@angular/material/card';
     MatMenuModule,
     MatSidenavModule,
     FlexLayoutModule,
-    FormsModule,
     MatPaginatorModule,
     MatCardModule,
     
