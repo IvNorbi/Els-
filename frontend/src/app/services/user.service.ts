@@ -11,9 +11,9 @@ import {USER_URL} from '../shared/contsants/urls';
 })
 export class UserService {
 
-
-
   constructor(private http:HttpClient) { }
+
+  private apiUrl = 'http://localhost:5100/api/users'; // Az API végpont URL-je
 
 
   login(user: UserModel) {
@@ -34,7 +34,10 @@ export class UserService {
     );
   }
   
-  
+  getUsers(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+
   logout(user:UserModel) {
     let token = sessionStorage.getItem("token");
   

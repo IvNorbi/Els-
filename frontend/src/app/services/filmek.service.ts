@@ -11,8 +11,6 @@ import { Observable, map } from 'rxjs';
 export class FilmekService {
 
 
-
-
   constructor(private http:HttpClient) { }
 
 

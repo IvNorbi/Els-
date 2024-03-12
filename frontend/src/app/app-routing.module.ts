@@ -10,6 +10,7 @@ import { SearchComponent } from './components/partials/search/search.component';
 import { ToplistComponent } from './components/pages/toplist/toplist.component';
 import { AdminpanelComponent } from './components/pages/adminpanel/adminpanel.component';
 import { UseroptionsComponent } from './components/pages/useroptions/useroptions.component';
+import { UserlistComponent } from './components/pages/userlist/userlist.component';
 
 
 //Angular material importok:
@@ -60,6 +61,11 @@ const routes: Routes = [
     component : UseroptionsComponent
   },
 
+  {
+    title     : 'FelhasználóLista',
+    path      : 'userlist',
+    component : UserlistComponent
+  },
   
 
 

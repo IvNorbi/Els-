@@ -17,6 +17,22 @@
   margin-bottom: 10px;
 }
 
+/* FILM HOZZÁADÁSA GOMB */
+.addmovie{
+  margin-top: 40px;
+}
+.custom-primary-button {
+  background-color: blue;
+  color: white;
+}
+
+.custom-primary-button:hover {
+  background-color: #1565C0; 
+}
+
+/* FILM HOZZÁDÁSA GOMB IDÁIG */
+
+
 .col {
   flex: 1;
   display: flex;

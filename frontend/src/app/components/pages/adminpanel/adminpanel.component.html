@@ -2,6 +2,9 @@
   <div class="search-container">
     <input type="text" placeholder="Keresés..." [(ngModel)]="searchTerm" (input)="filterMovies()">
   </div>
+  <div class="addmovie">
+    <button mat-raised-button class="custom-primary-button" (click)="openDialog()">Film Hozzáadása</button>
+  </div>
   <div class="paginator-container">
     <mat-paginator [pageSize]="5"></mat-paginator>
   
