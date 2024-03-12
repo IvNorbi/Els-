@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { FilmekService } from 'src/app/services/filmek.service';
 import { Film } from 'src/app/shared/models/filmek';
 import { MovieFormComponent } from '../../partials/movie-form/movie-form.component';
+import { AddmoviedialogComponent } from '../addmoviedialog/addmoviedialog.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-adminpanel',
@@ -23,6 +25,17 @@ export class AdminpanelComponent {
     private dialog: MatDialog
   ) {
     this.loadMovies();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddmoviedialogComponent, {
+      width: '400px',
+      data: {} // Üres objektummal nyitjuk meg a dialogot
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
   
   //FILMEK LISTÁZÁSA

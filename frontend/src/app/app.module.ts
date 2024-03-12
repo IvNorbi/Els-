@@ -32,6 +32,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FooterComponent } from './components/partials/footer/footer.component';
 import { MovieFormComponent } from './components/partials/movie-form/movie-form.component';
 import { UseroptionsComponent } from './components/pages/useroptions/useroptions.component';
+import { UserlistComponent } from './components/pages/userlist/userlist.component';
+import { MatCardModule } from '@angular/material/card';
+
+
 
 
 
@@ -64,6 +68,7 @@ import { UseroptionsComponent } from './components/pages/useroptions/useroptions
     FooterComponent,
     MovieFormComponent,
     UseroptionsComponent,
+    UserlistComponent,
   
   ],
   imports: [
@@ -82,6 +87,7 @@ import { UseroptionsComponent } from './components/pages/useroptions/useroptions
     FlexLayoutModule,
     FormsModule,
     MatPaginatorModule,
+    MatCardModule,
     
   ],
   providers: [],
