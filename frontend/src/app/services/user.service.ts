@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserModel } from '../shared/models/userModel';
 import { Observable, map } from 'rxjs';
-import {USER_URL} from '../shared/contsants/urls';
+import {USERS_URL, USER_URL} from '../shared/contsants/urls';
 
 
 
@@ -35,7 +35,10 @@ export class UserService {
   }
   
   getUsers(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    let token = sessionStorage.getItem("token");
+    let headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get<any[]>(USERS_URL, { headers: headers });
   }
 
   logout(user:UserModel) {
