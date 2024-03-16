@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { UserModel } from '../shared/models/userModel';
 import { Observable, map } from 'rxjs';
 import {USERS_URL, USER_URL} from '../shared/contsants/urls';
+import { Router } from '@angular/router';
+
 
 
 
@@ -11,14 +13,11 @@ import {USERS_URL, USER_URL} from '../shared/contsants/urls';
 })
 export class UserService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient , private router: Router) { }
 
-  private apiUrl = 'http://localhost:5100/api/users'; // Az API végpont URL-je
-
-
-  login(user: UserModel) {
-    return this.http.post<any>(USER_URL + "login", user).subscribe(
-      (answer: any) => {
+  login(user: UserModel): Observable<any> {
+    return this.http.post<any>(USER_URL + "login", user).pipe(
+      map((answer: any) => {
         if (answer.accessToken && answer.accessToken.token) {
           sessionStorage.setItem("token", answer.accessToken.token);
           sessionStorage.setItem("abilities", JSON.stringify(answer.accessToken.abilities));
@@ -30,7 +29,9 @@ export class UserService {
             sessionStorage.setItem("abilities", JSON.stringify(answer.abilities));
           }
         }
-      }
+        this.router.navigateByUrl('/').then(() => window.location.reload());
+        return answer; // Válasz visszaadása komponensnek.
+      })
     );
   }
   
@@ -40,6 +41,13 @@ export class UserService {
 
     return this.http.get<any[]>(USERS_URL, { headers: headers });
   }
+
+  getLoggedInUser(): Observable<any> {
+    let token = sessionStorage.getItem("token");
+    let headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(USER_URL, { headers: headers });
+  }
+
 
   logout(user:UserModel) {
     let token = sessionStorage.getItem("token");

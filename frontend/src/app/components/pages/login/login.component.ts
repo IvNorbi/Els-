@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { UserModel } from 'src/app/shared/models/userModel';
 
@@ -10,23 +9,24 @@ import { UserModel } from 'src/app/shared/models/userModel';
 })
 export class LoginComponent {
 
-  public user:UserModel = {
-    email :"admin@example.com",
-    password :"password"
+  public user: UserModel = {
+    email: "admin@example.com",
+    password: "password"
   };
 
-  constructor (public service:UserService) {
-
-  }
+  constructor(public service: UserService) {}
 
   login() {
-    this.service.login(this.user);
+    this.service.login(this.user).subscribe(response => {
+      if (response.success) {
+        this.service.getLoggedInUser().subscribe(user => {
+          this.user = user;
+        });
+      }
+    });
   }
 
   logout() {
     this.service.logout(this.user);
   }
-
 }
-
-
