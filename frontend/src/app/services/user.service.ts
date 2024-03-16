@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserModel } from '../shared/models/userModel';
 import { Observable, map } from 'rxjs';
-import {USERS_URL, USER_URL} from '../shared/contsants/urls';
+import {REG_URL, USERS_URL, USER_URL} from '../shared/contsants/urls';
 import { Router } from '@angular/router';
 
 
@@ -59,6 +59,10 @@ export class UserService {
     }).subscribe();
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("abilities");
+  }
+
+  register(user: UserModel): Observable<UserModel> {
+    return this.http.post<UserModel>(REG_URL, user);
   }
 
   isUserLoggedIn() {

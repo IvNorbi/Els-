@@ -34,3 +34,9 @@
 .success-fieldset {
   background-color: #e6ffe6;
 }
+
+#regfield{
+  font-weight: bold;
+  font-size: 15px;
+  color: blue;
+}
