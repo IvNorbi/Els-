@@ -57,11 +57,16 @@ class UserController extends Controller
 
     public function index()
     {
+        $seged = [];
         if (strpos(auth()->user()->ability, 'admin') !== false) {
-            return User::all();
+            $seged = User::all();
         } else {
-            return User::select('name', 'imageUrl')->get();
+            $seged = User::select('name', 'imageUrl')->get();
         }
+        foreach ($seged as $user) {
+            $user->imageUrl = asset("storage/" . $user->imageUrl);
+        }
+        return $seged;
     }
 
     // public function index()

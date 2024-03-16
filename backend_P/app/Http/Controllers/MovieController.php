@@ -27,13 +27,16 @@ class MovieController extends Controller
 
         //dd($request->input("order"));
         if ($request->input("order")!= null)
-            $return = Movie::with(['rolesPeople.roles', 'rolesPeople.people'])->orderBy($request->input("order"))->get();
+            $return = Movie::with(['comments.user','rolesPeople.roles', 'rolesPeople.people'])->orderBy($request->input("order"))->get();
         else
-            $return = Movie::with(['rolesPeople.roles', 'rolesPeople.people'])->get();
+            $return = Movie::with(['comments.user','rolesPeople.roles', 'rolesPeople.people'])->get();
         foreach ($return as $key => $movie) {
             $tags = [];
             foreach ($movie->genres as $genre) {
                 $tags[] = $genre->name;
+            }
+            foreach ($movie->comments as $comment) {
+                $comment->user->imageUrl = asset("storage/" . $comment->user->imageUrl);
             }
             $movie->tags = $tags;
             $movie->stars = round($movie->ratings / 2.0);
@@ -46,7 +49,7 @@ class MovieController extends Controller
 
     public function indexByGenre(Genre $genre)
     {
-        $return = Movie::with(['rolesPeople.roles', 'rolesPeople.people'])->get();
+        $return = Movie::with(['comments.user','rolesPeople.roles', 'rolesPeople.people'])->get();
         $return2 = [];
         foreach ($return as $key => $movie) {
             $belekellrakni = false;
@@ -54,6 +57,9 @@ class MovieController extends Controller
             foreach ($movie->genres as $g) {
                 if ($genre->name == $g->name) $belekellrakni = true;
                 $tags[] = $g->name;
+            }
+            foreach ($movie->comments as $comment) {
+                $comment->user->imageUrl = asset("storage/" . $comment->user->imageUrl);
             }
             $movie->tags = $tags;
             $movie->stars = round($movie->ratings / 2.0);
@@ -66,11 +72,14 @@ class MovieController extends Controller
 
     public function toplist()
     {
-        $return = Movie::with(['rolesPeople.roles', 'rolesPeople.people'])->orderBy('ratings', 'desc')->get();
+        $return = Movie::with(['comments.user','rolesPeople.roles', 'rolesPeople.people'])->orderBy('ratings', 'desc')->get();
         foreach ($return as $key => $movie) {
             $tags = [];
             foreach ($movie->genres as $genre) {
                 $tags[] = $genre->name;
+            }
+            foreach ($movie->comments as $comment) {
+                $comment->user->imageUrl = asset("storage/" . $comment->user->imageUrl);
             }
             $movie->tags = $tags;
             $movie->stars = round($movie->ratings / 2.0);
@@ -88,14 +97,17 @@ class MovieController extends Controller
         $movieIds = Movie::pluck('id')->toArray();                                                          
 
         if (count($movieIds) < 4) {                                                                         
-            $movies = Movie::all();                                                                        
+            $movies = Movie::with(['comments.user','rolesPeople.roles', 'rolesPeople.people'])->all();                                                                        
             Session::put('previousMovies', $movies->pluck('id'));                                           
         } else {
             shuffle($movieIds);                                                                             
             $filteredMovieIds = array_diff($movieIds, $previousMovies);                                    
-            $movies = Movie::whereIn('id', array_slice($filteredMovieIds, 0, 4))->get();                   
+            $movies = Movie::with(['comments.user','rolesPeople.roles', 'rolesPeople.people'])->whereIn('id', array_slice($filteredMovieIds, 0, 4))->get();                   
             foreach ($movies as $movie) {
                 $movie->imageUrl = asset("storage/" . $movie->imageUrl);
+            }
+            foreach ($movie->comments as $comment) {
+                $comment->user->imageUrl = asset("storage/" . $comment->user->imageUrl);
             }
             Session::put('previousMovies', array_merge($previousMovies, $movies->pluck('id')->toArray()));  
             if (count($filteredMovieIds) < 4) {                                                             
@@ -128,10 +140,14 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
+        $movie->comments;
         $movie->rolesPeople;
         $tags = [];
         foreach ($movie->genres as $genre) {
             $tags[] = $genre->name;
+        }
+        foreach ($movie->comments as $comment) {
+            $comment->user->imageUrl = asset("storage/" . $comment->user->imageUrl);
         }
         $movie->tags = $tags;
         $movie->stars = round($movie->ratings / 2.0);
