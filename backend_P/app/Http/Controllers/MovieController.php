@@ -82,54 +82,33 @@ class MovieController extends Controller
 
     public function randomMovies()
     {
-        $previousMovies = Session::get('previousMovies', []);                                               // Előző lekérdezésből származó filmek
+        $previousMovies = Session::get('previousMovies', []);                                              
 
 
-        $movieIds = Movie::pluck('id')->toArray();                                                          // Lekérdezi az összes film ID-jét
+        $movieIds = Movie::pluck('id')->toArray();                                                          
 
-        if (count($movieIds) < 4) {                                                                         // Ellenőrzi, hogy van-e elegendő film az adatbázisban
-            $movies = Movie::all();                                                                         // Ha kevesebb, mint 4 film van az adatbázisban, visszaad mindent
-            Session::put('previousMovies', $movies->pluck('id'));                                           // Frissíti a session-t az összes film ID-jével
+        if (count($movieIds) < 4) {                                                                         
+            $movies = Movie::all();                                                                        
+            Session::put('previousMovies', $movies->pluck('id'));                                           
         } else {
-            shuffle($movieIds);                                                                             // Összekeveri a filmeket
-            $filteredMovieIds = array_diff($movieIds, $previousMovies);                                     // Kiszűri azokat a filmeket, amelyek már szerepeltek
-            $movies = Movie::whereIn('id', array_slice($filteredMovieIds, 0, 4))->get();                    // Lekérdezi a 4 véletlenszerű filmet 
+            shuffle($movieIds);                                                                             
+            $filteredMovieIds = array_diff($movieIds, $previousMovies);                                    
+            $movies = Movie::whereIn('id', array_slice($filteredMovieIds, 0, 4))->get();                   
             foreach ($movies as $movie) {
                 $movie->imageUrl = asset("storage/" . $movie->imageUrl);
             }
-            Session::put('previousMovies', array_merge($previousMovies, $movies->pluck('id')->toArray()));  // Tárolja az aktuális lekérdezésből származó filmeket a sessionben
-            if (count($filteredMovieIds) < 4) {                                                             // Ha kevesebb, mint 4 új film van megjelenítendő, újraindítja a ciklust
+            Session::put('previousMovies', array_merge($previousMovies, $movies->pluck('id')->toArray()));  
+            if (count($filteredMovieIds) < 4) {                                                             
                 return $this->randomMovies();
             }
         }
-        return response()->json($movies);                                                                    // Visszatér a filmekkel
+        return response()->json($movies);                                                                  
     }
 
 
     /**
      * Store a newly created resource in storage.
-     */
-    // public function store(StoreMovieRequest $request)
-    // {
-    //     $movie = new Movie();
-
-    //     $movie->name = $request->name;
-    //     $movie->release_year = $request->release_year;
-    //     $movie->description = $request->description;
-
-    //     $file = $request->file('image');
-    //     $extension = $file->getClientOriginalExtension();
-
-    //     $movie->imageUrl = str_replace('public/', '', $file->storeAs('public', $request->name . "." . $extension));
-
-    //     if ($request->imageUrl != "")
-    //         $movie->imageUrl = $request->imageUrl;
-    //     // $movie->ratings = $request->ratings;
-    //     $movie->length = $request->length;
-    //     $movie->save();
-
-    //     return $movie;
-    // }
+     */ 
     public function store(StoreMovieRequest $request)
     {
         $movie = new Movie();
@@ -182,28 +161,6 @@ class MovieController extends Controller
         $movie->save();
         return $movie;
     }
-    // public function update(UpdateMovieRequest $request, Movie $movie)
-    // {
-    //     if ($request->has('name')) {
-    //         $movie->name = $request->input('name');
-    //     }
-    //     if ($request->has('description')) {
-    //         $movie->description = $request->input('description');
-    //     }
-    //     if ($request->has('release_year')) {
-    //         $movie->release_year = $request->input('release_year');
-    //     }
-    //     if ($request->has('length')) {
-    //         $movie->length = $request->input('length');
-    //     }
-    //     if ($request->has('imageUrl')) {
-    //         $this->uploadImage($movie, $request);
-    //     }
-    
-    //     $movie->save();
-    
-    //     return $movie;
-    // }
 
     /**
      * Remove the specified resource from storage.
