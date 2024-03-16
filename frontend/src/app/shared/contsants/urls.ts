@@ -8,4 +8,5 @@ export const MOVIES_BY_ID_URL = MOVIES_URL + '/';
 export const USER_URL = BASE_URL + '/api/user/';
 export const USERS_URL = BASE_URL + '/api/users/';
 export const RANDOM_MOVIES_URL = MOVIES_URL + '/randommovies'
+export const REG_URL = BASE_URL + '/api/registration'
 
