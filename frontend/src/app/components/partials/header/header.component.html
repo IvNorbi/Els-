@@ -1,7 +1,7 @@
 <div class="header-container">
   <mat-toolbar color="primary" class="header-toolbar">
     <!-- Hamburger ikon -->
-    <button mat-icon-button (click)="toggleUserPanel()">
+    <button mat-icon-button *ngIf="isLoggedIn" (click)="toggleUserPanel()">
       <mat-icon>menu</mat-icon>
     </button>
 
