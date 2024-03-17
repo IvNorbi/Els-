@@ -80,6 +80,9 @@ Route::get('toplist', [MovieController::class, 'toplist']);
 // Új műfaj hozzáadása filmhez
 Route::post('movies/{movie}/tag', [MovieController::class, 'addGenre'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
+// Új színész hozzáadása filmhez
+
+
 /*************************************************************************************************************************************/
 /******* Comment *********************************************************************************************************************/
 /*************************************************************************************************************************************/
@@ -160,7 +163,7 @@ Route::post('/user/login', [UserController::class, 'login']);
 Route::post('/user/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
 
 // User-ek lekérdezése
-Route::get('users', [UserController::class, 'index'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
+Route::get('users', [UserController::class, 'index'])->middleware(['auth:sanctum']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

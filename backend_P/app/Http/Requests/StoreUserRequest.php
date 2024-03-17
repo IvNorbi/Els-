@@ -23,7 +23,7 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255', //ez a rész nem jó, homokórázik
+            'name' => 'required|string|max:255',
             'password' => 'required|string',
             'email' => 'required|string|email|unique:users',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',

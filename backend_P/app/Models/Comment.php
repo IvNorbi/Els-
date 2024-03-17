@@ -21,6 +21,6 @@ class Comment extends Model
     // Egy komment egy User-hez tartozik
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->select('id', 'name', 'imageUrl');
     }
 }

@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Laravel\Sanctum\PersonalAccessToken as Token;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 
 class UserController extends Controller
@@ -17,21 +19,16 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        // Érvényesítjük a beküldött adatokat
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        // Felhasználót keresünk az email alapján
         $user = User::where('email', $request->email)->first();
-        // Ellenőrizzük a jelszót és a felhasználót
         if (!$user || !Hash::check($request->password, $user->password)) {
-            // Hibát dobunk, ha a hitelesítés sikertelen
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         }
-        // Token létrehozása és visszaadása
         return $user->createToken("MovieCorner", explode(',', $user->ability));
     }
 
@@ -53,46 +50,57 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function index()
+    // {
+    //     return User::get();
+    // }
+
     public function index()
     {
-        return User::get();
+        $seged = [];
+        if (strpos(auth()->user()->ability, 'admin') !== false) {
+            $seged = User::all();
+        } else {
+            $seged = User::select('name', 'imageUrl')->get();
+        }
+        foreach ($seged as $user) {
+            $user->imageUrl = asset("storage/" . $user->imageUrl);
+        }
+        return $seged;
     }
+
+    // public function index()
+    // {
+    //     $currentUser = auth()->user();
+
+    //     if ($currentUser->can('isadmin') || $currentUser->can('ismoderator')) {
+    //         return User::all();
+    //     }
+
+    //     return User::select('id', 'name')->get();
+    // }
+
+    // public function index()
+    // {
+    //     if (Auth::check() && Gate::allows('admin')) {
+    //         return User::all();
+    //     }
+
+    //     return User::select('name', 'imageUrl')->get();
+    // }
 
 
     /**
      * Store a newly created resource in storage.
      */
-    // public function store(StoreUserRequest $request)
-    // {
-    //     $request->validate([
-    //         'name' => 'required|string|max:255',
-    //         'email' => 'required|string|email|unique:users',
-    //         'password' => 'required|string|min:8|confirmed',
-    //     ]);
-    //     $user = new User();
-    //     $user->name = $request->name;
-    //     $user->email = $request->email;
-    //     $user->password = Hash::make($request->password);
-    //     $user->ability = "user";
-    //     $user->save();
-    //     return $user;
-    // }
 
     public function store(StoreUserRequest $request)
     {
-       
-        // Felhasználó beküldött adatok validációja
-       //$this->validateUserRequest($request);
-        // Új felhasználó létrehozása
         $user = new User();
-        // Felhasználó adatainak feltöltése a kérés alapján
         $this->fillUserFromRequestWhenStore($user, $request);
         $user->save();
-        // Felhasználó profilképének feltöltése
         $this->uploadImage($user, $request);
-        // Felhasználó mentése az adatbázisba
         $user->save();
-        // JSON válasz küldése az új felhasználóval
         return response()->json($user);
     }
 
@@ -108,35 +116,12 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    // public function update(UpdateUserRequest $request, User $user)
-    // {
-    //     if ($request->name != "") $user->name = $request->name;
-
-    //     /* ....részletek hiányoznak */
-
-    //     if ($request->ability == "admin")
-    //         $user->ability = "admin,moderator,user";
-    //     elseif ($request->ability == "moderator")
-    //         $user->ability = "moderator,user";
-    //     else
-    //         $user->ability = "user";
-
-
-    //     $user->save();
-    //     return $user;
-    // }
 
     public function update(UpdateUserRequest $request, User $user)
     {
-        // Név módosítása, ha a kérés tartalmaz nevet
-       
-        // Felhasználó adatainak frissítése a kérés alapján
         $this->fillUserFromRequestWhenUpdateByAdmin($user, $request);
-        // Felhasználó profilképének frissítése
         $this->uploadImage($user, $request);
-        // Felhasználó mentése az adatbázisba
         $user->save();
-        // JSON válasz küldése a frissített felhasználóval
         return response()->json($user);
     }
 
@@ -144,79 +129,38 @@ class UserController extends Controller
     {
 
         $tokenuser = auth()->user();
-       // dd($tokenuser);
+        // dd($tokenuser);
         $user = User::where('id', $tokenuser->currentAccessToken()->tokenable_id)->first();
-
-        // Név módosítása, ha a kérés tartalmaz nevet
         if ($request->filled('name')) {
             $user->name = $request->input('name');
         }
-        // Felhasználó adatainak frissítése a kérés alapján
         $this->fillUserFromRequestWhenUpdateByUser($user, $request);
-        // Felhasználó profilképének frissítése
         $this->uploadImage($user, $request);
-        // Felhasználó mentése az adatbázisba
         $user->save();
-        // JSON válasz küldése a frissített felhasználóval
         return response()->json($user);
     }
 
     /**
      * Remove the specified resource from storage.
      */
+
+    // Törlés
     public function destroy(User $user)
     {
         $user->delete();
         return true;
     }
 
-   /* protected function validateUserRequest($request)
-    {
-        try{
-            $request->validate([
-                'name' => 'required|string|max:255',
-            
-            ]);
-            $request->validate([
-            
-                'email' => 'required|string|email|unique:users',
-            
-            ]);
-            $request->validate([
-        
-                'password' => 'required|string|min:8',
-            
-            ]);
-            $request->validate([
-
-                'imageUrl' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            ]);
-        } catch (\Illuminate\Validation\ValidationException $th) {
-            return $th->validator->errors();
-        }
-    }*/
-
-    // protected function fillUserFromRequest(User $user, $request)
-    // {
-    //     $user->email = $request->input('email');
-    //     $user->password = Hash::make($request->input('password'));
-
-    //     // További attribútumok feltöltése a request alapján
-    // }
-
+    // Regisztárció
     protected function fillUserFromRequestWhenStore(User $user, $request)
     {
-        // Felhasználó e-mail címének beállítása a kérés alapján
-       
         $user->name = $request->input('name');
-        
         $user->email = $request->input('email');
-        // Felhasználó jelszavának beállítása, hash-elése a kérés alapján
         $user->password = Hash::make($request->input('password'));
-        // Ellenőrzés: Az 'ability' jelenléte és érvényessége
         $user->ability = "user";
     }
 
+    // User módosítás admin által
     protected function fillUserFromRequestWhenUpdateByAdmin(User $user, $request)
     {
         if ($request->filled('name'))
@@ -241,6 +185,7 @@ class UserController extends Controller
         }
     }
 
+    // User módosítás user által
     protected function fillUserFromRequestWhenUpdateByUser(User $user, $request)
     {
         if ($request->filled('name'))
@@ -253,14 +198,15 @@ class UserController extends Controller
             $user->password = Hash::make($request->input('password'));
     }
 
+    // Képfeltöltés
     protected function uploadImage(User $user, $request)
     {
-        if ($request->hasFile('image')) {                       // Ellenőrzés: Van-e 'image' mező a kérésben          
-            $file = $request->file('image');                    // Kép feltöltése és elérési útvonal beállítása, ha van 'image' mező
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $user->imageUrl = str_replace('public/', '', $file->storeAs('public/userprofile', $user->id . "." . $extension));
-        } elseif ($request->filled('imageUrl')) {               // Ellenőrzés: Van-e 'imageUrl' mező a kérésben és nem üres-e            
-            $user->imageUrl = $request->input('imageUrl');      // Az elérési útvonal beállítása a 'imageUrl' mező értéke alapján
+        } elseif ($request->filled('imageUrl')) {
+            $user->imageUrl = $request->input('imageUrl');
         }
     }
 }
