@@ -1,19 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { UserService } from "src/app/services/user.service";
 
 @Component({
   selector: 'app-useroptions',
   templateUrl: './useroptions.component.html',
   styleUrls: ['./useroptions.component.css']
 })
-export class UseroptionsComponent {
+export class UseroptionsComponent implements OnInit {
   user = {
     email: '',
-    username: '',
+    name: '',
     password: ''
   };
   imageUrl: string | ArrayBuffer | null = null;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
+
+  ngOnInit() {
+    this.loadLoggedInUserData();
+  }
+
+  loadLoggedInUserData() {
+    this.userService.getLoggedInUser().subscribe(
+      (userData: any) => {
+        this.user = userData; // Felhasználói adatok betöltése
+      },
+      (error: any) => {
+        console.error('Hiba történt a felhasználó adatainak betöltése közben:', error);
+      }
+    );
+  }
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
@@ -27,7 +43,6 @@ export class UseroptionsComponent {
   }
 
   saveChanges() {
-    // Implement saving changes logic here
-    console.log('Changes saved:', this.user);
+    console.log('Változtatások mentve: ', this.user);
   }
 }

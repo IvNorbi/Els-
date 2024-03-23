@@ -15,9 +15,9 @@
       <button mat-button routerLink="Toplist">
         <mat-icon>list</mat-icon><span class="menu-label">Toplista</span>
       </button>
-      <button mat-button routerLink="editprofile">
+      <!-- <button mat-button routerLink="editprofile">
         <mat-icon>settings</mat-icon><span class="menu-label">Beállítások</span>
-      </button>
+      </button> -->
       <button mat-button routerLink="userlist">
         <mat-icon>group</mat-icon><span class="menu-label">Felhasználók</span>
       </button>
@@ -38,7 +38,7 @@
 <div class="horizontal-menu" [ngClass]="{ 'open': userPanelOpen }">
   <ul>
     <li><a routerLink="Main"><i class="fas fa-home"></i> Főoldal</a></li>
-    <li><a routerLink="editprofile"><i class="fas fa-cog"></i> Beállítások</a></li>
+    <li><a routerLink="editprofile"><i class="fas fa-cog"></i> Profilom</a></li>
     <li><a routerLink="userlist"><i class="fas fa-users"></i> Felhasználók</a></li>
     <li *ngIf="this.service.hasAbilities('admin')" class="admin"><a routerLink="adminpanel"><i class="fas fa-user-shield"></i> Filmek szerkesztése</a></li>
   </ul>

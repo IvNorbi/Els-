@@ -1,5 +1,6 @@
 export class UserModel {
     email!:string;
     password!:string;
-    name?:string;
+    name?:string; // Login komponens miatt. 
+    imageUrl?:string;
 }
