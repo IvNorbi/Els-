@@ -80,8 +80,15 @@ Route::get('toplist', [MovieController::class, 'toplist']);
 // Új műfaj hozzáadása filmhez
 Route::post('movies/{movie}/tag', [MovieController::class, 'addGenre'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
-// Új színész hozzáadása filmhez
+// műfaj törlése a filmről
+Route::delete('movies/{movie}/tag', [MovieController::class, 'deleteGenre'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
+
+// Új színész hozzáadása filmhez
+Route::post('movies/{movie}/person', [MovieController::class, 'addPerson'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
+
+// szerep törlése a filmről
+Route::delete('movies/{movie}/person', [MovieController::class, 'deletePerson'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
 /*************************************************************************************************************************************/
 /******* Comment *********************************************************************************************************************/

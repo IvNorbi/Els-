@@ -10,9 +10,12 @@ use App\Models\MovieRolePeople;
 use App\Models\Comment;
 use App\Models\Rating;
 use App\Models\Genre;
+use App\Models\Role;
+use App\Models\People;
 use App\Models\GenreMovie;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
+use Thiagoprz\CompositeKey\HasCompositeKey;
 
 
 
@@ -142,6 +145,11 @@ class MovieController extends Controller
     {
         $movie->comments;
         $movie->rolesPeople;
+        foreach($movie->rolesPeople as $key => $rolePeople) {
+            $rolePeople->people;    
+            $rolePeople->roles;    
+        }
+
         $tags = [];
         foreach ($movie->genres as $genre) {
             $tags[] = $genre->name;
@@ -222,6 +230,11 @@ class MovieController extends Controller
 
 
         $tags = [];
+        $movie->rolesPeople;
+        foreach($movie->rolesPeople as $key => $rolePeople) {
+            $rolePeople->people;    
+            $rolePeople->roles;    
+        }
         foreach ($movie->genres as $genre) {
             $tags[] = $genre->name;
         }
@@ -234,17 +247,22 @@ class MovieController extends Controller
 
     protected function deleteGenre(Movie $movie, Request $request) {
         
-        
-  
         $genre = Genre::where("name", "=", $request->input("tag"))->first();
         if ( $genre  == null) return response()->json(["error"=>"Nincs ilyen műfaj"], 404); 
         
-        $letezik = GenreMovie::where("movie_id" ,"=", $movie->id)->where("genre_id" ,"=", $genre->id)->first();
+        $letezik = GenreMovie::where("movie_id" ,"=", $movie->id)
+                             ->where("genre_id" ,"=", $genre->id)
+                             ->first();
         if ( $letezik == null) return response()->json(["error"=>"Nem is volt ilyen műfaja a filmnek"], 505); 
         
         $letezik->delete();
 
         $tags = [];
+        $movie->rolesPeople;
+        foreach($movie->rolesPeople as $key => $rolePeople) {
+            $rolePeople->people;    
+            $rolePeople->roles;    
+        }
         foreach ($movie->genres as $genre) {
             $tags[] = $genre->name;
         }
@@ -254,4 +272,113 @@ class MovieController extends Controller
 
         return $movie;
     }
+
+    protected function addPerson(Movie $movie, Request $request) {
+        
+        
+        if ( empty( $request->input("role"))) return response()->json(["error"=>"Nincs feladatkör megadva"], 404); 
+        if ( $request->input("role") == "színész/színésznő" ) {
+            if (empty( $request->input("rolename"))) return response()->json(["error"=>"Nincs feladatkörhöz szerepnév megadva"], 404); 
+        }
+        $role = Role::where("name", "=", $request->input("role"))->first();
+        if ( $role == null) {
+            $role = new Role();
+            $role->name = $request->input("role");
+            $role->save();
+            //return response()->json(["error"=>"Nem létező feladatkör"], 404); 
+        }
+       
+        /** */
+
+        if ( empty( $request->input("people_id")) && empty( $request->input("people"))) return response()->json(["error"=>"Nincs személy megadva"], 404); 
+        if ( !empty($request->input("people_id"))) {
+            $people = People::where("id", "=", $request->input("people_id"))->first();
+        }  else {
+            $people = People::where("name", "=", $request->input("people"))->first();
+        }  
+        if ( $people == null) return response()->json(["error"=>"Nem létező személy"], 404); 
+
+
+        /** */
+
+        $letezik = MovieRolePeople::where("movie_id" ,"=", $movie->id)
+                                  ->where("role_id" ,"=", $role->id)
+                                  ->where("people_id" ,"=", $people->id)
+                                  ->first();
+        if ( $letezik != null) return response()->json(["error"=>"Már van ilyen szerepköre a filmnek"], 505); 
+
+        $movieRolePeople                = new MovieRolePeople();
+        $movieRolePeople->movie_id      = $movie->id;
+        $movieRolePeople->role_id       = $role->id;
+        $movieRolePeople->people_id     = $people->id;
+        $movieRolePeople->rolename      = $role->id==1?$request->input("rolename"):"";
+
+        $movieRolePeople->save();
+       /* $genre = Genre::where("name", "=", $request->input("tag"))->first();
+        if ( $genre  == null) return response()->json(["error"=>"Nincs ilyen műfaj"], 404); 
+        
+        $letezik = GenreMovie::where("movie_id" ,"=", $movie->id)->where("genre_id" ,"=", $genre->id)->first();
+        if ( $letezik != null) return response()->json(["error"=>"Már van ilyen műfaja a filmnek"], 505); 
+        
+        
+        $genreMovie             = new GenreMovie();
+        $genreMovie->movie_id   = $movie->id;
+        $genreMovie->genre_id   = $genre->id;
+        $genreMovie->save();
+
+
+*/
+        $tags = [];
+        $movie->rolesPeople;
+        foreach($movie->rolesPeople as $key => $rolePeople) {
+            $rolePeople->people;    
+            $rolePeople->roles;    
+        }
+        foreach ($movie->genres as $genre) {
+            $tags[] = $genre->name;
+        }
+        $movie->tags = $tags;
+        $movie->stars = round($movie->ratings / 2.0);
+        $movie->imageUrl = asset("storage/" . $movie->imageUrl);
+
+        return $movie;
+    }
+
+
+    protected function deletePerson(Movie $movie, Request $request) {
+        
+        if ( empty( $request->input("people_id")) && empty( $request->input("people"))) return response()->json(["error"=>"Nincs személy megadva"], 404); 
+        if ( !empty($request->input("people_id"))) {
+            $people = People::where("id", "=", $request->input("people_id"))->first();
+        }  else {
+            $people = People::where("name", "=", $request->input("people"))->first();
+        }  
+        
+        $role = Role::where("name", "=", $request->input("role"))->first();
+        if ( $role  == null) return response()->json(["error"=>"Nincs ilyen feladatkör"], 404); 
+        
+        $letezik = MovieRolePeople::where("movie_id" ,"=", $movie->id)
+                             ->where("people_id" ,"=", $people->id)
+                             ->where("role_id" ,"=", $role->id)
+                             ->first();
+        if ( $letezik == null) return response()->json(["error"=>"Nem is volt ilyen szereplő a filmnek"], 505); 
+        
+        $letezik->delete();
+
+        $tags = [];
+        $movie->rolesPeople;
+        foreach($movie->rolesPeople as $key => $rolePeople) {
+            $rolePeople->people;    
+            $rolePeople->roles;    
+        }
+        foreach ($movie->genres as $genre) {
+            $tags[] = $genre->name;
+        }
+        $movie->tags = $tags;
+        $movie->stars = round($movie->ratings / 2.0);
+        $movie->imageUrl = asset("storage/" . $movie->imageUrl);
+
+        return $movie;
+    }
+
 }

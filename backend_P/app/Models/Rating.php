@@ -11,6 +11,8 @@ class Rating extends Model
 {
     use HasFactory;
 
+    protected $hidden = ['created_at', 'updated_at'];
+
     //protected $table = 'comments';
 
     // Egy komment egy Movie-hoz tartozik

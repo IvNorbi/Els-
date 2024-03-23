@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Comment extends Model
 {
     use HasFactory;
+    protected $hidden = ['created_at', 'updated_at'];
 
     //protected $table = 'comments';
 
