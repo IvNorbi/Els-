@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FilmekService } from 'src/app/services/filmek.service';
 import { Film } from 'src/app/shared/models/filmek';
 import { Tag } from 'src/app/shared/models/Tag';
+
 
 @Component({
   selector: 'app-add-tag-dialog',
@@ -10,20 +12,44 @@ import { Tag } from 'src/app/shared/models/Tag';
 })
 export class AddTagDialogComponent implements OnInit {
   film: Film;
-  tags: Tag[] = [];
-  selectedTag: Tag | null = null;
+  tags: string[] = [];
+  selectedTag: string = '';
+  newTagName: string = '';
+  newTag: string = ''; 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { film: Film }) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: { film: Film },
+    private addTagService: FilmekService
+  ) {
     this.film = data.film;
   }
 
   ngOnInit(): void {
     if (this.film && this.film.tags) {
-      this.tags = this.film.tags;
+      this.tags = this.film.tags.map(tag => tag.name);
     }
   }
 
-  onTagSelected(tag: Tag): void {
-    this.selectedTag = tag;
+  onTagSelected(tagName: string): void {
+    this.selectedTag = tagName;
   }
+
+  addTag(): void {
+    if (this.newTagName.trim() === '') return; 
+  
+    const movieId: number = parseInt(this.film.id);
+    this.addTagService.addTagToMovie(movieId, this.newTagName).subscribe(
+      response => {
+        console.log('Címke sikeresen hozzáadva:', response);
+        this.tags.push(this.newTagName);
+        this.selectedTag = this.newTagName;
+        this.newTagName = '';
+      },
+      error => {
+        console.error('Hiba történt a címke hozzáadása közben:', error);
+
+      }
+    );
+  }
+  
 }
