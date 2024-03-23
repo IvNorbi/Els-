@@ -48,6 +48,7 @@ getAllTags(): Observable<Tag[]>{
   return this.http.get<Tag[]>(MOVIES_TAGS_URL);
 }
 
+
 getAllMovieByTag(tag:string): Observable<Film[]>{
   return tag  === "All" ?
   this.getAll() :
