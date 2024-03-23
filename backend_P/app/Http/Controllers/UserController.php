@@ -30,7 +30,48 @@ class UserController extends Controller
             ]);
         }
         return $user->createToken("MovieCorner", explode(',', $user->ability));
+        // $token = $user->createToken("MovieCorner", explode(',', $user->ability));
+        // return [
+        //     'accessToken' => [
+        //         'accessToken' => $token->accessToken,
+        //         'plainTextToken' => $token->plainTextToken
+        //     ],
+        //     'name' => $user->name,
+        //     'email' => $user->email,
+        // ];
     }
+    
+    // public function login(Request $request)
+    // {
+    //     $request->validate([
+    //         'email' => 'required|email',
+    //         'password' => 'required',
+    //     ]);
+
+    //     $user = User::where('email', $request->email)->first();
+
+    //     if (!$user || !Hash::check($request->password, $user->password)) {
+    //         throw ValidationException::withMessages([
+    //             'email' => ['The provided credentials are incorrect.'],
+    //         ]);
+    //     }
+
+    //     // Include user data in the response
+    //     $userData = [
+    //         'email' => $user->email,
+    //         'name' => $user->name, // Add the 'name' property
+    //     ];
+
+    //     // Generate access token with abilities
+    //     $token = $user->createToken("MovieCorner", explode(',', $user->ability));
+
+    //     return response()->json([
+    //         'user' => $userData,
+    //         'accessToken' => $token->accessToken, // Csak az 'accessToken' kulcsot add meg
+    //     ], 200);
+        
+    // }
+
 
 
     public function logout(Request $request)

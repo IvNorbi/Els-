@@ -11,6 +11,8 @@ class MovieRolePeople extends Model
 {
     use HasFactory;
 
+    protected $hidden = ['created_at', 'updated_at'];
+
     public function movies(): BelongsTo
     {
         return $this->belongsTo(Movie::class, 'movie_id', 'id')->select(['id', 'name']);
