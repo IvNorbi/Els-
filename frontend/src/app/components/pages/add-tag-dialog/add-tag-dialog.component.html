@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="tags">
+        <h4 class="cimke">Címkék:</h4>
+        <div class="tag-list">
+          <span *ngFor="let tag of film.tags" class="tag-item">
+            <a routerLink="/tag/{{tag}}" class="tag-link">{{tag}}</a>
+          </span>
+        </div>
+      </div>
+      
+</div>
