@@ -15,11 +15,11 @@ export class AddTagDialogComponent implements OnInit {
   selectedTag: string = '';
   newTagName: string = '';
   newTag: string = '';
-  isSuccess: boolean | undefined; // Kezdeti érték: undefined
+  isSuccess: boolean | undefined; 
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { film: Film },
-    private dialogRef: MatDialogRef<AddTagDialogComponent>, // MatDialogRef for closing dialog
+    private dialogRef: MatDialogRef<AddTagDialogComponent>,
     private addTagService: FilmekService
   ) {
     this.film = data.film;
@@ -45,16 +45,16 @@ export class AddTagDialogComponent implements OnInit {
         this.tags.push(this.newTagName);
         this.selectedTag = this.newTagName;
         this.newTagName = '';
-        this.isSuccess = true; // Set success flag
+        this.isSuccess = true; 
       },
       error => {
         console.error('Hiba történt a címke hozzáadása közben:', error);
-        this.isSuccess = false; // Set failure flag
+        this.isSuccess = false; 
       }
     );
   }
 
   closeDialog(): void {
-    this.dialogRef.close(); // Close the dialog
+    this.dialogRef.close(); 
   }
 }
