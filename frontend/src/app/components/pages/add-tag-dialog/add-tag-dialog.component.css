@@ -31,3 +31,77 @@
 .tag-link:hover {
   background-color: #0056b3;
 }
+
+.add-tag {
+  margin-top: 20px;
+}
+
+.add-tag input[type="text"] {
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-bottom: 30px;
+}
+
+.add-button {
+  padding: 5px 10px;
+  margin-right: 10px;
+  margin-bottom: 30px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-button:hover {
+  background-color: #218838;
+}
+
+.close-button {
+  padding: 5px 10px;
+  margin-right: 10px;
+  margin-bottom: 30px;
+  background-color: red;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.close-button:hover {
+  background-color: rgb(148, 50, 50);
+}
+
+
+.result-message {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.result-message p {
+  color: white;
+  padding: 5px;
+}
+
+.success {
+  background-color: green;
+}
+
+.failure {
+  background-color: red;
+}
+
+.add-tag {
+  display: flex;
+  align-items: center;
+}
+
+
+
