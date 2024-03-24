@@ -5,6 +5,7 @@ import { Film } from 'src/app/shared/models/filmek';
 import { FilmekService } from 'src/app/services/filmek.service';
 import { AddTagDialogComponent } from '../add-tag-dialog/add-tag-dialog.component';
 import { MovieFormComponent } from '../../partials/movie-form/movie-form.component';
+import { AddmoviedialogComponent } from '../addmoviedialog/addmoviedialog.component';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class AdminpanelComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(AddTagDialogComponent, {
+    const dialogRef = this.dialog.open(AddmoviedialogComponent, {
       width: '400px',
       data: {} // Üres objektummal nyitjuk meg a dialogot
     });
@@ -101,7 +102,7 @@ export class AdminpanelComponent implements OnInit {
     });
   
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log('A dialógus bezárult.');
     });
   }
 }
