@@ -176,15 +176,27 @@ class MovieController extends Controller
      * Update the specified resource in storage.
      */
     public function update(UpdateMovieRequest $request, Movie $movie)
+    // {
+    //     if ($request->name != "")  $movie->name = $request->name;
+    //     if ($request->release_year != "")  $movie->release_year = $request->release_year;
+    //     if ($request->description != "")  $movie->description = $request->description;
+    //     if ($request->imageUrl != "")  $this->uploadImage($movie, $request);    //$movie->imageUrl = $request->imageUrl;
+    //     if ($request->length != "")  $movie->length = $request->length;
+    //     $movie->save();
+    //     return $movie;
+    // }
     {
-        if ($request->name != "")  $movie->name = $request->name;
-        if ($request->release_year != "")  $movie->release_year = $request->release_year;
-        if ($request->description != "")  $movie->description = $request->description;
-        if ($request->imageUrl != "")  $this->uploadImage($movie, $request);    //$movie->imageUrl = $request->imageUrl;
-        if ($request->length != "")  $movie->length = $request->length;
+        if ($request->filled('name'))  $movie->name = $request->name;
+        if ($request->filled('release_year'))  $movie->release_year = $request->release_year;
+        if ($request->filled('description'))  $movie->description = $request->description;
+        if ($request->filled('length'))  $movie->length = $request->length;
+        
+        $this->uploadImage($movie, $request); // Minden esetben hívjuk meg az uploadImage függvényt
+        
         $movie->save();
         return $movie;
     }
+
 
     /**
      * Remove the specified resource from storage.
