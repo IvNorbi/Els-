@@ -1,29 +1,26 @@
-import { Component, Pipe, PipeTransform, Inject } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { FilmekService } from 'src/app/services/filmek.service';
 import { Film } from 'src/app/shared/models/filmek';
+import { FilmekService } from 'src/app/services/filmek.service';
+import { AddTagDialogComponent } from '../add-tag-dialog/add-tag-dialog.component';
 import { MovieFormComponent } from '../../partials/movie-form/movie-form.component';
 import { AddmoviedialogComponent } from '../addmoviedialog/addmoviedialog.component';
-import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-adminpanel',
   templateUrl: './adminpanel.component.html',
   styleUrls: ['./adminpanel.component.css']
 })
-export class AdminpanelComponent {
-  showTagBox: boolean = false;
+export class AdminpanelComponent implements OnInit {
   filmek: Film[] = [];
-  filteredFilms: Film[] = []; // Keresett filmek tömbje.
+  filteredFilms: Film[] = [];
   searchTerm: string = '';
-  
-  constructor(
-    private filmService: FilmekService,
-    private activatedRoute: ActivatedRoute,
-    private dialog: MatDialog
-  ) {
+
+  constructor(private filmService: FilmekService, private dialog: MatDialog) {}
+
+  ngOnInit(): void {
     this.loadMovies();
   }
 
@@ -37,27 +34,17 @@ export class AdminpanelComponent {
       console.log('The dialog was closed');
     });
   }
-  
-  //FILMEK LISTÁZÁSA
-  loadMovies() {
-    this.activatedRoute.params.subscribe((params) => {
-      let moviesObservable: Observable<Film[]>;
-      if (params.searchTerm)
-        moviesObservable = this.filmService.getAllFilmBySearchTerm(params.searchTerm);
-      else if (params.tag)
-        moviesObservable = this.filmService.getAllMovieByTag(params.tag);
-      else
-        moviesObservable = this.filmService.getAll();
 
-      moviesObservable.subscribe((serverMovies) => {
-        this.filmek = serverMovies;
-        this.filteredFilms = serverMovies; // Frissítjük a szűrt filmeket is
-      });
+  //FILMEK BETÖLTÉSE
+  loadMovies(): void {
+    this.filmService.getAll().subscribe((serverMovies: Film[]) => {
+      this.filmek = serverMovies;
+      this.filteredFilms = serverMovies;
     });
   }
-
+  
   //KERESÉS
-  filterMovies() {
+  filterMovies(): void {
     if (this.searchTerm.trim() === '') {
       this.filteredFilms = this.filmek;
     } else {
@@ -66,9 +53,9 @@ export class AdminpanelComponent {
       );
     }
   }
-
-  //FILM TÖRLÉS
-  deleteMovie(film: Film) {
+  
+  //TÖRLÉS
+  deleteMovie(film: Film): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
       data: 'Biztos törölni szeretné?'
@@ -87,8 +74,8 @@ export class AdminpanelComponent {
     });
   }
 
-  //FILM MÓDOSÍTÁS
-  editMovie(film: Film) {
+  //MÓDOSÍTÁS
+  editMovie(film: Film): void {
     const dialogRef = this.dialog.open(MovieFormComponent, {
       width: '400px',
       data: film 
@@ -106,7 +93,21 @@ export class AdminpanelComponent {
       }
     });
   }
+
+  //TAG HOZZÁADÁS.
+  addTag(film: Film): void {
+    const dialogRef = this.dialog.open(AddTagDialogComponent, {
+      width: '400px',
+      data: { film: film } 
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('A dialógus bezárult.');
+    });
+  }
 }
+
+
 
 //Erősen megkérdőjelezhető rész következik: 
 @Component({

@@ -1,7 +1,7 @@
 <div class="header-container">
   <mat-toolbar color="primary" class="header-toolbar">
     <!-- Hamburger ikon -->
-    <button mat-icon-button (click)="toggleUserPanel()">
+    <button mat-icon-button *ngIf="isLoggedIn" (click)="toggleUserPanel()">
       <mat-icon>menu</mat-icon>
     </button>
 
@@ -15,11 +15,17 @@
       <button mat-button routerLink="Toplist">
         <mat-icon>list</mat-icon><span class="menu-label">Toplista</span>
       </button>
-      <button mat-button routerLink="Login">
-        <mat-icon>login</mat-icon><span class="menu-label">Belépés</span>
+      <!-- <button mat-button routerLink="editprofile">
+        <mat-icon>settings</mat-icon><span class="menu-label">Beállítások</span>
+      </button> -->
+      <button mat-button routerLink="userlist">
+        <mat-icon>group</mat-icon><span class="menu-label">Felhasználók</span>
       </button>
-      <button mat-button routerLink="Register">
-        <mat-icon>person_add</mat-icon><span class="menu-label">Regisztráció</span>
+      <button mat-button *ngIf="isLoggedIn" (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon><span class="menu-label">Kilépés</span>
+      </button>
+      <button mat-button *ngIf="!isLoggedIn" routerLink="Login">
+        <mat-icon>login</mat-icon><span class="menu-label">Bejelentkezés</span>
       </button>
     </div>
 
@@ -28,16 +34,12 @@
     <app-search class="search-container"></app-search>
   </mat-toolbar>
 
-  <!-- Vízszintes menü -->
-  <div class="horizontal-menu" [ngClass]="{ 'open': userPanelOpen }">
-    <ul>
-      <li><a routerLink="Main"><i class="fas fa-home"></i> Főoldal</a></li>
-      <li><a href="#"><i class="fas fa-chart-bar"></i> Statisztikák</a></li>
-      <li><a href="#"><i class="fas fa-envelope"></i> Üzenetek</a></li>
-      <li><a routerLink="editprofile"><i class="fas fa-cog"></i> Beállítások</a></li>
-      <li><a routerLink="userlist"><i class="fas fa-users"></i> Felhasználók</a></li>
-      <li><a href="#"><i class="fas fa-file-alt"></i> Dokumentumok</a></li>
-      <li *ngIf="this.service.isUserLoggedIn() && this.service.hasAbilities('admin')" class="admin"><a routerLink="adminpanel"><i class="fas fa-user-shield"></i> Admin felület</a></li>
-    </ul>
-  </div>
+<!-- Vízszintes menü -->
+<div class="horizontal-menu" [ngClass]="{ 'open': userPanelOpen }">
+  <ul>
+    <li><a routerLink="Main"><i class="fas fa-home"></i> Főoldal</a></li>
+    <li><a routerLink="editprofile"><i class="fas fa-cog"></i> Profilom</a></li>
+    <li><a routerLink="userlist"><i class="fas fa-users"></i> Felhasználók</a></li>
+    <li *ngIf="this.service.hasAbilities('admin')" class="admin"><a routerLink="adminpanel"><i class="fas fa-user-shield"></i> Filmek szerkesztése</a></li>
+  </ul>
 </div>

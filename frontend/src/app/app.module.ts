@@ -35,6 +35,7 @@ import { UseroptionsComponent } from './components/pages/useroptions/useroptions
 import { UserlistComponent } from './components/pages/userlist/userlist.component';
 import { MatCardModule } from '@angular/material/card';
 import { AddmoviedialogComponent } from './components/pages/addmoviedialog/addmoviedialog.component';
+import { AddTagDialogComponent } from './components/pages/add-tag-dialog/add-tag-dialog.component';
 
 
 
@@ -70,7 +71,8 @@ import { AddmoviedialogComponent } from './components/pages/addmoviedialog/addmo
     MovieFormComponent,
     UseroptionsComponent,
     UserlistComponent,
-    AddmoviedialogComponent
+    AddmoviedialogComponent,
+    AddTagDialogComponent
   
   ],
   imports: [

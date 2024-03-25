@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Film } from '../shared/models/filmek';
 import { Tag } from '../shared/models/Tag';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MOVIES_BY_ID_URL, MOVIES_BY_SEARCH_URL, MOVIES_BY_TAG_URL,  MOVIES_TAGS_URL, MOVIES_URL, RANDOM_MOVIES_URL } from '../shared/contsants/urls';
 import { Observable, map } from 'rxjs';
 
@@ -39,6 +39,21 @@ export class FilmekService {
     );
   }
 
+  
+  addTagToMovie(movieId: number, tag: string): Observable<Film> {
+    const token = sessionStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + token,
+      'Content-Type': 'application/json' 
+    });
+
+    const tagData = {
+      movieId: movieId,
+      tag: tag
+    };
+
+    return this.http.post<Film>(`${MOVIES_URL}/${movieId}/tag/`, tagData, { headers: headers });
+  }
 
 getMovieById(movieId:string): Observable<Film>{
   return this.http.get<Film>(MOVIES_BY_ID_URL + movieId);
