@@ -95,5 +95,18 @@ addMovie(film:Film):Observable<Film> {
   });
 }
 
+
+//Külön serviceként próba, de így is hiba.
+uploadImage(file: File) {
+  const formData = new FormData();
+  formData.append('image', file, 'image'); 
+  const token = sessionStorage.getItem("token");
+  const headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + token
+  });
+  return this.http.post<any>('http://localhost:5100/api/movies/upload', formData, { headers });
+}
+
+
 }
 
