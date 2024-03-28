@@ -25,6 +25,7 @@ export class AddmoviedialogComponent {
   ) {}
 
   onSaveClick(): void {
+    
     this.filmService.addMovie(this.film).subscribe({
       next: (newMovie: Film) => {
         if (newMovie.name && newMovie.name === this.film.name) {
@@ -49,5 +50,13 @@ export class AddmoviedialogComponent {
 
   onCancelClick(): void {
     this.dialogRef.close();
+  }
+
+  onChange(event: any) {
+    const file: File = event.target.files[0];
+
+    if (file) {
+      this.film.image = file;
+    }
   }
 }
