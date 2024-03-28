@@ -206,7 +206,8 @@ class MovieController extends Controller
         Rating::where("movie_id", "=", $movie->id)->delete();
         Comment::where("movie_id", "=", $movie->id)->delete();
         MovieRolePeople::where("movie_id", "=", $movie->id)->delete();
-        Storage::delete("public/" . $movie->imageUrl);
+        if ($movie->imageUrl != "film.jpg")
+            Storage::delete("public/" . $movie->imageUrl);
 
         $movie->delete();
         return true;
@@ -214,12 +215,18 @@ class MovieController extends Controller
 
     protected function uploadImage(Movie $movie, $request)
     {
+        $veletlen = rand(1000,9999);
         if ($request->hasFile('image')) {
+            
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
-            $movie->imageUrl = str_replace('public/', '', $file->storeAs('public', $movie->name . "." . $extension));
+            $movie->imageUrl = str_replace('public/', '', $file->storeAs('public', $movie->name." - ".$veletlen. "." . $extension));
         } elseif ($request->filled('imageUrl')) {
             $movie->imageUrl = $request->input('imageUrl');
+        }else {
+
+            Storage::copy("public/film.jpg" ,"public/".$movie->name." - ".$veletlen.".jpg");
+            $movie->imageUrl = $movie->name." - ".$veletlen. ".jpg";
         }
     }
 

@@ -15,6 +15,9 @@
   <div class="description">
     <textarea [(ngModel)]="film.description" name="description" required></textarea>
   </div>
+  <div class="image">
+    <input type="file" [(ngModel)]="film.image" name="image" required (change)="onChange($event)" />
+  </div>
   <div class="button">
     <button type="button" (click)="onCancelClick()">MÉGSEM</button>
     <button type="submit">MENTÉS</button>
