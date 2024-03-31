@@ -36,42 +36,15 @@
         <textarea class="comment-input" placeholder="Hozzászólás"></textarea>
         <button class="submit-button" onclick="addComment()">ELKÜLD</button>
         <div class="comment-list">
-          <!-- Példa kommentek -->
-          <div class="comment">
-            <img src="profile1.jpg" alt="Profilkép" class="profile-picture">
+          <!-- Kommentek megjelenítése -->
+          <div *ngFor="let comment of comments" class="comment">
+            <img src="profile{{comment.user_id}}.jpg" alt="Profilkép" class="profile-picture">
             <div class="comment-content">
-              Ez egy példa komment.
-            </div>
-          </div>
-          <div class="comment">
-            <img src="profile2.jpg" alt="Profilkép" class="profile-picture">
-            <div class="comment-content">
-              Ez is egy példa komment, de más háttérszínnel.
-            </div>
-          </div>
-          <div class="comment">
-            <img src="profile3.jpg" alt="Profilkép" class="profile-picture">
-            <div class="comment-content">
-              Harmadik példa komment, ismét más háttérszínnel.
-            </div>
-          </div>
-          <div class="comment">
-            <img src="profile4.jpg" alt="Profilkép" class="profile-picture">
-            <div class="comment-content">
-              Negyedik példa komment, ismét más háttérszínnel.
-            </div>
-          </div>
-          <div class="comment">
-            <img src="profile5.jpg" alt="Profilkép" class="profile-picture">
-            <div class="comment-content">
-              Ötödik példa komment, újra más háttérszínnel.
+              {{comment.content}}
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 <!-- KOMMENT SZEKCIÓ -->
-<div class="container">
-</div>
