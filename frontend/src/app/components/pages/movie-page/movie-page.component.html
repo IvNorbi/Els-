@@ -39,8 +39,11 @@
           <!-- Kommentek megjelenítése -->
           <div *ngFor="let comment of comments" class="comment">
             <img src="profile{{comment.user_id}}.jpg" alt="Profilkép" class="profile-picture">
-            <div class="comment-content">
+            <div *ngIf="this.service.hasAbilities('admin')" class="comment-content">
               {{comment.content}}
+              <button mat-icon-button color="warn" (click)="confirmDelete(comment.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
             </div>
           </div>
         </div>
