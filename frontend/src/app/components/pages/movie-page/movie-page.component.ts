@@ -10,15 +10,27 @@ import { Film } from 'src/app/shared/models/filmek';
 })
 export class MoviePageComponent {
   film!: Film;
-  constructor(activatedRoute:ActivatedRoute, filmservice:FilmekService){
-    activatedRoute.params.subscribe((params) =>{
-      if(params.id)
-      filmservice.getMovieById(params.id).subscribe(serverMovie => {
-        this.film = serverMovie
-      });
-    })
+  comments: any[] = []; // Kommenteknek
 
+  constructor(private activatedRoute: ActivatedRoute, private filmService: FilmekService) {
+    this.loadMovieAndComments();
   }
 
+  loadMovieAndComments(): void {
+    this.activatedRoute.params.subscribe((params) => {
+      if (params.id) {
+        this.filmService.getMovieById(params.id).subscribe(serverMovie => {
+          this.film = serverMovie;
+          // Kommentek betöltése a film betöltése után
+          this.loadComments(params.id);
+        });
+      }
+    });
+  }
 
+  loadComments(movieId: string): void {
+    this.filmService.getCommentsForMovie(movieId).subscribe(comments => {
+      this.comments = comments;
+    });
+  }
 }

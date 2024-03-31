@@ -59,6 +59,11 @@ getMovieById(movieId:string): Observable<Film>{
   return this.http.get<Film>(MOVIES_BY_ID_URL + movieId);
 }
 
+getCommentsForMovie(movieId: string): Observable<any[]> {
+  const url = `${MOVIES_URL}/${movieId}/comments`;
+  return this.http.get<any[]>(url);
+}
+
 getAllTags(): Observable<Tag[]>{
   return this.http.get<Tag[]>(MOVIES_TAGS_URL);
 }
