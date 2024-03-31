@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Film } from '../shared/models/filmek';
 import { Tag } from '../shared/models/Tag';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { MOVIES_BY_ID_URL, MOVIES_BY_SEARCH_URL, MOVIES_BY_TAG_URL,  MOVIES_TAGS_URL, MOVIES_URL, RANDOM_MOVIES_URL } from '../shared/contsants/urls';
+import { COMMENT_URL, MOVIES_BY_ID_URL, MOVIES_BY_SEARCH_URL, MOVIES_BY_TAG_URL,  MOVIES_TAGS_URL, MOVIES_URL, RANDOM_MOVIES_URL } from '../shared/contsants/urls';
 import { Observable, map } from 'rxjs';
 
 @Injectable({
@@ -107,6 +107,21 @@ addMovie(film:Film):Observable<Film> {
    }
   });
 }
+
+deleteComment(commentId: string): Observable<any> {
+  const token = sessionStorage.getItem('token');
+  if (!token) {
+    throw new Error('Nincs bejelentkezve. Kérlek előbb jelentkezz be!');
+  }
+
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  });
+
+  return this.http.delete<any>(`${COMMENT_URL}${commentId}`, { headers });
+}
+
 
 
 //Külön serviceként próba, de így is hiba.
