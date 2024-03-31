@@ -58,12 +58,12 @@ export class MoviePageComponent {
   deleteComment(commentId: string): void {
     this.filmService.deleteComment(commentId).subscribe(
       () => {
-        // Sikeres törlés esetén frissítjük a kommentek listáját
+        // Frissítés törlés után
         this.comments = this.comments.filter(comment => comment.id !== commentId);
       },
       (error) => {
         console.error('Hiba történt a komment törlése közben:', error);
-        // Ide írd a szükséges kezelést a hibás törlés esetén
+        //  Ide valami hibaüzenet.
       }
     );
   }
