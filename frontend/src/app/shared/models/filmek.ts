@@ -7,6 +7,9 @@ export class Film{
     tags?: Tag[];
     favorite!: boolean;
     stars!:number;
+    
+    image!: File;
+
     imageUrl!: string;
     toplist!: number;
     origin!: string[];

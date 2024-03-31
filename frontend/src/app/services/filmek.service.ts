@@ -89,8 +89,16 @@ updateMovie(film:Film):Observable<Film> {
 
 addMovie(film:Film):Observable<Film> {
   let token = sessionStorage.getItem("token");
-  return this.http.post<Film>(MOVIES_URL, film, {headers: {
+  
+  let formdata = new FormData();
+  formdata.append('image', film.image, film.image.name);
+  formdata.append('release_year', film.release_year.toString());
+  formdata.append('name', film.name);
+  formdata.append('description', film.description);
+
+  return this.http.post<Film>(MOVIES_URL, formdata, {headers: {
     "Authorization": "Bearer "+token
+
    }
   });
 }
