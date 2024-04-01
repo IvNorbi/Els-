@@ -53,6 +53,7 @@ export class MoviePageComponent {
     this.filmService.addComment(comment).subscribe({
       next: (newComment) => {
         this.comments.push(newComment); // Új komment hozzáadása.
+        this.newCommentContent = '';
       },
       error: (error) => {
         console.error('Hiba történt a komment hozzáadása közben:', error);
@@ -60,6 +61,7 @@ export class MoviePageComponent {
       }
     });
   }
+
 
   confirmDelete(commentId: string): void {
     const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {

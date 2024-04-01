@@ -37,8 +37,8 @@
       <textarea class="comment-input" [(ngModel)]="newCommentContent" placeholder="Hozzászólás"></textarea>
       <button class="submit-button" (click)="addComment(newCommentContent)">ELKÜLD</button>
       <div class="comment-list">
-        <!-- Kommentek megjelenítése -->
-        <div *ngFor="let comment of comments" class="comment">
+        <!-- Kommentek megjelenítése fordított sorrendben -->
+        <div *ngFor="let comment of comments.slice().reverse()" class="comment">
           <!-- <img src="profile{{comment.user_id}}.jpg" alt="Profilkép" class="profile-picture"> -->
           <div *ngIf="service.hasAbilities('admin')" class="comment-content">
             {{comment.content}}
