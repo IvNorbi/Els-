@@ -29,25 +29,26 @@
       </div>
     </div>
   </div>
-  <!-- KOMMENT SZEKCIÓ -->
-  <div class="row">
-    <div class="col-md-12">
-      <div class="comment-box">
-        <textarea class="comment-input" placeholder="Hozzászólás"></textarea>
-        <button class="submit-button" onclick="addComment()">ELKÜLD</button>
-        <div class="comment-list">
-          <!-- Kommentek megjelenítése -->
-          <div *ngFor="let comment of comments" class="comment">
-            <img src="profile{{comment.user_id}}.jpg" alt="Profilkép" class="profile-picture">
-            <div *ngIf="this.service.hasAbilities('admin')" class="comment-content">
-              {{comment.content}}
-              <button mat-icon-button color="warn" (click)="confirmDelete(comment.id)">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </div>
+
+<!-- KOMMENT SZEKCIÓ -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="comment-box">
+      <textarea class="comment-input" [(ngModel)]="newCommentContent" placeholder="Hozzászólás"></textarea>
+      <button class="submit-button" (click)="addComment(newCommentContent)">ELKÜLD</button>
+      <div class="comment-list">
+        <!-- Kommentek megjelenítése -->
+        <div *ngFor="let comment of comments" class="comment">
+          <!-- <img src="profile{{comment.user_id}}.jpg" alt="Profilkép" class="profile-picture"> -->
+          <div *ngIf="service.hasAbilities('admin')" class="comment-content">
+            {{comment.content}}
+            <button mat-icon-button color="warn" (click)="confirmDelete(comment.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 <!-- KOMMENT SZEKCIÓ -->

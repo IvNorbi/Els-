@@ -14,6 +14,7 @@ import { UserModel } from 'src/app/shared/models/userModel';
 export class MoviePageComponent {
   film!: Film;
   comments: any[] = []; // Kommenteknek
+  newCommentContent: string = ''; //Új kommenteknek
 
   constructor(
     public service: UserService,
@@ -39,6 +40,24 @@ export class MoviePageComponent {
   loadComments(movieId: string): void {
     this.filmService.getCommentsForMovie(movieId).subscribe(comments => {
       this.comments = comments;
+    });
+  }
+
+  addComment(content: string): void {
+    if (!this.film) {
+      console.error('Nincs kiválasztva film a komment hozzáadásához.');
+      return;
+    }
+  
+    const comment = { content, movie_id: this.film.id }; // A film azonosítójának hozzáadása
+    this.filmService.addComment(comment).subscribe({
+      next: (newComment) => {
+        this.comments.push(newComment); // Új komment hozzáadása.
+      },
+      error: (error) => {
+        console.error('Hiba történt a komment hozzáadása közben:', error);
+        // Ide majd hibaüzenet.
+      }
     });
   }
 
