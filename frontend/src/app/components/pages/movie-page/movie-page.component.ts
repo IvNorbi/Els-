@@ -54,15 +54,11 @@ export class MoviePageComponent implements OnInit {
 
   loadComments(movieId: string) {
     this.filmService.getCommentsForMovie(movieId).subscribe(comments => {
-      // Ellenőrizzük minden kommentet
       comments.forEach(comment => {
-        // Hívd meg a UserService-t a felhasználó nevének lekérésére a felhasználó ID-je alapján
         this.userService.getUserNameById(comment.user_id).subscribe(userName => {
-          // Ha megvan a felhasználó neve, adjuk hozzá a komment objektumhoz
           comment.userName = userName;
         });
       });
-      // Állítsd be a kommenteket a felhasználónevekkel ellátott kommentekkel
       this.comments = comments;
     });
   }
