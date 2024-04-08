@@ -5,7 +5,7 @@ import { Film } from 'src/app/shared/models/filmek';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user.service';
 import { UserModel } from 'src/app/shared/models/userModel';
-import { forkJoin, of } from 'rxjs';
+import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
@@ -54,6 +54,11 @@ export class MoviePageComponent implements OnInit {
 
   loadComments(movieId: string) {
     this.filmService.getCommentsForMovie(movieId).subscribe(comments => {
+      comments.forEach(comment => {
+        this.userService.getUserNameById(comment.user_id).subscribe(userName => {
+          comment.userName = userName;
+        });
+      });
       this.comments = comments;
     });
   }

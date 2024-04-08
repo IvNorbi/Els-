@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserModel } from '../shared/models/userModel';
-import { Observable, map } from 'rxjs';
-import {REG_URL, USERS_URL, USER_URL} from '../shared/contsants/urls';
+import { Observable, catchError, map, of } from 'rxjs';
+import {REG_URL, USERS_URL, USERS_URL2, USER_URL} from '../shared/contsants/urls';
 import { Router } from '@angular/router';
+
 
 
 
@@ -12,6 +13,9 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class UserService {
+
+  private users: UserModel[] = [];
+
 
   constructor(private http:HttpClient , private router: Router) { }
 
@@ -47,6 +51,23 @@ export class UserService {
     let headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>(USER_URL, { headers: headers });
   }
+
+  getUserNameById(userId: number): Observable<string> {
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+      return of('');
+    }
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  
+    return this.http.get<any>(`${USERS_URL2}/${userId}`, { headers }).pipe(
+      map((userData: any) => userData.name),
+      catchError(() => of(''))
+    );
+  }
+
 
 
   logout(user:UserModel) {
