@@ -13,8 +13,6 @@ export class AddTagDialogComponent implements OnInit {
   film: Film;
   tags: string[] = [];
   selectedTag: string = '';
-  newTagName: string = '';
-  newTag: string = '';
   isSuccess: boolean | undefined; 
 
   constructor(
@@ -26,25 +24,28 @@ export class AddTagDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.film && this.film.tags) {
-      this.tags = this.film.tags.map(tag => tag.name);
-    }
+    this.getAllTags();
   }
 
-  onTagSelected(tagName: string): void {
-    this.selectedTag = tagName;
+  getAllTags(): void {
+    this.addTagService.getAllTags().subscribe(
+      (tags: Tag[]) => {
+        this.tags = tags.map(tag => tag.name);
+      },
+      error => {
+        console.error('Hiba történt a címkék lekérése közben:', error);
+      }
+    );
   }
 
   addTag(): void {
-    if (this.newTagName.trim() === '') return;
+    if (!this.selectedTag) return;
 
     const movieId: number = parseInt(this.film.id);
-    this.addTagService.addTagToMovie(movieId, this.newTagName).subscribe(
+    this.addTagService.addTagToMovie(movieId, this.selectedTag).subscribe(
       response => {
         console.log('Címke sikeresen hozzáadva:', response);
-        this.tags.push(this.newTagName);
-        this.selectedTag = this.newTagName;
-        this.newTagName = '';
+        this.selectedTag = '';
         this.isSuccess = true; 
       },
       error => {
