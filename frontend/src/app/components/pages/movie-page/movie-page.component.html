@@ -31,7 +31,7 @@
   </div>
 
 <!-- KOMMENT SZEKCIÓ -->
-<div class="row">
+<div class="row" *ngIf="user">
   <div class="col-md-12">
     <div class="comment-box">
       <textarea class="comment-input" [(ngModel)]="newCommentContent" placeholder="Hozzászólás"></textarea>
@@ -39,12 +39,16 @@
       <div class="comment-list">
         <!-- Kommentek megjelenítése fordított sorrendben -->
         <div *ngFor="let comment of comments.slice().reverse()" class="comment">
-          <!-- <img src="profile{{comment.user_id}}.jpg" alt="Profilkép" class="profile-picture"> -->
-          <div *ngIf="service.hasAbilities('admin')" class="comment-content">
-            {{comment.content}}
+          <div class="comment-header">
+            <span class="comment-user username">{{ user.name }}</span>
+            <div class="separator"></div>
+          </div>
+          <div *ngIf="userService.hasAbilities('admin')" class="comment-content">
+            <p>{{ comment.content }}</p>
             <button mat-icon-button color="warn" (click)="confirmDelete(comment.id)">
               <mat-icon>delete</mat-icon>
             </button>
+            <div class="comment-date">{{ comment.date | date:'yyyy-MM-dd HH:mm:ss' }}</div>
           </div>
         </div>
       </div>
