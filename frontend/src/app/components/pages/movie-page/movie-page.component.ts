@@ -1,43 +1,58 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilmekService } from 'src/app/services/filmek.service';
 import { Film } from 'src/app/shared/models/filmek';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user.service';
 import { UserModel } from 'src/app/shared/models/userModel';
+import { forkJoin, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movie-page',
   templateUrl: './movie-page.component.html',
   styleUrls: ['./movie-page.component.css']
 })
-export class MoviePageComponent {
+export class MoviePageComponent implements OnInit {
   film!: Film;
-  comments: any[] = []; // Kommenteknek
-  newCommentContent: string = ''; //Új kommenteknek
+  comments: any[] = [];
+  newCommentContent: string = '';
+  user: { name: string } | null = null;
+  movieId: string | null = null; 
 
   constructor(
-    public service: UserService,
+    public userService: UserService,
     private activatedRoute: ActivatedRoute,
     private filmService: FilmekService,
     private dialog: MatDialog
-  ) {
-    this.loadMovieAndComments();
+  ) { }
+
+  ngOnInit() {
+    this.loadData();
   }
 
-  loadMovieAndComments(): void {
-    this.activatedRoute.params.subscribe((params) => {
-      if (params.id) {
-        this.filmService.getMovieById(params.id).subscribe(serverMovie => {
-          this.film = serverMovie;
-          // Kommentek betöltése a film betöltése után
-          this.loadComments(params.id);
-        });
+  loadData() {
+    this.userService.getLoggedInUser().pipe(
+      switchMap((userData: UserModel) => {
+        this.user = { name: userData.name ?? 'Névtelen' };
+        return this.activatedRoute.params;
+      }),
+      switchMap(params => {
+        this.movieId = params.id; 
+        if (params.id) {
+          return this.filmService.getMovieById(params.id);
+        }
+        return of(null);
+      })
+    ).subscribe(serverMovie => {
+      this.film = serverMovie as Film; 
+      if (this.movieId) {
+        this.loadComments(this.movieId);
       }
     });
   }
 
-  loadComments(movieId: string): void {
+  loadComments(movieId: string) {
     this.filmService.getCommentsForMovie(movieId).subscribe(comments => {
       this.comments = comments;
     });
@@ -49,19 +64,18 @@ export class MoviePageComponent {
       return;
     }
   
-    const comment = { content, movie_id: this.film.id }; // A film azonosítójának hozzáadása
+    const userName = this.user?.name ?? 'Ismeretlen felhasználó';
+    const comment = { content, movie_id: this.film.id, userName, date: new Date() };
     this.filmService.addComment(comment).subscribe({
       next: (newComment) => {
-        this.comments.push(newComment); // Új komment hozzáadása.
+        this.comments.push(newComment);
         this.newCommentContent = '';
       },
       error: (error) => {
         console.error('Hiba történt a komment hozzáadása közben:', error);
-        // Ide majd hibaüzenet.
       }
     });
   }
-
 
   confirmDelete(commentId: string): void {
     const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
@@ -79,12 +93,10 @@ export class MoviePageComponent {
   deleteComment(commentId: string): void {
     this.filmService.deleteComment(commentId).subscribe(
       () => {
-        // Frissítés törlés után
         this.comments = this.comments.filter(comment => comment.id !== commentId);
       },
       (error) => {
         console.error('Hiba történt a komment törlése közben:', error);
-        //  Ide valami hibaüzenet.
       }
     );
   }
