@@ -1,7 +1,10 @@
 <div class="container">
+  <!-- Eredmény üzenet -->
   <div class="result-message" *ngIf="isSuccess !== undefined" [ngClass]="{'success': isSuccess, 'failure': !isSuccess}">
     <p>{{ isSuccess ? 'TAG HOZZÁADÁSA SIKERES!' : 'TAG HOZZÁADÁSA SIKERTELEN' }}</p>
   </div>
+
+  <!-- Címkék -->
   <div class="tags">
     <h4 class="cimke">Címkék:</h4>
     <div class="tag-list">
@@ -11,9 +14,15 @@
     </div>
   </div>
 
+  <!-- Legördülő menü -->
   <div class="add-tag">
-    <input type="text" placeholder="Új címke" [(ngModel)]="newTagName">
-    <button (click)="addTag()" class="add-button">HOZZÁAD</button>
+    <div class="input-and-button">
+      <select [(ngModel)]="selectedTag">
+        <option value="" disabled selected>Válassz egy címkét...</option>
+        <option *ngFor="let tag of tags" [value]="tag">{{tag}}</option>
+      </select>
+      <button (click)="addTag()" class="add-button">HOZZÁAD</button>
+    </div>
     <button class="close-button" mat-button (click)="closeDialog()">BEZÁR</button>
   </div>
 </div>

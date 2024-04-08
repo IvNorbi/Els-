@@ -99,9 +99,31 @@
 }
 
 .add-tag {
+  margin-top: 20px;
   display: flex;
   align-items: center;
 }
 
+.add-tag select {
+  margin-right: 10px;
+}
 
+.add-button,
+.close-button {
+  margin-bottom: 30px;
+  margin-left: 10px; 
+}
 
+.button-group {
+  display: flex;
+  align-items: center;
+}
+
+.add-tag select {
+  margin-right: 10px;
+}
+
+.add-button,
+.close-button {
+  margin-bottom: 30px;
+}
