@@ -70,16 +70,19 @@ export class UserService {
 
 
 
-  logout(user:UserModel) {
+  logout(user: UserModel) {
     let token = sessionStorage.getItem("token");
   
-    this.http.post<boolean>(USER_URL+"logout", "", 
-    { headers: {
-      "Authorization": "Bearer "+token
-     }
+    this.http.post<boolean>(USER_URL + "logout", "", {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
     }).subscribe();
+  
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("abilities");
+  
+    this.router.navigateByUrl('/').then(() => window.location.reload());
   }
 
   register(user: UserModel): Observable<UserModel> {
