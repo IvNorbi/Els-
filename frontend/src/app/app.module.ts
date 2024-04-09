@@ -36,6 +36,8 @@ import { UserlistComponent } from './components/pages/userlist/userlist.componen
 import { MatCardModule } from '@angular/material/card';
 import { AddmoviedialogComponent } from './components/pages/addmoviedialog/addmoviedialog.component';
 import { AddTagDialogComponent } from './components/pages/add-tag-dialog/add-tag-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 
 
@@ -92,6 +94,7 @@ import { AddTagDialogComponent } from './components/pages/add-tag-dialog/add-tag
     FlexLayoutModule,
     MatPaginatorModule,
     MatCardModule,
+    MatFormFieldModule
     
   ],
   providers: [],
