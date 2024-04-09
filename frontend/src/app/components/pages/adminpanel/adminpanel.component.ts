@@ -6,6 +6,7 @@ import { FilmekService } from 'src/app/services/filmek.service';
 import { AddTagDialogComponent } from '../add-tag-dialog/add-tag-dialog.component';
 import { MovieFormComponent } from '../../partials/movie-form/movie-form.component';
 import { AddmoviedialogComponent } from '../addmoviedialog/addmoviedialog.component';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -18,7 +19,10 @@ export class AdminpanelComponent implements OnInit {
   filteredFilms: Film[] = [];
   searchTerm: string = '';
 
-  constructor(private filmService: FilmekService, private dialog: MatDialog) {}
+  constructor(
+    private filmService: FilmekService,
+    public userService: UserService,
+    private dialog: MatDialog,) {}
 
   ngOnInit(): void {
     this.loadMovies();
