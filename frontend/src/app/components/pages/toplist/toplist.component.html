@@ -1,27 +1,27 @@
 <div class="container">
   <div class="row">
-    <div class="home">
-      <ng-container *ngFor="let chunk of filmek | chunkPipe: 3">
-        <ul class="toplistcontent"> <!-- Új: a felsorolás most egy valódi lista -->
-          <li *ngFor="let film of chunk">
-            <a routerLink="/film/{{film.id}}">
-              <div class="film-container">
-                <img class="toplistimg" [src]="film.imageUrl" [alt]="film.name">
-                <div class="content">
-                  <div class="name">{{film.name}}</div>
-                <div class="stars">
-                  <star-rating [stars]="film.stars"/>
-                </div>
-                </div>
+    <div class="col-md-12">
+      <div class="film-container" *ngFor="let film of filmek">
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="header-image">
+              <img class="toplistimg" [src]="film.imageUrl" alt="{{ film.name }}">
+            </div>
+            <div class="info-container">
+              <div class="title-year-container">
+                <mat-card-title class="name">{{ film.name }}</mat-card-title>
+                <mat-card-subtitle class="releaseyear">{{ film.release_year }}</mat-card-subtitle>
               </div>
-            </a>
-          </li>
-        </ul>
-      </ng-container>
+              <div class="ratings-container">
+                <p class="ratings">{{ film.ratings }}</p>
+              </div>
+            </div>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ film.description }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
   </div>
 </div>
-
-
-
-

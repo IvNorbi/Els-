@@ -18,6 +18,15 @@ export class FilmekService {
     return this.http.get<Film[]>(MOVIES_URL);
   }
 
+  getAllByRatings(): Observable<Film[]> {
+    return this.http.get<Film[]>(MOVIES_URL)
+      .pipe(
+        map((films: Film[]) => {
+          return films.sort((a, b) => b.ratings - a.ratings);
+        })
+      );
+  }
+
   getRandomMovies(): Observable<Film[]> {
     return this.http.get<Film[]>(RANDOM_MOVIES_URL);
   }

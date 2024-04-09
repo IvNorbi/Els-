@@ -1,37 +1,68 @@
+/* Általános stílus a containerhez */
 .container {
   padding: 20px;
-  background-color: #e2e2e2;
+  background-color: #f5f5f5; /* Halványabb háttérszín */
+  box-shadow: 5px 1px 20px 5px  #888888 ;
+
 }
 
-.toplistcontent {
-  list-style-type: none; 
-  padding: 0;
-}
-
+/* Stílus a filmek tartályához */
 .film-container {
-  display: flex;
-  width: 1100px;
-  height: 200px;
-  padding: 2px;
   margin: 10px;
-  border: 3px solid black;
+  padding: 20px;
+  border: 3px solid #ddd; /* Halványabb keret */
   border-radius: 15px;
-  box-sizing: border-box;
+  min-width: 400px;
+  
 }
 
-a {
+/* Stílus a fejléc képhez */
+.header-image {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%; /* Kerekített sarkok */
+}
+
+/* Stílus az információ konténerhez */
+.info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+/* Stílus a cím és a megjelenési évhez */
+.title-year-container {
+  margin-bottom: 10px;
+}
+
+.title-year-container .name {
   font-weight: bold;
-  color: #1000ff;
-  text-decoration: none;
+  font-size: 24px; /* Nagyobb címméret */
 }
 
+.title-year-container .releaseyear {
+  font-size: 18px; /* Nagyobb év méret */
+  color: #666; /* Halványabb szín */
+}
+
+/* Stílus a képhez */
 .toplistimg {
-  margin: 10px;
-  height: 170px;
-  margin-right: 10px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px; /* Kerekített sarkok */
 }
 
-.name {
-  margin: 10px;
-  font-size: 18px;
+/* Stílus a ratings elemhez */
+.ratings-container {
+  margin-top: 10px; /* Térköz a leírás és a ratings között */
+  margin-left: auto;
+}
+
+.ratings {
+  font-size: 20px;
+  border: 2px solid #333; /* Sötétebb keret */
+  padding: 5px 10px;
+  border-radius: 5px;
 }
