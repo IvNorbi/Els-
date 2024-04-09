@@ -1,23 +1,19 @@
 <div class="container">
   <h1>Módosítás:</h1>
-  <form (ngSubmit)="onSaveClick()" #form="ngForm">
+  <form>
     <div class="name">
       <label>Név:</label>
     </div>
     <div class="filmname">
-      <input type="text" [(ngModel)]="film.name" name="name" required>
+      <input type="text" [ngModel]="tempFilm.name" (ngModelChange)="tempFilm.name = $event" name="name" required>
     </div>
     <div class="description">
       <label>Leírás:</label>
-      <textarea [(ngModel)]="film.description" name="description" required></textarea>
-    </div>
-    <div class="image">
-      <label>Kép:</label>
-      <input type="file" (change)="onFileSelected($event)" accept="image/*">
+      <textarea [ngModel]="tempFilm.description" (ngModelChange)="tempFilm.description = $event" name="description" required></textarea>
     </div>
     <div class="button">
       <button type="button" (click)="onCancelClick()">MÉGSEM</button>
-      <button type="submit" [disabled]="form.invalid || !selectedFile">MENTÉS</button>
+      <button type="button" (click)="onSaveClick()">MENTÉS</button>
     </div>
   </form>
 </div>
