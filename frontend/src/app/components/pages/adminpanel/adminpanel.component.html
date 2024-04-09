@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="userService.hasAbilities('admin')" class="container">
   <div class="search-container">
     <input type="text" placeholder="Keresés..." [(ngModel)]="searchTerm" (input)="filterMovies()">
   </div>
