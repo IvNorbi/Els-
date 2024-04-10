@@ -14,6 +14,8 @@ export const USERS_URL = BASE_URL + '/api/users/';
 export const RANDOM_MOVIES_URL = MOVIES_URL + '/randommovies'
 export const REG_URL = BASE_URL + '/api/registration'
 
+export const PEOPLE_URL = 'http://localhost:5100/api/people';
+
 
 
 

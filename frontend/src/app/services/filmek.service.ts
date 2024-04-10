@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Film } from '../shared/models/filmek';
 import { Tag } from '../shared/models/Tag';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { COMMENT_URL, MOVIES_BY_ID_URL, MOVIES_BY_SEARCH_URL, MOVIES_BY_TAG_URL,  MOVIES_TAGS_URL, MOVIES_URL, RANDOM_MOVIES_URL } from '../shared/contsants/urls';
+import { COMMENT_URL, MOVIES_BY_ID_URL, MOVIES_BY_SEARCH_URL, MOVIES_BY_TAG_URL,  MOVIES_TAGS_URL, MOVIES_URL, PEOPLE_URL, RANDOM_MOVIES_URL } from '../shared/contsants/urls';
 import { Observable, map } from 'rxjs';
+import { People } from '../shared/models/person';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,10 @@ export class FilmekService {
 
   getAll(): Observable<Film[]> {
     return this.http.get<Film[]>(MOVIES_URL);
+  }
+
+  getAllPeople(): Observable<People[]> {
+    return this.http.get<People[]>(PEOPLE_URL);
   }
 
   getAllByRatings(): Observable<Film[]> {

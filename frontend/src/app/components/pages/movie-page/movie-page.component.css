@@ -90,6 +90,22 @@ img{
   font-size: 1rem;
   font-weight: bold;
 }
+.rating-container {
+  display: flex;
+  align-items: center;
+}
+
+.rating-label {
+  margin-left: 30px;
+  border: 2px solid black; /* Border vastagsága 2px */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.ratingresult {
+  margin: 0;
+}
+
 
 
 

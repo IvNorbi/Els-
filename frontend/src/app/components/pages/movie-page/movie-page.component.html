@@ -13,8 +13,13 @@
         <p class="descr">{{film.description}}</p>
       </div>
       <div class="rating">
-        <star-rating [stars]="film.stars" [size]="1.8" />
-      </div>
+        <div class="rating-container">
+          <star-rating [stars]="film.stars" [size]="1.8" />
+          <div class="rating-label">
+            <!-- <h4 class="ertekeles">Értékelés:</h4> -->
+            <p class="ratingresult">{{ film.ratings }}</p>
+          </div>
+        </div>
       <div class="tags">
         <h4 class="cimke">Címkék:</h4>
         <span *ngFor="let tag of film.tags">
