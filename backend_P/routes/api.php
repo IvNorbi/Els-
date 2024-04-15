@@ -82,6 +82,7 @@ Route::post('movies/{movie}/tag', [MovieController::class, 'addGenre'])->middlew
 
 // műfaj törlése a filmről
 Route::delete('movies/{movie}/tag', [MovieController::class, 'deleteGenre'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
+Route::delete('movies/{movie}/tag/{tag}', [MovieController::class, 'deleteGenreB'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
 
 
 // Új színész hozzáadása filmhez
@@ -174,7 +175,10 @@ Route::get('users', [UserController::class, 'index'])->middleware(['auth:sanctum
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    $user = User::where("id", "=", $request->user()->id)->first();
+    $user->imageUrl = asset("storage/" . $user->imageUrl);
+
+    return $user;
 });
 
 // Új user létrehozása
@@ -190,4 +194,4 @@ Route::put('users/{user}', [UserController::class, 'update'])->middleware(['auth
 Route::put('user/', [UserController::class, 'updateMyProfile'])->middleware('auth:sanctum');
 
 // User törlése
-Route::delete('users/{user}', [UserController::class, 'destroy'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);
+Route::delete('user/{user}', [UserController::class, 'destroy'])->middleware(['auth:sanctum', 'abilities:admin,moderator']);

@@ -18,7 +18,7 @@ export class MoviePageComponent implements OnInit {
   comments: any[] = [];
   newCommentContent: string = '';
   user: { name: string } | null = null;
-  movieId: string | null = null; 
+  movieId: string =""; 
 
   constructor(
     public userService: UserService,
@@ -32,7 +32,7 @@ export class MoviePageComponent implements OnInit {
   }
 
   loadData() {
-    this.userService.getLoggedInUser().pipe(
+    /*this.userService.getLoggedInUser().pipe(
       switchMap((userData: UserModel) => {
         this.user = { name: userData.name ?? 'Névtelen' };
         return this.activatedRoute.params;
@@ -49,15 +49,24 @@ export class MoviePageComponent implements OnInit {
       if (this.movieId) {
         this.loadComments(this.movieId);
       }
+    });*/
+    this.activatedRoute.paramMap.subscribe((params: any) => {
+        this.movieId = params.get('id'); 
+        this.filmService.getMovieById(this.movieId ).subscribe(data => {
+            this.film = data as Film;
+            if (this.movieId) {
+              this.loadComments(this.movieId);
+            }
+        });
     });
   }
 
   loadComments(movieId: string) {
     this.filmService.getCommentsForMovie(movieId).subscribe(comments => {
       comments.forEach(comment => {
-        this.userService.getUserNameById(comment.user_id).subscribe(userName => {
+        /*this.userService.getUserNameById(comment.user_id).subscribe(userName => {
           comment.userName = userName;
-        });
+        });*/
       });
       this.comments = comments;
     });
@@ -70,6 +79,7 @@ export class MoviePageComponent implements OnInit {
     }
   
     const userName = this.user?.name ?? 'Ismeretlen felhasználó';
+    if (content == "") return;
     const comment = { content, movie_id: this.film.id, userName, date: new Date() };
     this.filmService.addComment(comment).subscribe({
       next: (newComment) => {

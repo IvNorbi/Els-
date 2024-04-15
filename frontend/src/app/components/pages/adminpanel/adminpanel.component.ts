@@ -7,6 +7,8 @@ import { AddTagDialogComponent } from '../add-tag-dialog/add-tag-dialog.componen
 import { MovieFormComponent } from '../../partials/movie-form/movie-form.component';
 import { AddmoviedialogComponent } from '../addmoviedialog/addmoviedialog.component';
 import { UserService } from 'src/app/services/user.service';
+import {PageEvent, MatPaginatorModule} from '@angular/material/paginator';
+
 
 
 @Component({
@@ -15,6 +17,41 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./adminpanel.component.css']
 })
 export class AdminpanelComponent implements OnInit {
+  
+  length = 1;
+  pageSize = 5;
+  pageIndex = 0;
+  pageSizeOptions = [5, 10, 25];
+
+  hidePageSize = false;
+  showPageSizeOptions = true;
+  showFirstLastButtons = true;
+  disabled = false;
+
+  pageEvent: PageEvent| null= null;
+
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+    
+    this.length = this.filmek.filter(film =>
+      film.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    ).length;
+
+    this.filteredFilms = this.filmek.filter(film =>
+      film.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    ).slice(this.pageIndex*this.pageSize, (this.pageIndex+1)*this.pageSize);
+  }
+
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    if (setPageSizeOptionsInput) {
+      this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+    }
+  }
+  
+  
+  
   filmek: Film[] = [];
   filteredFilms: Film[] = [];
   searchTerm: string = '';
@@ -43,7 +80,11 @@ export class AdminpanelComponent implements OnInit {
   loadMovies(): void {
     this.filmService.getAll().subscribe((serverMovies: Film[]) => {
       this.filmek = serverMovies;
-      this.filteredFilms = serverMovies;
+      this.length = serverMovies.length;
+      
+      this.filteredFilms = this.filmek.filter(film =>
+        film.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      ).slice(this.pageIndex*this.pageSize, (this.pageIndex+1)*this.pageSize);
     });
   }
   
@@ -51,10 +92,16 @@ export class AdminpanelComponent implements OnInit {
   filterMovies(): void {
     if (this.searchTerm.trim() === '') {
       this.filteredFilms = this.filmek;
+      this.length = this.filmek.length;
+
     } else {
+      this.length = this.filmek.filter(film =>
+        film.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      ).length;
+
       this.filteredFilms = this.filmek.filter(film =>
         film.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
+      ).slice(this.pageIndex*this.pageSize, (this.pageIndex+1)*this.pageSize);
     }
   }
   

@@ -38,9 +38,12 @@ class MovieController extends Controller
             foreach ($movie->genres as $genre) {
                 $tags[] = $genre->name;
             }
+            
             foreach ($movie->comments as $comment) {
-                $comment->user->imageUrl = asset("storage/" . $comment->user->imageUrl);
+                if (substr($comment->user->imageUrl, 0,4) != "http")
+                    $comment->user->imageUrl = asset("storage/" . $comment->user->imageUrl);
             }
+            
             $movie->tags = $tags;
             $movie->stars = round($movie->ratings / 2.0);
             $movie->imageUrl = asset("storage/" . $movie->imageUrl);
@@ -267,6 +270,34 @@ class MovieController extends Controller
     protected function deleteGenre(Movie $movie, Request $request) {
         
         $genre = Genre::where("name", "=", $request->input("tag"))->first();
+        if ( $genre  == null) return response()->json(["error"=>"Nincs ilyen műfaj"], 404); 
+        
+        $letezik = GenreMovie::where("movie_id" ,"=", $movie->id)
+                             ->where("genre_id" ,"=", $genre->id)
+                             ->first();
+        if ( $letezik == null) return response()->json(["error"=>"Nem is volt ilyen műfaja a filmnek"], 505); 
+        
+        $letezik->delete();
+
+        $tags = [];
+        $movie->rolesPeople;
+        foreach($movie->rolesPeople as $key => $rolePeople) {
+            $rolePeople->people;    
+            $rolePeople->roles;    
+        }
+        foreach ($movie->genres as $genre) {
+            $tags[] = $genre->name;
+        }
+        $movie->tags = $tags;
+        $movie->stars = round($movie->ratings / 2.0);
+        $movie->imageUrl = asset("storage/" . $movie->imageUrl);
+
+        return $movie;
+    }
+
+    protected function deleteGenreB(Movie $movie, string $tag, Request $request) {
+        
+        $genre = Genre::where("name", "=", $tag)->first();
         if ( $genre  == null) return response()->json(["error"=>"Nincs ilyen műfaj"], 404); 
         
         $letezik = GenreMovie::where("movie_id" ,"=", $movie->id)

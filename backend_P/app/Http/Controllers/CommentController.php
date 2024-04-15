@@ -22,9 +22,13 @@ class CommentController extends Controller
     public function indexByMovieID(Movie $movie)
     {
        // return $movie;//->with("comments")->get();
-       return Comment::with(["movie"])->where('movie_id', '=', $movie->id)->get();
-       $c= new CalculateAverageRating(); //ez a két sor legyen a vége, ez az újrakalkuláció
-       $c->run();
+       $seged =  Comment::with(["movie", "user"])->where('movie_id', '=', $movie->id)->get();
+       foreach ($seged as $comment) {
+            $comment->user->imageUrl = asset("storage/" .  $comment->user->imageUrl);
+        }
+        return $seged;
+        $c= new CalculateAverageRating(); //ez a két sor legyen a vége, ez az újrakalkuláció
+        $c->run();
     }
 
     public function index()
@@ -45,7 +49,9 @@ class CommentController extends Controller
 
         $comment->content = $request->content;
         $comment->date = Carbon::now();
-        $comment->save();       
+       
+        $comment->save();     
+        $comment->user;  
         return $comment;
     }   
 

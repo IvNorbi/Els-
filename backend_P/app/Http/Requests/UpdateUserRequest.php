@@ -23,9 +23,9 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => 'string|max:255', 
-            'password' => 'string',
-            'email' => 'string|email|unique:users',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            //'password' => 'string',
+            //'email' => 'string|email|unique:users',
+            //'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 
@@ -33,11 +33,11 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name.required' => 'Kötelező nevet megadni',
-            'email.required' => 'Kötelező email címet megadni',
-            'password.required' => 'Kötelező jelszót megadni',
-            'email.unique' => 'Már regisztrált email cím',
-            'image.image' => 'Nem megfelelő képformátum.',
-            'image.mimes' => 'Nem megfelelő formátum, csak jpeg,png,jpg,gif fogadható el.',
+            //'email.required' => 'Kötelező email címet megadni',
+            //'password.required' => 'Kötelező jelszót megadni',
+            //'email.unique' => 'Már regisztrált email cím',
+            //'image.image' => 'Nem megfelelő képformátum.',
+            //'image.mimes' => 'Nem megfelelő formátum, csak jpeg,png,jpg,gif fogadható el.',
         ];
     }
 }
