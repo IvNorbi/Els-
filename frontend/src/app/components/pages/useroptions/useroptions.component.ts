@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "src/app/services/user.service";
+import { UserModel } from "src/app/shared/models/userModel";
 
 @Component({
   selector: 'app-useroptions',
@@ -7,14 +8,15 @@ import { UserService } from "src/app/services/user.service";
   styleUrls: ['./useroptions.component.css']
 })
 export class UseroptionsComponent implements OnInit {
-  user = {
+  user:UserModel= {
     email: '',
     name: '',
-    password: ''
+    password: '',
+    imageUrl:"",
   };
-  imageUrl: string | ArrayBuffer | null = null;
+  
 
-  constructor(private userService: UserService) { }
+  constructor(public userService: UserService) { }
 
   ngOnInit() {
     this.loadLoggedInUserData();
@@ -34,15 +36,12 @@ export class UseroptionsComponent implements OnInit {
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.imageUrl = reader.result;
-      };
+        this.user.image = file;
+        this.user.imageUrl = URL.createObjectURL(file);
     }
   }
 
   saveChanges() {
-    console.log('Változtatások mentve: ', this.user);
+    this.userService.modifyUser(this.user).subscribe();
   }
 }

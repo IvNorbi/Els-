@@ -83,6 +83,15 @@ getAllMovieByTag(tag:string): Observable<Film[]>{
   this.http.get<Film[]>(MOVIES_BY_TAG_URL + tag);
   }
 
+deleteTag(movieId: number, tagname:string):Observable<boolean> {
+    let token = sessionStorage.getItem("token");
+
+      return this.http.delete<boolean>(MOVIES_URL+"/"+movieId+"/tag/"+tagname,{headers: {
+        "Authorization": "Bearer "+token
+        }
+      });
+    }
+
 deleteMovie(film:Film):Observable<boolean> {
   let token = sessionStorage.getItem("token");
 
@@ -105,7 +114,9 @@ addMovie(film:Film):Observable<Film> {
   let token = sessionStorage.getItem("token");
   
   let formdata = new FormData();
-  formdata.append('image', film.image, film.image.name);
+  if (film.image) {
+    formdata.append('image', film.image, film.image.name);
+  }
   formdata.append('release_year', film.release_year.toString());
   formdata.append('name', film.name);
   formdata.append('description', film.description);

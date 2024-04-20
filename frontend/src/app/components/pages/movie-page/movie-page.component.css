@@ -9,7 +9,7 @@ kék: #1000ff
 .container {
   background-color: #e2e2e2;
   padding: 10px;
-  max-width: 40%;
+  max-width: 960px;
   height: auto;
   box-shadow: 5px 1px 20px 5px  #888888 ;
 }
@@ -218,3 +218,10 @@ img{
 }
 
 
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: text;
+}

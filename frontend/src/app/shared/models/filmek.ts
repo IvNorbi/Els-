@@ -4,7 +4,7 @@ export class Film{
     id!:string;
     release_year!: number
     name!:string;
-    tags?: Tag[];
+    tags?: string[];
     favorite!: boolean;
     stars!:number;
     ratings!: number;

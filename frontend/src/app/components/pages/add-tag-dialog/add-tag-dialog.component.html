@@ -8,8 +8,11 @@
   <div class="tags">
     <h4 class="cimke">Címkék:</h4>
     <div class="tag-list">
-      <span *ngFor="let tag of film.tags" class="tag-item">
-        <a routerLink="/tag/{{tag}}" class="tag-link">{{tag}}</a>
+      <span *ngFor="let tag of film.tags" class="tag-item" >
+        <span class="tag-link"  >
+          {{tag}}
+        </span>
+        <a (click)="deleteTag(tag)" class="tag-link" >X</a>
       </span>
     </div>
   </div>

@@ -45,12 +45,24 @@ export class AddTagDialogComponent implements OnInit {
     this.addTagService.addTagToMovie(movieId, this.selectedTag).subscribe(
       response => {
         console.log('Címke sikeresen hozzáadva:', response);
+        this.film.tags?.push(this.selectedTag);
         this.selectedTag = '';
         this.isSuccess = true; 
       },
       error => {
         console.error('Hiba történt a címke hozzáadása közben:', error);
         this.isSuccess = false; 
+      }
+    );
+  }
+
+  deleteTag(tag: string): void {
+    console.log(tag);
+    const movieId: number = parseInt(this.film.id);
+
+    this.addTagService.deleteTag(movieId, tag).subscribe(
+      () => {
+        this.film.tags = this.film.tags?.filter(t => t != tag);
       }
     );
   }

@@ -1,8 +1,8 @@
 <!-- TARTALOM -->
-<div class="container">
+<div *ngIf="film" class="container">
   <div class="row">
     <div class="col-md-6">
-      <img src="{{ film.imageUrl }}" alt="{{ film.name }}" class="img-fluid"/>
+      <img  src="{{ film.imageUrl }}" alt="{{ film.name }}" class="img-fluid"/>
     </div>
     <div class="col-md-6 details">
       <div class="header d-flex align-items-center">
@@ -36,22 +36,23 @@
   </div>
 
 <!-- KOMMENT SZEKCIÓ -->
-<div class="row" *ngIf="user">
+<div class="row" *ngIf="comments">
   <div class="col-md-12">
     <div class="comment-box">
-      <textarea class="comment-input" [(ngModel)]="newCommentContent" placeholder="Hozzászólás"></textarea>
-      <button class="submit-button" (click)="addComment(newCommentContent)">ELKÜLD</button>
+      <textarea *ngIf="userService.hasAbilities('user')" class="comment-input" [(ngModel)]="newCommentContent" placeholder="Hozzászólás"></textarea>
+      <button *ngIf="userService.hasAbilities('user')" class="submit-button" (click)="addComment(newCommentContent)"
+      [disabled]="newCommentContent == ''">ELKÜLD</button>
       <div class="comment-list">
         <!-- Kommentek megjelenítése fordított sorrendben -->
         <div *ngFor="let comment of comments.slice().reverse()" class="comment">
           <div class="comment-header">
-            <span class="comment-user">{{ comment.userName }}</span>
+            <span class="comment-user">{{ comment.user.name }}</span>
             <div class="separator"></div> <!-- Elválasztó vonal -->
           </div>
           <div class="comment-content">
             <p>{{ comment.content }}</p>
             <div class="comment-date">{{ comment.date | date:'yyyy-MM-dd HH:mm:ss' }}</div> <!-- Dátum a komment doboz alján -->
-            <button mat-icon-button color="warn" *ngIf="userService.hasAbilities('admin')" (click)="confirmDelete(comment.id)">
+            <button mat-icon-button color="warn" *ngIf="userService.hasAbilities('moderator')" (click)="confirmDelete(comment.id)">
               <mat-icon>delete</mat-icon>
             </button>
           </div>

@@ -3,4 +3,5 @@ export class UserModel {
     password!:string;
     name?:string; // Login komponens miatt. 
     imageUrl?:string;
+    image?:File;
 }

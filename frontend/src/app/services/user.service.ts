@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class UserService {
-
+ 
   private users: UserModel[] = [];
 
 
@@ -104,5 +104,32 @@ export class UserService {
    let abilities = sessionStorage.getItem("abilities")||"";
    return (abilities.indexOf(ability) >= 0);
  }
+
+ deleteUser(userId:string):Observable<boolean> {
+  let token = sessionStorage.getItem("token");
+
+    return this.http.delete<boolean>(USER_URL+userId,{headers: {
+      "Authorization": "Bearer "+token
+      }
+    });
+  }
+
+  modifyUser(user:UserModel):Observable<boolean> {
+    let token = sessionStorage.getItem("token");
+    let formdata = new FormData();
+    if (user.image) {
+      formdata.append('image', user.image, user.image.name);
+    }
+    formdata.append('email', user.email.toString());
+    formdata.append('name', user.name??"");
+    formdata.append('_method', "put");
+
+
+    return this.http.post<boolean>(USER_URL,formdata,{headers: {
+        "Authorization": "Bearer "+token
+        }
+      });
+    }
+
 }
 

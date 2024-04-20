@@ -150,6 +150,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $user->imageUrl = asset("storage/" . $user->imageUrl);
+
         return $user;
     }
 
@@ -170,7 +172,7 @@ class UserController extends Controller
     {
 
         $tokenuser = auth()->user();
-        // dd($tokenuser);
+         //dd($tokenuser);
         $user = User::where('id', $tokenuser->currentAccessToken()->tokenable_id)->first();
         if ($request->filled('name')) {
             $user->name = $request->input('name');
@@ -178,7 +180,7 @@ class UserController extends Controller
         $this->fillUserFromRequestWhenUpdateByUser($user, $request);
         $this->uploadImage($user, $request);
         $user->save();
-        return response()->json($user);
+        return response()->json($request);
     }
 
     /**

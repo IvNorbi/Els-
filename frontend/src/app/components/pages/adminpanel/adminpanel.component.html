@@ -6,7 +6,15 @@
     <button mat-raised-button class="custom-primary-button" (click)="openDialog()">Film Hozzáadása</button>
   </div>
   <div class="paginator-container">
-    <mat-paginator [pageSize]="5"></mat-paginator>
+    <mat-paginator (page)="handlePageEvent($event)"
+    [length]="length"
+    [pageSize]="pageSize"
+    [disabled]="disabled"
+    [showFirstLastButtons]="showFirstLastButtons"
+    [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+    [hidePageSize]="hidePageSize"
+    [pageIndex]="pageIndex"
+    aria-label="Select page"></mat-paginator>
   
     <ng-container *ngFor="let film of filteredFilms; let i = index;">
       <div class="row" [class.white-background]="i % 2 === 0" [class.grey-background]="i % 2 !== 0">
